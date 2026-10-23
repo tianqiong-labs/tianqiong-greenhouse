@@ -1,0 +1,26 @@
+# 田穹装配审计报告
+
+- 结论计数: info=8, ok=15
+- **INFO** [A-inventory] 4 expected outputs, 4 present
+- **INFO** [A-naming] poses.py exists=True, posals.py exists=False 
+- **OK** [B-refs] 关节点父组件缺失 0
+- **OK** [B-refs] 关节子组件缺失 0
+- **OK** [B-refs] 自环 0
+- **OK** [B-refs] 一物多父 0
+- **OK** [B-cycles] 运动链闭环 0
+- **OK** [B-orphans] 孤立组件 0
+- **OK** [C-axis] 零长度轴线 0
+- **OK** [C-limits] 限位反向 0
+- **INFO** [C-rigid] 零行程移动副 6 个（1/6 号臂端部滑座在恢复的补位数据中不参与平移，保留为滑座而非改成刚性，以便后续重新标定）
+- **INFO** [C-virtual] 标注为方案/未验证的关节 175 个；实体机构 183 个
+- **INFO** [D-design] 源码 M02 自由度定义: 根座Y + yaw Z + 4×俯仰 + 末节伸缩 = 7 DOF/臂；共 18 臂
+- **OK** [D-census] 18 条臂中，与 7 DOF 定义不符的有 0 条
+- **OK** [E-mapping] 构件映射：1180 已映射 / 0 未映射
+- **OK** [E-duplicate] 同位置同网格重复构件 0 组
+- **OK** [F-modules] 大模块结构 AABB 相交 0 对（已排除膜/带/方案件）
+- **OK** [G-zero] 部署态（零位）变换矩阵最大偏离单位阵 1.11e-16
+- **INFO** [H-step] deployed.step: 1181 实体, 包络 {'x': [-713.0, 4919.4], 'y': [-105.0, 12105.0], 'z': [-160.0, 3150.4]}
+- **INFO** [H-step] transport.step: 1159 实体, 包络 {'x': [-1047.0, 1360.6], 'y': [-50.0, 12050.0], 'z': [-60.0, 3094.9]}
+- **INFO** [H-provenance] transport.pose.json 记录 102 个关节量，其中 102 个非零
+- **OK** [I-constraints] 承托头 Y 与臂根 Y 的一致性（滑移受约束）
+- **OK** [J-transport] 运输态中未随姿态运动的非静态组件 0 个

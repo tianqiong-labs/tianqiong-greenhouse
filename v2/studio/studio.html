@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>田穹 · 整棚渲染台</title>
+<style>
+  html,body{margin:0;height:100%;background:#0b1418;overflow:hidden}
+  #view{display:block;width:100vw;height:100vh}
+  #hud{position:fixed;left:16px;bottom:12px;color:#e6f0ec;font:12px/1.6 'Microsoft YaHei',system-ui;opacity:.55;pointer-events:none;text-shadow:0 1px 3px #0008}
+</style>
+</head>
+<body>
+<canvas id="view"></canvas>
+<div id="hud"></div>
+<script src="three.min.js"></script>
+<script src="house_data.js"></script>
+<script>
+const D = window.TQ_HOUSE;
+const canvas = document.getElementById('view');
+const renderer = new THREE.WebGLRenderer({canvas, antialias:true, preserveDrawingBuffer:true});
+renderer.setPixelRatio(1);
+renderer.setSize(1280, 720, false);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(34, 16/9, 30, 120000);
+camera.up.set(0, 0, 1);
+
+/* ---------- procedural sky + environment ---------- */
+function skyCanvas(w, h, equirect) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const ctx = c.getContext('2d');
+  const g = ctx.createLinearGradient(0, 0, 0, h);
+  if (equirect) {
+    g.addColorStop(0.00, '#9dbfd8'); g.addColorStop(0.38, '#cfe0ea');
+    g.addColorStop(0.50, '#eef2ec'); g.addColorStop(0.52, '#dfe0d2');
+    g.addColorStop(1.00, '#b9bda9');
+  } else {
+    g.addColorStop(0.00, '#7ea6c8'); g.addColorStop(0.45, '#bcd3e2');
+    g.addColorStop(0.78, '#e9eee9'); g.addColorStop(1.00, '#e2e5d8');
+  }
+  ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+  if (equirect) {
+    const sun = ctx.createRadialGradient(w*0.22, h*0.16, 2, w*0.22, h*0.16, h*0.30);
+    sun.addColorStop(0, 'rgba(255,248,230,1)'); sun.addColorStop(.35, 'rgba(255,240,210,.55)');
+    sun.addColorStop(1, 'rgba(255,240,210,0)');
+    ctx.fillStyle = sun; ctx.fillRect(0, 0, w, h);
+  }
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.mapping = equirect ? THREE.EquirectangularReflectionMapping : THREE.UVMapping;
+  return t;
+}
+scene.background = skyCanvas(8, 512, false);
+
+const pmrem = new THREE.PMREMGenerator(renderer);
+pmrem.compileEquirectangularShader();
+scene.environment = pmrem.fromEquirectangular(skyCanvas(1024, 512, true)).texture;
+scene.environmentIntensity = 0.85;
+
+/* ---------- lights ---------- */
+scene.add(new THREE.HemisphereLight(0xdceef9, 0x6e7458, 0.30));
+const key = new THREE.DirectionalLight(0xfff1d6, 3.9);
+key.position.set(12800, 21800, 11200);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.camera.near = 2000; key.shadow.camera.far = 60000;
+key.shadow.camera.left = -11000; key.shadow.camera.right = 11000;
+key.shadow.camera.top = 12000; key.shadow.camera.bottom = -12000;
+key.shadow.bias = -0.0004;
+key.shadow.normalBias = 6;
+key.target.position.set(2400, 6000, 1000);
+scene.add(key, key.target);
+const rim = new THREE.DirectionalLight(0xa9cde4, 0.45);
+rim.position.set(12000, 12000, 5200);
+scene.add(rim);
+
+/* ---------- ground ---------- */
+const L = D.meta.total_length_mm;
+function groundTexture() {
+  const c = document.createElement('canvas'); c.width = c.height = 512;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#d9d6c6'; ctx.fillRect(0, 0, 512, 512);
+  for (let i = 0; i < 26000; i++) {
+    const x = Math.random()*512, y = Math.random()*512;
+    const v = 200 + Math.random()*40 | 0;
+    ctx.fillStyle = `rgba(${v-20},${v-16},${v-40},${Math.random()*0.30})`;
+    ctx.fillRect(x, y, 1 + Math.random()*2, 1 + Math.random()*2);
+  }
+  const t = new THREE.CanvasTexture(c);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(16, 16);
+  t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(160000, 160000),
+  new THREE.MeshStandardMaterial({map: groundTexture(), color:0xffffff, roughness:.96, metalness:0})
+);
+ground.position.set(2000, L/2, -2);
+ground.receiveShadow = true;
+scene.add(ground);
+scene.fog = new THREE.Fog(0xdbe1d6, 42000, 115000);
+
+/* ---------- fake contact shadow under the house ---------- */
+(function contactShadow(){
+  const c = document.createElement('canvas'); c.width = c.height = 256;
+  const ctx = c.getContext('2d');
+  const g = ctx.createRadialGradient(128, 128, 10, 128, 128, 126);
+  g.addColorStop(0, 'rgba(40,48,36,.55)');
+  g.addColorStop(.55, 'rgba(50,58,44,.30)');
+  g.addColorStop(1, 'rgba(60,66,52,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 256, 256);
+  const tex = new THREE.CanvasTexture(c);
+  const plane = new THREE.Mesh(new THREE.PlaneGeometry(14000, 5200),
+    new THREE.MeshBasicMaterial({map:tex, transparent:true, depthWrite:false, opacity:.85}));
+  plane.position.set(2100, L/2, 1.5);
+  scene.add(plane);
+})();
+
+/* ---------- distant tree line for context ---------- */
+(function trees(){
+  const trunkMat = new THREE.MeshStandardMaterial({color:0x6b5a45, roughness:.9});
+  const leafMat = new THREE.MeshStandardMaterial({color:0x8aa877, roughness:.92});
+  const trunk = new THREE.CylinderGeometry(70, 90, 1600, 6);
+  const crown = new THREE.ConeGeometry(760, 2600, 7);
+  const N = 54;
+  const tm = new THREE.InstancedMesh(trunk, trunkMat, N);
+  const cm = new THREE.InstancedMesh(crown, leafMat, N);
+  const dummy = new THREE.Object3D();
+  let seed = 11;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < N; i++) {
+    const side = rnd() > .5 ? 1 : -1;
+    // far background only: never between camera and house
+    const x = 2200 + side * (24000 + rnd() * 16000);
+    const y = -16000 + rnd() * (L + 32000);
+    const s = .75 + rnd() * .7;
+    dummy.rotation.set(0, 0, rnd() * 6.28);
+    dummy.position.set(x, y, 800 * s); dummy.scale.setScalar(s);
+    dummy.updateMatrix(); tm.setMatrixAt(i, dummy.matrix);
+    dummy.position.set(x, y, (1600 + 1300) * s);
+    dummy.updateMatrix(); cm.setMatrixAt(i, dummy.matrix);
+  }
+  tm.castShadow = false; cm.castShadow = false;
+  scene.add(tm, cm);
+})();
+
+
+/* ---------- model ---------- */
+const geometry = {}, materials = {}, objects = {};
+for (const [id, d] of Object.entries(D.catalog)) {
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(d.vertices.flat(), 3));
+  g.setIndex(d.faces.flat());
+  g.computeVertexNormals();
+  geometry[id] = g;
+}
+const FILM = D.catalog[Object.keys(D.catalog).find(k => k.startsWith('F04_CONTINUOUS'))] ? null : null;
+function material(c, group) {
+  const k = group + '|' + c.join(',');
+  if (!materials[k]) {
+    const clear = c[3] < 1;
+    const isFilm = group === 'film';
+    // colour script: graphite structure, warm concrete walls, translucent skin
+    const override = {
+      arm: 0x33474b, telescope: 0x4d6a6e, joint: 0x25363a,
+      wall: 0xd7d4c8, rail: 0x59676a, roll: 0x8d9490,
+      proposal: 0x8a6f9c, magnet: 0x6a5f8c
+    }[group];
+    const base = override != null ? new THREE.Color(override) : new THREE.Color(c[0], c[1], c[2]);
+    materials[k] = new THREE.MeshStandardMaterial({
+      color: isFilm ? new THREE.Color(0xe8f4ff) : base,
+      metalness: isFilm ? 0.0 : (group === 'wall' ? 0.02 : 0.35),
+      roughness: isFilm ? 0.16 : (group === 'wall' ? 0.85 : 0.45),
+      transparent: clear, opacity: isFilm ? 0.32 : c[3],
+      envMapIntensity: isFilm ? 0.85 : 0.9,
+      side: THREE.DoubleSide, depthWrite: !clear
+    });
+  }
+  return materials[k];
+}
+const group = new THREE.Group();
+scene.add(group);
+const baseTrs = {};
+for (const r of D.base) {
+  baseTrs[r.name] = r.trs;
+  const mesh = new THREE.Mesh(geometry[r.mesh], material(D.catalog[r.mesh].color, r.group));
+  mesh.name = r.name;
+  mesh.userData.group = r.group;
+  mesh.position.set(...r.trs[0]);
+  mesh.quaternion.set(...r.trs[1]);
+  mesh.scale.set(...r.trs[2]);
+  mesh.castShadow = r.group !== 'film';
+  mesh.receiveShadow = r.group !== 'film';
+  objects[r.name] = mesh;
+  group.add(mesh);
+}
+
+/* ---------- interior planting beds: scale reference + agricultural reading ---------- */
+(function beds(){
+  const bedMat = new THREE.MeshStandardMaterial({color:0x8d7d61, roughness:.96});
+  const leafMat = new THREE.MeshStandardMaterial({color:0x5d8a4b, roughness:.9});
+  for (let i = 0; i < 6; i++) {
+    const y = 700 + i * 1900;
+    const bed = new THREE.Mesh(new THREE.BoxGeometry(2500, 1150, 300), bedMat);
+    bed.position.set(2150, y, 150);
+    bed.castShadow = true; bed.receiveShadow = true;
+    scene.add(bed);
+    for (let r = 0; r < 3; r++) {
+      const row = new THREE.Mesh(new THREE.BoxGeometry(2300, 200, 240), leafMat);
+      row.position.set(2150, y - 360 + r * 360, 420);
+      row.castShadow = true; row.receiveShadow = true;
+      scene.add(row);
+    }
+  }
+})();
+
+/* ---------- technical callout layer (labels + leader lines) ---------- */
+const calloutLayer = document.createElement('div');
+calloutLayer.style.cssText = 'position:fixed;inset:0;pointer-events:none;font:600 15px/1.4 "Microsoft YaHei",system-ui;color:#10281f;';
+document.body.appendChild(calloutLayer);
+const svgNS = 'http://www.w3.org/2000/svg';
+const lineLayer = document.createElementNS(svgNS, 'svg');
+lineLayer.setAttribute('width', '100%'); lineLayer.setAttribute('height', '100%');
+lineLayer.style.cssText = 'position:fixed;inset:0;pointer-events:none;';
+document.body.appendChild(lineLayer);
+const CALLOUTS = [
+  {text:'单侧母墙 3500×600×2800', anchor:[-600, 1600, 2200], shots:[0,1], dx:-180, dy:-52},
+  {text:'连续整膜 · 12.1 m 不裁断', anchor:[2400, 8800, 3010], shots:[0,1], dx:0, dy:-70},
+  {text:'三条贯通加强嵌条', anchor:[2445, 7000, 2500], shots:[0,1], dx:150, dy:-40},
+  {text:'每模块 18 个滑移承托头', anchor:[1150, 5160, 2970], shots:[2], dx:120, dy:-56},
+  {text:'机械防脱闸门 · 磁吸仅辅助', anchor:[1160, 5160, 3030], shots:[2], dx:150, dy:46},
+  {text:'2/5 号臂脱离候选', anchor:[3633, 5160, 1500], shots:[2,4], dx:120, dy:60}
+];
+const calloutEls = [], calloutLines = [], calloutDots = [];
+CALLOUTS.forEach(c => {
+  const el = document.createElement('div');
+  el.style.cssText = 'position:absolute;transform:translate(-50%,-50%);opacity:0;' +
+    'background:rgba(255,255,255,.90);padding:4px 10px;border-radius:5px;border:1px solid rgba(25,60,50,.30);' +
+    'box-shadow:0 3px 10px rgba(15,40,32,.16);white-space:nowrap;';
+  el.textContent = c.text;
+  calloutLayer.appendChild(el);
+  calloutEls.push(el);
+  const ln = document.createElementNS(svgNS, 'line');
+  ln.setAttribute('stroke', 'rgba(24,62,50,.55)'); ln.setAttribute('stroke-width', '1.6');
+  ln.setAttribute('opacity', '0');
+  lineLayer.appendChild(ln);
+  calloutLines.push(ln);
+  const dot = document.createElementNS(svgNS, 'circle');
+  dot.setAttribute('r', '3.2'); dot.setAttribute('fill', 'rgba(214,102,54,.95)'); dot.setAttribute('opacity', '0');
+  lineLayer.appendChild(dot);
+  calloutDots.push(dot);
+});
+function anchorVec(a) {
+  if (Array.isArray(a)) return new THREE.Vector3(a[0], a[1], a[2]);
+  const mesh = objects[a];
+  if (mesh) return new THREE.Vector3().setFromMatrixPosition(mesh.matrixWorld);
+  return new THREE.Vector3(-99999, -99999, -99999);
+}
+function updateCallouts(t) {
+  const shot = SHOTS.findIndex(s => t >= s.t0 && t < s.t1);
+  const w = window.innerWidth, h = window.innerHeight;
+  CALLOUTS.forEach((c, i) => {
+    const el = calloutEls[i], ln = calloutLines[i], dot = calloutDots[i];
+    if (!c.shots.includes(shot)) { el.style.opacity = '0'; ln.setAttribute('opacity','0'); dot.setAttribute('opacity','0'); return; }
+    const v = anchorVec(c.anchor).clone().project(camera);
+    if (v.z > 1) { el.style.opacity = '0'; ln.setAttribute('opacity','0'); dot.setAttribute('opacity','0'); return; }
+    const ax = (v.x * .5 + .5) * w, ay = (-v.y * .5 + .5) * h;
+    const lx = ax + c.dx, ly = ay + c.dy;
+    el.style.left = lx + 'px'; el.style.top = ly + 'px';
+    const o = Math.min(1, Math.max(0, (t - SHOTS[shot].t0) / 0.8)) * 0.96;
+    el.style.opacity = String(o);
+    ln.setAttribute('x1', ax); ln.setAttribute('y1', ay);
+    ln.setAttribute('x2', lx); ln.setAttribute('y2', ly + 10);
+    ln.setAttribute('opacity', String(o * 0.85));
+    dot.setAttribute('cx', ax); dot.setAttribute('cy', ay); dot.setAttribute('opacity', String(o));
+  });
+}
+
+/* ---------- timeline ---------- */
+const frames = D.frames;
+function frameIndex(t) { let i = 0; while (i < frames.length - 2 && frames[i+1].t <= t) i++; return i; }
+const _q = new THREE.Quaternion(), _qa = new THREE.Quaternion(), _qb = new THREE.Quaternion();
+function lerpTrs(a, b, f, mesh) {
+  mesh.position.set(a[0][0]+(b[0][0]-a[0][0])*f, a[0][1]+(b[0][1]-a[0][1])*f, a[0][2]+(b[0][2]-a[0][2])*f);
+  _qa.set(a[1][0],a[1][1],a[1][2],a[1][3]); _qb.set(b[1][0],b[1][1],b[1][2],b[1][3]);
+  _q.copy(_qa).slerp(_qb, f); mesh.quaternion.copy(_q);
+  mesh.scale.set(a[2][0]+(b[2][0]-a[2][0])*f, a[2][1]+(b[2][1]-a[2][1])*f, a[2][2]+(b[2][2]-a[2][2])*f);
+}
+function setTime(t) {
+  const i = frameIndex(t), f0 = frames[i], f1 = frames[Math.min(i+1, frames.length-1)];
+  const span = Math.max(1e-6, f1.t - f0.t), f = Math.min(1, Math.max(0, (t - f0.t)/span));
+  for (const r of D.base) lerpTrs(f0.moves[r.name] || baseTrs[r.name], f1.moves[r.name] || baseTrs[r.name], f, objects[r.name]);
+  document.getElementById('hud').textContent = f0.label + '  ·  t=' + t.toFixed(2) + ' s';
+  return f0.label;
+}
+
+/* ---------- camera choreography (mm, auto-framed) ---------- */
+const houseBox = new THREE.Box3().setFromObject(group);
+const probe = new THREE.PerspectiveCamera(34, 16/9, 10, 300000);
+probe.up.set(0, 0, 1);
+const CORNERS = (() => {
+  const {min, max} = houseBox, out = [];
+  for (const x of [min.x, max.x]) for (const y of [min.y, max.y]) for (const z of [min.z, max.z]) out.push(new THREE.Vector3(x, y, z));
+  return out;
+})();
+function place(az, el, r, target) {
+  return [target[0] + r*Math.cos(el)*Math.cos(az), target[1] + r*Math.cos(el)*Math.sin(az), target[2] + r*Math.sin(el)];
+}
+function fits(r, az, el, target, fill) {
+  probe.position.set(...place(az, el, r, target));
+  probe.lookAt(target[0], target[1], target[2]);
+  probe.updateMatrixWorld(); probe.updateProjectionMatrix();
+  for (const c of CORNERS) {
+    const v = c.clone().project(probe);
+    if (Math.abs(v.x) > fill || Math.abs(v.y) > fill || v.z > 1) return false;
+  }
+  return true;
+}
+function radiusFor(az, el, target, fill) {
+  let lo = 800, hi = 120000;
+  for (let i = 0; i < 42; i++) {
+    const mid = (lo + hi) / 2;
+    if (fits(mid, az, el, target, fill)) hi = mid; else lo = mid;
+  }
+  return hi;
+}
+const BOX_CENTER = houseBox.getCenter(new THREE.Vector3()).toArray();
+
+const SHOTS = [
+  // 3/4 front view: roof slope, open front, continuous membrane
+  {t0:0,   t1:5.5, a:{az:-0.86, el:0.24, fill:0.92, t:BOX_CENTER},
+                   b:{az:-0.62, el:0.20, fill:0.88, t:BOX_CENTER}},
+  // front elevation: rail, coil, membrane edge, six arms deep
+  {t0:5.5, t1:11,  a:{az:-0.18, el:0.10, fill:0.95, t:BOX_CENTER},
+                   b:{az: 0.02, el:0.09, fill:0.92, t:BOX_CENTER}},
+  // hero module: 18 carriers from outside-front
+  {t0:11,  t1:15,  a:{az:-0.62, el:0.13, fill:0.50, t:[2600, 5160, 2250], r:null},
+                   b:{az:-0.42, el:0.11, fill:0.34, t:[2500, 5260, 2200], r:null}},
+  // medium: along the rail, three carrier lines + retracting arms
+  {t0:15,  t1:19,  a:{az:-0.34, el:0.06, fill:null, t:[2500, 5160, 2400], r:5600},
+                   b:{az:-0.52, el:0.05, fill:null, t:[2700, 5300, 2250], r:4800}},
+  // pull back: whole house again from the front-quarter
+  {t0:19,  t1:24,  a:{az:-0.80, el:0.15, fill:null, t:[2900, 5100, 1600], r:9200},
+                   b:{az:-1.05, el:0.19, fill:null, t:[2700, 5600, 1500], r:11800}}
+];
+function shotRadius(s) { return s.r != null ? s.r : radiusFor(s.az, s.el, s.t, s.fill); }
+const SHOT_R = SHOTS.map(s => ({r0: shotRadius(s.a), r1: shotRadius(s.b)}));
+function camAt(t) {
+  let idx = SHOTS.length - 1;
+  for (let i = 0; i < SHOTS.length; i++) if (t >= SHOTS[i].t0 && t < SHOTS[i].t1) { idx = i; break; }
+  const s = SHOTS[idx], R = SHOT_R[idx];
+  const u = Math.min(1, Math.max(0, (t - s.t0)/Math.max(1e-6, s.t1 - s.t0)));
+  const e = u*u*(3-2*u);
+  const L2 = (a, b) => a + (b - a)*e;
+  return {az:L2(s.a.az, s.b.az), el:L2(s.a.el, s.b.el), r:L2(R.r0, R.r1),
+          target:[L2(s.a.t[0], s.b.t[0]), L2(s.a.t[1], s.b.t[1]), L2(s.a.t[2], s.b.t[2])]};
+}
+function applyCam(c) {
+  camera.position.set(c.target[0]+c.r*Math.cos(c.el)*Math.cos(c.az),
+                      c.target[1]+c.r*Math.cos(c.el)*Math.sin(c.az),
+                      c.target[2]+c.r*Math.sin(c.el));
+  camera.lookAt(c.target[0], c.target[1], c.target[2]);
+  camera.updateMatrixWorld();
+}
+function render(){ renderer.render(scene, camera); }
+
+const FILM_KEYS = Object.keys(materials).filter(k => k.startsWith('film|'));
+function setFilm(o){ for (const k of FILM_KEYS) materials[k].opacity = o; }
+
+window.STUDIO = {
+  setTime, render, camAt, applyCam, setFilm,
+  frame(t){
+    setTime(t); applyCam(camAt(t));
+    setFilm(0.32);
+    updateCallouts(t);
+    render();
+    return true;
+  },
+  hud(on){ document.getElementById('hud').style.display = on ? 'block' : 'none'; },
+  probe(p){
+    const v = (Array.isArray(p) ? new THREE.Vector3(...p) : anchorVec(p)).project(camera);
+    return {x:+v.x.toFixed(3), y:+v.y.toFixed(3), z:+v.z.toFixed(3),
+            px:Math.round((v.x*.5+.5)*window.innerWidth), py:Math.round((-v.y*.5+.5)*window.innerHeight)};
+  },
+  frameCam(t, az, el, r, target){ setTime(t); applyCam({az, el, r, target}); render(); },
+  stats(){ return {meshes:group.children.length, catalog:Object.keys(D.catalog).length,
+                   frames:frames.length, base:D.base.length, length_mm:L,
+                   width_mm:D.meta.membrane_width_mm, shots:SHOTS.length}; }
+};
+setTime(0); applyCam(camAt(0)); render();
+window.STUDIO_READY = true;
+</script>
+</body>
+</html>

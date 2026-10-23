@@ -1,0 +1,786 @@
+{
+ "summary": {
+  "info": 8,
+  "ok": 15
+ },
+ "findings": [
+  {
+   "level": "info",
+   "area": "A-inventory",
+   "message": "4 expected outputs, 4 present",
+   "detail": [
+    {
+     "file": "assembly.json",
+     "exists": true,
+     "size_mb": 0.21,
+     "sha256": "d3e4af8eb5bb6290"
+    },
+    {
+     "file": "deployed.step",
+     "exists": true,
+     "size_mb": 20.58,
+     "sha256": "4bee85ca59095a45"
+    },
+    {
+     "file": "transport.step",
+     "exists": true,
+     "size_mb": 18.33,
+     "sha256": "9e6a7a5d0a511425"
+    },
+    {
+     "file": "transport.pose.json",
+     "exists": true,
+     "size_mb": 0.0,
+     "sha256": "6d83396d475d04a4"
+    }
+   ]
+  },
+  {
+   "level": "info",
+   "area": "A-naming",
+   "message": "poses.py exists=True, posals.py exists=False ",
+   "detail": []
+  },
+  {
+   "level": "ok",
+   "area": "B-refs",
+   "message": "关节点父组件缺失 0",
+   "detail": []
+  },
+  {
+   "level": "ok",
+   "area": "B-refs",
+   "message": "关节子组件缺失 0",
+   "detail": []
+  },
+  {
+   "level": "ok",
+   "area": "B-refs",
+   "message": "自环 0",
+   "detail": []
+  },
+  {
+   "level": "ok",
+   "area": "B-refs",
+   "message": "一物多父 0",
+   "detail": []
+  },
+  {
+   "level": "ok",
+   "area": "B-cycles",
+   "message": "运动链闭环 0",
+   "detail": []
+  },
+  {
+   "level": "ok",
+   "area": "B-orphans",
+   "message": "孤立组件 0",
+   "detail": []
+  },
+  {
+   "level": "ok",
+   "area": "C-axis",
+   "message": "零长度轴线 0",
+   "detail": []
+  },
+  {
+   "level": "ok",
+   "area": "C-limits",
+   "message": "限位反向 0",
+   "detail": []
+  },
+  {
+   "level": "info",
+   "area": "C-rigid",
+   "message": "零行程移动副 6 个（1/6 号臂端部滑座在恢复的补位数据中不参与平移，保留为滑座而非改成刚性，以便后续重新标定）",
+   "detail": [
+    "M1_A01_root_Y",
+    "M1_A06_root_Y",
+    "M2_A01_root_Y",
+    "M2_A06_root_Y",
+    "M3_A01_root_Y"
+   ]
+  },
+  {
+   "level": "info",
+   "area": "C-virtual",
+   "message": "标注为方案/未验证的关节 175 个；实体机构 183 个",
+   "detail": [
+    "M1_P03_anchor_retract",
+    "M1_P03_lift_Z",
+    "M1_P03_stow_X",
+    "M1_P03_slot_Z",
+    "M1_A01_J1_head_drop",
+    "M1_A01_J1_gate_L",
+    "M1_A01_J1_gate_R",
+    "M1_A01_J2_head_drop"
+   ]
+  },
+  {
+   "level": "info",
+   "area": "D-design",
+   "message": "源码 M02 自由度定义: 根座Y + yaw Z + 4×俯仰 + 末节伸缩 = 7 DOF/臂；共 18 臂",
+   "detail": {
+    "source_keys": []
+   }
+  },
+  {
+   "level": "ok",
+   "area": "D-census",
+   "message": "18 条臂中，与 7 DOF 定义不符的有 0 条",
+   "detail": []
+  },
+  {
+   "level": "ok",
+   "area": "E-mapping",
+   "message": "构件映射：1180 已映射 / 0 未映射",
+   "detail": []
+  },
+  {
+   "level": "ok",
+   "area": "E-duplicate",
+   "message": "同位置同网格重复构件 0 组",
+   "detail": []
+  },
+  {
+   "level": "ok",
+   "area": "F-modules",
+   "message": "大模块结构 AABB 相交 0 对（已排除膜/带/方案件）",
+   "detail": []
+  },
+  {
+   "level": "ok",
+   "area": "G-zero",
+   "message": "部署态（零位）变换矩阵最大偏离单位阵 1.11e-16",
+   "detail": []
+  },
+  {
+   "level": "info",
+   "area": "H-step",
+   "message": "deployed.step: 1181 实体, 包络 {'x': [-713.0, 4919.4], 'y': [-105.0, 12105.0], 'z': [-160.0, 3150.4]}",
+   "detail": []
+  },
+  {
+   "level": "info",
+   "area": "H-step",
+   "message": "transport.step: 1159 实体, 包络 {'x': [-1047.0, 1360.6], 'y': [-50.0, 12050.0], 'z': [-60.0, 3094.9]}",
+   "detail": []
+  },
+  {
+   "level": "info",
+   "area": "H-provenance",
+   "message": "transport.pose.json 记录 102 个关节量，其中 102 个非零",
+   "detail": []
+  },
+  {
+   "level": "ok",
+   "area": "I-constraints",
+   "message": "承托头 Y 与臂根 Y 的一致性（滑移受约束）",
+   "detail": [
+    {
+     "state": "deployed",
+     "max_carrier_vs_arm_Y_mm": 0.0,
+     "engaged": 18,
+     "total": 18
+    },
+    {
+     "state": "compensated",
+     "max_carrier_vs_arm_Y_mm": 0.0,
+     "engaged": 18,
+     "total": 18
+    },
+    {
+     "state": "release",
+     "max_carrier_vs_arm_Y_mm": null,
+     "engaged": 12,
+     "total": 18
+    }
+   ]
+  },
+  {
+   "level": "ok",
+   "area": "J-transport",
+   "message": "运输态中未随姿态运动的非静态组件 0 个",
+   "detail": []
+  }
+ ],
+ "graph": {
+  "cycles": 0,
+  "multi_parent": 0,
+  "orphans": []
+ },
+ "joints": {
+  "zero_axis": [],
+  "bad_limits": [],
+  "rigid_like": [
+   "M1_A01_root_Y",
+   "M1_A06_root_Y",
+   "M2_A01_root_Y",
+   "M2_A06_root_Y",
+   "M3_A01_root_Y",
+   "M3_A06_root_Y"
+  ],
+  "virtual": [
+   "M1_P03_anchor_retract",
+   "M1_P03_lift_Z",
+   "M1_P03_stow_X",
+   "M1_P03_slot_Z",
+   "M1_A01_J1_head_drop",
+   "M1_A01_J1_gate_L",
+   "M1_A01_J1_gate_R",
+   "M1_A01_J2_head_drop",
+   "M1_A01_J2_gate_L",
+   "M1_A01_J2_gate_R",
+   "M1_A01_J3_head_drop",
+   "M1_A01_J3_gate_L",
+   "M1_A01_J3_gate_R",
+   "M1_A02_J1_head_drop",
+   "M1_A02_J1_gate_L",
+   "M1_A02_J1_gate_R",
+   "M1_A02_J2_head_drop",
+   "M1_A02_J2_gate_L",
+   "M1_A02_J2_gate_R",
+   "M1_A02_J3_head_drop",
+   "M1_A02_J3_gate_L",
+   "M1_A02_J3_gate_R",
+   "M1_A03_J1_head_drop",
+   "M1_A03_J1_gate_L",
+   "M1_A03_J1_gate_R",
+   "M1_A03_J2_head_drop",
+   "M1_A03_J2_gate_L",
+   "M1_A03_J2_gate_R",
+   "M1_A03_J3_head_drop",
+   "M1_A03_J3_gate_L",
+   "M1_A03_J3_gate_R",
+   "M1_A04_J1_head_drop",
+   "M1_A04_J1_gate_L",
+   "M1_A04_J1_gate_R",
+   "M1_A04_J2_head_drop",
+   "M1_A04_J2_gate_L",
+   "M1_A04_J2_gate_R",
+   "M1_A04_J3_head_drop",
+   "M1_A04_J3_gate_L",
+   "M1_A04_J3_gate_R",
+   "M1_A05_J1_head_drop",
+   "M1_A05_J1_gate_L",
+   "M1_A05_J1_gate_R",
+   "M1_A05_J2_head_drop",
+   "M1_A05_J2_gate_L",
+   "M1_A05_J2_gate_R",
+   "M1_A05_J3_head_drop",
+   "M1_A05_J3_gate_L",
+   "M1_A05_J3_gate_R",
+   "M1_A06_J1_head_drop",
+   "M1_A06_J1_gate_L",
+   "M1_A06_J1_gate_R",
+   "M1_A06_J2_head_drop",
+   "M1_A06_J2_gate_L",
+   "M1_A06_J2_gate_R",
+   "M1_A06_J3_head_drop",
+   "M1_A06_J3_gate_L",
+   "M1_A06_J3_gate_R",
+   "M2_P03_anchor_retract",
+   "M2_P03_lift_Z",
+   "M2_P03_stow_X",
+   "M2_P03_slot_Z",
+   "M2_A01_J1_head_drop",
+   "M2_A01_J1_gate_L",
+   "M2_A01_J1_gate_R",
+   "M2_A01_J2_head_drop",
+   "M2_A01_J2_gate_L",
+   "M2_A01_J2_gate_R",
+   "M2_A01_J3_head_drop",
+   "M2_A01_J3_gate_L",
+   "M2_A01_J3_gate_R",
+   "M2_A02_J1_head_drop",
+   "M2_A02_J1_gate_L",
+   "M2_A02_J1_gate_R",
+   "M2_A02_J2_head_drop",
+   "M2_A02_J2_gate_L",
+   "M2_A02_J2_gate_R",
+   "M2_A02_J3_head_drop",
+   "M2_A02_J3_gate_L",
+   "M2_A02_J3_gate_R",
+   "M2_A03_J1_head_drop",
+   "M2_A03_J1_gate_L",
+   "M2_A03_J1_gate_R",
+   "M2_A03_J2_head_drop",
+   "M2_A03_J2_gate_L",
+   "M2_A03_J2_gate_R",
+   "M2_A03_J3_head_drop",
+   "M2_A03_J3_gate_L",
+   "M2_A03_J3_gate_R",
+   "M2_A04_J1_head_drop",
+   "M2_A04_J1_gate_L",
+   "M2_A04_J1_gate_R",
+   "M2_A04_J2_head_drop",
+   "M2_A04_J2_gate_L",
+   "M2_A04_J2_gate_R",
+   "M2_A04_J3_head_drop",
+   "M2_A04_J3_gate_L",
+   "M2_A04_J3_gate_R",
+   "M2_A05_J1_head_drop",
+   "M2_A05_J1_gate_L",
+   "M2_A05_J1_gate_R",
+   "M2_A05_J2_head_drop",
+   "M2_A05_J2_gate_L",
+   "M2_A05_J2_gate_R",
+   "M2_A05_J3_head_drop",
+   "M2_A05_J3_gate_L",
+   "M2_A05_J3_gate_R",
+   "M2_A06_J1_head_drop",
+   "M2_A06_J1_gate_L",
+   "M2_A06_J1_gate_R",
+   "M2_A06_J2_head_drop",
+   "M2_A06_J2_gate_L",
+   "M2_A06_J2_gate_R",
+   "M2_A06_J3_head_drop",
+   "M2_A06_J3_gate_L",
+   "M2_A06_J3_gate_R",
+   "M3_P03_anchor_retract",
+   "M3_P03_lift_Z",
+   "M3_P03_stow_X",
+   "M3_P03_slot_Z",
+   "M3_A01_J1_head_drop",
+   "M3_A01_J1_gate_L",
+   "M3_A01_J1_gate_R",
+   "M3_A01_J2_head_drop",
+   "M3_A01_J2_gate_L",
+   "M3_A01_J2_gate_R",
+   "M3_A01_J3_head_drop",
+   "M3_A01_J3_gate_L",
+   "M3_A01_J3_gate_R",
+   "M3_A02_J1_head_drop",
+   "M3_A02_J1_gate_L",
+   "M3_A02_J1_gate_R",
+   "M3_A02_J2_head_drop",
+   "M3_A02_J2_gate_L",
+   "M3_A02_J2_gate_R",
+   "M3_A02_J3_head_drop",
+   "M3_A02_J3_gate_L",
+   "M3_A02_J3_gate_R",
+   "M3_A03_J1_head_drop",
+   "M3_A03_J1_gate_L",
+   "M3_A03_J1_gate_R",
+   "M3_A03_J2_head_drop",
+   "M3_A03_J2_gate_L",
+   "M3_A03_J2_gate_R",
+   "M3_A03_J3_head_drop",
+   "M3_A03_J3_gate_L",
+   "M3_A03_J3_gate_R",
+   "M3_A04_J1_head_drop",
+   "M3_A04_J1_gate_L",
+   "M3_A04_J1_gate_R",
+   "M3_A04_J2_head_drop",
+   "M3_A04_J2_gate_L",
+   "M3_A04_J2_gate_R",
+   "M3_A04_J3_head_drop",
+   "M3_A04_J3_gate_L",
+   "M3_A04_J3_gate_R",
+   "M3_A05_J1_head_drop",
+   "M3_A05_J1_gate_L",
+   "M3_A05_J1_gate_R",
+   "M3_A05_J2_head_drop",
+   "M3_A05_J2_gate_L",
+   "M3_A05_J2_gate_R",
+   "M3_A05_J3_head_drop",
+   "M3_A05_J3_gate_L",
+   "M3_A05_J3_gate_R",
+   "M3_A06_J1_head_drop",
+   "M3_A06_J1_gate_L",
+   "M3_A06_J1_gate_R",
+   "M3_A06_J2_head_drop",
+   "M3_A06_J2_gate_L",
+   "M3_A06_J2_gate_R",
+   "M3_A06_J3_head_drop",
+   "M3_A06_J3_gate_L",
+   "M3_A06_J3_gate_R",
+   "F04_wind"
+  ],
+  "physical_count": 183
+ },
+ "dof": {
+  "per_arm": {
+   "M1_A01": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M1_A01_root_Y",
+     "M1_A01_yaw_Z",
+     "M1_A01_pitch1",
+     "M1_A01_pitch2",
+     "M1_A01_pitch3",
+     "M1_A01_pitch4",
+     "M1_A01_telescope"
+    ]
+   },
+   "M1_A02": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M1_A02_root_Y",
+     "M1_A02_yaw_Z",
+     "M1_A02_pitch1",
+     "M1_A02_pitch2",
+     "M1_A02_pitch3",
+     "M1_A02_pitch4",
+     "M1_A02_telescope"
+    ]
+   },
+   "M1_A03": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M1_A03_root_Y",
+     "M1_A03_yaw_Z",
+     "M1_A03_pitch1",
+     "M1_A03_pitch2",
+     "M1_A03_pitch3",
+     "M1_A03_pitch4",
+     "M1_A03_telescope"
+    ]
+   },
+   "M1_A04": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M1_A04_root_Y",
+     "M1_A04_yaw_Z",
+     "M1_A04_pitch1",
+     "M1_A04_pitch2",
+     "M1_A04_pitch3",
+     "M1_A04_pitch4",
+     "M1_A04_telescope"
+    ]
+   },
+   "M1_A05": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M1_A05_root_Y",
+     "M1_A05_yaw_Z",
+     "M1_A05_pitch1",
+     "M1_A05_pitch2",
+     "M1_A05_pitch3",
+     "M1_A05_pitch4",
+     "M1_A05_telescope"
+    ]
+   },
+   "M1_A06": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M1_A06_root_Y",
+     "M1_A06_yaw_Z",
+     "M1_A06_pitch1",
+     "M1_A06_pitch2",
+     "M1_A06_pitch3",
+     "M1_A06_pitch4",
+     "M1_A06_telescope"
+    ]
+   },
+   "M2_A01": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M2_A01_root_Y",
+     "M2_A01_yaw_Z",
+     "M2_A01_pitch1",
+     "M2_A01_pitch2",
+     "M2_A01_pitch3",
+     "M2_A01_pitch4",
+     "M2_A01_telescope"
+    ]
+   },
+   "M2_A02": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M2_A02_root_Y",
+     "M2_A02_yaw_Z",
+     "M2_A02_pitch1",
+     "M2_A02_pitch2",
+     "M2_A02_pitch3",
+     "M2_A02_pitch4",
+     "M2_A02_telescope"
+    ]
+   },
+   "M2_A03": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M2_A03_root_Y",
+     "M2_A03_yaw_Z",
+     "M2_A03_pitch1",
+     "M2_A03_pitch2",
+     "M2_A03_pitch3",
+     "M2_A03_pitch4",
+     "M2_A03_telescope"
+    ]
+   },
+   "M2_A04": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M2_A04_root_Y",
+     "M2_A04_yaw_Z",
+     "M2_A04_pitch1",
+     "M2_A04_pitch2",
+     "M2_A04_pitch3",
+     "M2_A04_pitch4",
+     "M2_A04_telescope"
+    ]
+   },
+   "M2_A05": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M2_A05_root_Y",
+     "M2_A05_yaw_Z",
+     "M2_A05_pitch1",
+     "M2_A05_pitch2",
+     "M2_A05_pitch3",
+     "M2_A05_pitch4",
+     "M2_A05_telescope"
+    ]
+   },
+   "M2_A06": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M2_A06_root_Y",
+     "M2_A06_yaw_Z",
+     "M2_A06_pitch1",
+     "M2_A06_pitch2",
+     "M2_A06_pitch3",
+     "M2_A06_pitch4",
+     "M2_A06_telescope"
+    ]
+   },
+   "M3_A01": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M3_A01_root_Y",
+     "M3_A01_yaw_Z",
+     "M3_A01_pitch1",
+     "M3_A01_pitch2",
+     "M3_A01_pitch3",
+     "M3_A01_pitch4",
+     "M3_A01_telescope"
+    ]
+   },
+   "M3_A02": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M3_A02_root_Y",
+     "M3_A02_yaw_Z",
+     "M3_A02_pitch1",
+     "M3_A02_pitch2",
+     "M3_A02_pitch3",
+     "M3_A02_pitch4",
+     "M3_A02_telescope"
+    ]
+   },
+   "M3_A03": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M3_A03_root_Y",
+     "M3_A03_yaw_Z",
+     "M3_A03_pitch1",
+     "M3_A03_pitch2",
+     "M3_A03_pitch3",
+     "M3_A03_pitch4",
+     "M3_A03_telescope"
+    ]
+   },
+   "M3_A04": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M3_A04_root_Y",
+     "M3_A04_yaw_Z",
+     "M3_A04_pitch1",
+     "M3_A04_pitch2",
+     "M3_A04_pitch3",
+     "M3_A04_pitch4",
+     "M3_A04_telescope"
+    ]
+   },
+   "M3_A05": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M3_A05_root_Y",
+     "M3_A05_yaw_Z",
+     "M3_A05_pitch1",
+     "M3_A05_pitch2",
+     "M3_A05_pitch3",
+     "M3_A05_pitch4",
+     "M3_A05_telescope"
+    ]
+   },
+   "M3_A06": {
+    "joints": 7,
+    "revolute": 5,
+    "prismatic": 2,
+    "yaw": true,
+    "ids": [
+     "M3_A06_root_Y",
+     "M3_A06_yaw_Z",
+     "M3_A06_pitch1",
+     "M3_A06_pitch2",
+     "M3_A06_pitch3",
+     "M3_A06_pitch4",
+     "M3_A06_telescope"
+    ]
+   }
+  },
+  "nonconforming": []
+ },
+ "records": {
+  "mapped": 1180,
+  "unresolved": 0,
+  "duplicates": 0
+ },
+ "modules": {
+  "boxes": {
+   "M1": [
+    [
+     -713.0,
+     -42.0,
+     -160.0
+    ],
+    [
+     4715.0,
+     3542.0,
+     3028.9
+    ]
+   ],
+   "M2": [
+    [
+     -713.0,
+     4208.0,
+     -160.0
+    ],
+    [
+     4715.0,
+     7792.0,
+     3028.9
+    ]
+   ],
+   "M3": [
+    [
+     -713.0,
+     8458.0,
+     -160.0
+    ],
+    [
+     4715.0,
+     12042.0,
+     3028.9
+    ]
+   ]
+  },
+  "hits": []
+ },
+ "deployed_identity_error": 1.1102230246251565e-16,
+ "steps": {
+  "deployed": {
+   "solids": 1181,
+   "bbox": {
+    "x": [
+     -713.0,
+     4919.4
+    ],
+    "y": [
+     -105.0,
+     12105.0
+    ],
+    "z": [
+     -160.0,
+     3150.4
+    ]
+   },
+   "solids_in_deployed_tip_region": 231
+  },
+  "transport": {
+   "solids": 1159,
+   "bbox": {
+    "x": [
+     -1047.0,
+     1360.6
+    ],
+    "y": [
+     -50.0,
+     12050.0
+    ],
+    "z": [
+     -60.0,
+     3094.9
+    ]
+   },
+   "solids_in_deployed_tip_region": 0
+  }
+ },
+ "states": [
+  {
+   "state": "deployed",
+   "max_carrier_vs_arm_Y_mm": 0.0,
+   "engaged": 18,
+   "total": 18
+  },
+  {
+   "state": "compensated",
+   "max_carrier_vs_arm_Y_mm": 0.0,
+   "engaged": 18,
+   "total": 18
+  },
+  {
+   "state": "release",
+   "max_carrier_vs_arm_Y_mm": null,
+   "engaged": 12,
+   "total": 18
+  }
+ ],
+ "transport_motion": {
+  "stuck_components": [],
+  "stuck_records": 0
+ }
+}
