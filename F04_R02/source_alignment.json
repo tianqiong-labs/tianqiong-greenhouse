@@ -1,0 +1,166 @@
+{
+  "source": "Recovered historical source text, not original binary STEP/ZIP",
+  "axes": "mm; X outward, Y length, Z up",
+  "W01": {
+    "length_y": 3500.0,
+    "thickness_x": 600.0,
+    "height_z": 2800.0,
+    "frame_tube": 65.0,
+    "slide_centers_initial": [
+      350,
+      910,
+      1470,
+      2030,
+      2590,
+      3150
+    ],
+    "slide_centers_reconfigured": [
+      350,
+      816.6667,
+      1283.3333,
+      2216.6667,
+      2683.3333,
+      3150
+    ],
+    "carriage_length_y": 350.0,
+    "root_base_joints_x": 0.0,
+    "root_base_joints_z": 2800.0,
+    "root_lower_rail_z": 2370.0,
+    "root_upper_rail_z": 2670.0,
+    "wheel_radius": 120.0,
+    "wheel_centers_y": [
+      345.0,
+      3155.0
+    ],
+    "wheel_centers_x": [
+      -475.0,
+      -125.0
+    ],
+    "wheel_center_z_deployed_relative": 280.0,
+    "wheel_center_z_mobile_relative": -40.0,
+    "mobile_wall_lift": 160.0,
+    "wedge_projection_below_ground": 60.0,
+    "module_gap_small_wall_y": 750.0
+  },
+  "M02": {
+    "revision": "M02-A",
+    "lengths_fixed_m": [
+      1.15,
+      1.38,
+      1.52
+    ],
+    "L4_min_m": 1.0,
+    "L4_max_m": 1.6,
+    "support_global_angles_deg": [
+      -1.6,
+      -20.1,
+      -38.63402497781479,
+      -57.18221617233679
+    ],
+    "work_target_global_angles_deg": [
+      -5.0,
+      -70.0,
+      0.0,
+      -105.0
+    ],
+    "root_x_m": 0.0,
+    "root_z_m": 2.8,
+    "initial_y_m": [
+      0.35,
+      0.91,
+      1.47,
+      2.03,
+      2.59,
+      3.15
+    ],
+    "reconfigured_y_m": [
+      0.35,
+      0.8166667,
+      1.2833333,
+      2.2166667,
+      2.6833332999999997,
+      3.15
+    ],
+    "deploy_width_m": 4.5,
+    "module_length_m": 3.5,
+    "wall_depth_m": 0.6,
+    "arm_link_radius_proxy_m": 0.048,
+    "work_arms": [
+      2,
+      5
+    ],
+    "joint_count_per_arm": 7,
+    "notes": "Not an executable control system or collision-certified design"
+  },
+  "P03": {
+    "project": "TIANQIONG",
+    "revision": "P03-A",
+    "unit": "mm",
+    "datum": {
+      "x": "from mother-wall towards greenhouse front",
+      "y": "along greenhouse length",
+      "z": "up; soil plane z=0"
+    },
+    "rail_length_y": 3500,
+    "rail_body_center_x": 4620,
+    "rail_section_x": 120,
+    "rail_body_base_z": 32,
+    "rail_body_top_z": 145,
+    "nominal_arm_wrist": {
+      "x": 4500,
+      "z": 0
+    },
+    "carriage_y_length": 240,
+    "carriage_center_z": 175,
+    "initial_y": [
+      350.0,
+      910.0,
+      1470.0,
+      2030.0,
+      2590.0,
+      3150.0
+    ],
+    "reconfigured_y": [
+      350.0,
+      816.6667,
+      1283.3333,
+      2216.6667,
+      2683.3333,
+      3150.0
+    ],
+    "carriage_y_limit": [
+      220,
+      3280
+    ],
+    "anchor_y": [
+      260,
+      1200,
+      2300,
+      3240
+    ],
+    "anchor_x": 4665,
+    "anchor_extended_bottom_z": -160,
+    "anchor_stowed_bottom_z": 22,
+    "seal_x": 4700,
+    "storage_x": -750,
+    "storage_z": 1250,
+    "bridge_y_length": 750,
+    "load_notes": "Concept geometry; no stiffness, stress, soil pull-out or kinematic lifting path validated."
+  },
+  "source_hashes": {
+    "build_p03.py": "d7659766e642466bacfeff782e67dc982dbfad4cb0d512553035426e740f0236",
+    "build_tianqiong_m02.py": "abbbc19bc9d4f4fc029968f1af96a3b335253d315f63ae06ccc7efb489d181ee",
+    "build_tianqiong_w01.py": "e14a3aff7ce2f6c3531058f64b5d4bfee24ddea856588f57095fb9fe380839a4"
+  },
+  "changes": [
+    "F04 add-on membrane + 3 bands + 18 heads",
+    "P03 original clamp remains; external F04 coil proposed",
+    "Storage target uses original anchor-rod shape and is not transport ready"
+  ],
+  "preserved": [
+    "W01 geometry including wheel bays",
+    "M02 exact CAD cylinders and original hemisphere joint proxies",
+    "P03 CAD carriages, brackets and 4 anchors",
+    "BR750 geometry and module pitch 4250"
+  ]
+}

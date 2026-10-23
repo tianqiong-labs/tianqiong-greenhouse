@@ -1,0 +1,56 @@
+{
+  "01_deployed": {
+    "components": 398,
+    "invalid_components": [],
+    "membrane_solids": 1,
+    "membrane_volume_mm3": 20735999.999968603,
+    "membrane_arclength_mm": 7200.0,
+    "engaged_interfaces": 18,
+    "total_interfaces": 18
+  },
+  "02_compensated": {
+    "components": 398,
+    "invalid_components": [],
+    "membrane_solids": 1,
+    "membrane_volume_mm3": 20735999.999968603,
+    "membrane_arclength_mm": 7200.0,
+    "engaged_interfaces": 18,
+    "total_interfaces": 18
+  },
+  "03_gates_open": {
+    "components": 398,
+    "invalid_components": [],
+    "membrane_solids": 1,
+    "membrane_volume_mm3": 20735999.999968603,
+    "membrane_arclength_mm": 7200.0,
+    "engaged_interfaces": 12,
+    "total_interfaces": 18
+  },
+  "04_release_candidate": {
+    "components": 398,
+    "invalid_components": [],
+    "membrane_solids": 1,
+    "membrane_volume_mm3": 20735999.999968603,
+    "membrane_arclength_mm": 7200.0,
+    "engaged_interfaces": 12,
+    "total_interfaces": 18
+  },
+  "05_two_modules_BR750": {
+    "components": 785,
+    "invalid_components": [],
+    "membrane_solids": 1,
+    "membrane_volume_mm3": 45215999.999999695,
+    "membrane_arclength_mm": 7200.0,
+    "engaged_interfaces": 36,
+    "total_interfaces": 36
+  },
+  "06_storage_TARGET_ONLY": {
+    "components": 194,
+    "invalid_components": [],
+    "membrane_solids": 1,
+    "membrane_volume_mm3": 20735999.999997087,
+    "membrane_arclength_mm": 7199.999999999984,
+    "engaged_interfaces": 0,
+    "total_interfaces": 0
+  }
+}

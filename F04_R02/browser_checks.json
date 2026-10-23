@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-23",
+  "method": "Playwright real browser; local offline-capable HTML; screenshots visually reviewed",
+  "checks": [
+    {"state": "01_deployed", "parts": 398, "engaged": 18, "pass": true},
+    {"state": "02_compensated", "parts": 398, "engaged": 18, "pass": true},
+    {"state": "03_gates_open", "parts": 398, "engaged": 12, "pass": true},
+    {"state": "04_release_candidate", "parts": 398, "engaged": 12, "pass": true},
+    {"state": "05_two_modules_BR750", "parts": 785, "engaged": 36, "pass": true},
+    {"state": "06_storage_TARGET_ONLY", "parts": 194, "engaged": 0, "pass": true},
+    {"check": "film_hide_actual_mesh", "pass": true},
+    {"check": "forward_animation", "observed_frame_after_1_2_s": 4, "pass": true},
+    {"check": "reverse_animation", "observed_frame_after_1_2_s": 68, "pass": true}
+  ],
+  "console_errors": 0,
+  "file_protocol_test": "Direct file:// navigation is blocked by the browser automation policy. Tested via loopback HTTP; viewer uses only bundled local scripts and no runtime fetch/CDN.",
+  "console_warning": "Bundled legacy Three.js global-build deprecation warning; no external dependency or runtime failure.",
+  "video_source": "73 screenshots of actual viewer, same 18 s candidate trajectory as animated GLB"
+}

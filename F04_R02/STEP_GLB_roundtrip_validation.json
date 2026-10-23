@@ -1,0 +1,134 @@
+{
+  "01_deployed": {
+    "exported_record_count": 398,
+    "STEP_solid_count": 398,
+    "STEP_valid": true,
+    "GLB_mesh_node_count": 398,
+    "STEP_relative_volume_error": 1.1570865379417965e-13,
+    "STEP_bbox_max_error_mm": 3.2105162972584367e-10,
+    "GLB_bbox_max_error_mm": 0.00020583882087521488,
+    "expected_CAD_bbox_mm": [
+      [
+        -713.0,
+        -105.0,
+        -160.0
+      ],
+      [
+        4919.395301973679,
+        3605.0,
+        3150.4
+      ]
+    ],
+    "GLB_uses_standard_metres_Y_up": true
+  },
+  "02_compensated": {
+    "exported_record_count": 398,
+    "STEP_solid_count": 398,
+    "STEP_valid": true,
+    "GLB_mesh_node_count": 398,
+    "STEP_relative_volume_error": 1.1570865379417965e-13,
+    "STEP_bbox_max_error_mm": 3.2105162972584367e-10,
+    "GLB_bbox_max_error_mm": 0.00020583882087521488,
+    "expected_CAD_bbox_mm": [
+      [
+        -713.0,
+        -105.0,
+        -160.0
+      ],
+      [
+        4919.395301973679,
+        3605.0,
+        3150.4
+      ]
+    ],
+    "GLB_uses_standard_metres_Y_up": true
+  },
+  "03_gates_open": {
+    "exported_record_count": 398,
+    "STEP_solid_count": 398,
+    "STEP_valid": true,
+    "GLB_mesh_node_count": 398,
+    "STEP_relative_volume_error": 1.1572701879129125e-13,
+    "STEP_bbox_max_error_mm": 3.2105162972584367e-10,
+    "GLB_bbox_max_error_mm": 0.00020583882087521488,
+    "expected_CAD_bbox_mm": [
+      [
+        -713.0,
+        -105.0,
+        -160.0
+      ],
+      [
+        4919.395301973679,
+        3605.0,
+        3150.4
+      ]
+    ],
+    "GLB_uses_standard_metres_Y_up": true
+  },
+  "04_release_candidate": {
+    "exported_record_count": 398,
+    "STEP_solid_count": 398,
+    "STEP_valid": true,
+    "GLB_mesh_node_count": 398,
+    "STEP_relative_volume_error": 1.1701936682187221e-13,
+    "STEP_bbox_max_error_mm": 3.2105162972584367e-10,
+    "GLB_bbox_max_error_mm": 0.00020583882087521488,
+    "expected_CAD_bbox_mm": [
+      [
+        -713.0,
+        -105.0,
+        -160.0
+      ],
+      [
+        4919.395301973679,
+        3605.0,
+        3150.4
+      ]
+    ],
+    "GLB_uses_standard_metres_Y_up": true
+  },
+  "05_two_modules_BR750": {
+    "exported_record_count": 785,
+    "STEP_solid_count": 785,
+    "STEP_valid": true,
+    "GLB_mesh_node_count": 785,
+    "STEP_relative_volume_error": 1.0385465049113303e-13,
+    "STEP_bbox_max_error_mm": 3.2105162972584367e-10,
+    "GLB_bbox_max_error_mm": 0.00020583882087521488,
+    "expected_CAD_bbox_mm": [
+      [
+        -713.0,
+        -105.0,
+        -160.0
+      ],
+      [
+        4919.395301973679,
+        7855.0,
+        3150.4
+      ]
+    ],
+    "GLB_uses_standard_metres_Y_up": true
+  },
+  "06_storage_TARGET_ONLY": {
+    "exported_record_count": 194,
+    "STEP_solid_count": 194,
+    "STEP_valid": true,
+    "GLB_mesh_node_count": 194,
+    "STEP_relative_volume_error": 3.177827495970955e-13,
+    "STEP_bbox_max_error_mm": 5.559286364587024e-11,
+    "GLB_bbox_max_error_mm": 2.886458617012977e-05,
+    "expected_CAD_bbox_mm": [
+      [
+        -900.3998734791638,
+        -50.0,
+        -60.0
+      ],
+      [
+        105.0,
+        3550.0,
+        2800.0
+      ]
+    ],
+    "GLB_uses_standard_metres_Y_up": true
+  }
+}

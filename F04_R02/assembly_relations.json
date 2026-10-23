@@ -1,0 +1,62 @@
+{
+  "format": "Descriptive kinematic relationships, not embedded STEP mates or executable controller",
+  "units": {
+    "CAD": "mm",
+    "URDF_and_joint_trajectory": "metres and radians",
+    "glTF": "metres, Y up"
+  },
+  "hierarchy": [
+    "W01 fixed wall -> root Y carriage -> yaw Z -> pitch Y 1/2/3/4 -> L4 prismatic X",
+    "P03 fixed rail -> Y carriage -> original wrist bracket proxy",
+    "F04 single membrane -> 3 bonded bands/webs/beads -> 18 Y-sliding releasable carriers"
+  ],
+  "arms": {
+    "count_per_large_module": 6,
+    "DOF_each": 7,
+    "DOF_order": [
+      "root_Y",
+      "yaw_Z",
+      "pitch_1",
+      "pitch_2",
+      "pitch_3",
+      "pitch_4",
+      "telescope_X"
+    ],
+    "L4_mm": [
+      1000,
+      1600
+    ]
+  },
+  "support_constraint": "When engaged: root Y = P03 carriage Y = carrier Y. Wrist datum X4500/Z0; no yaw during sync.",
+  "F04_carrier": {
+    "count": 18,
+    "slide_axis": "Y, along continuous bead",
+    "positive_retention": "two X-opening lips, closed center slot 4 mm > web 1.5 mm and < bead diameter 12 mm",
+    "release": "both lips open 24 mm each; head lowers 80 mm before arm motion",
+    "aux_magnet": "alignment only, no retention credit"
+  },
+  "animation_sequence_s": {
+    "0-6": "all root and front Y carriages synchronous quintic shift",
+    "6-8": "open six carrier gates on arms 2/5",
+    "8-10": "lower six heads 80 mm",
+    "10-14": "L4 of 2/5 retracts 1600 -> 1000; original wrist latch unresolved",
+    "14-18": "root pitch 2/5 decreases 6 degrees; other relative pitches fixed"
+  },
+  "release_preconditions_NOT_IMPLEMENTED": [
+    "wind/load safe envelope",
+    "remaining 4 ribs load verified",
+    "positive gate-open sensing",
+    "wrist latch release sensing",
+    "head-stroke lock sensing",
+    "collision guard and emergency stop"
+  ],
+  "cross_module": {
+    "large_wall_pitch_mm": 4250,
+    "small_wall_gap_mm": 750,
+    "continuous_membrane_width_two_modules_mm": 7850,
+    "BR750": "no travelling arm on connector",
+    "support_rib_gap_over_transition_mm": 1450
+  },
+  "storage_status": "TARGET ONLY: no arm folding, no bead winding and no rail transfer trajectory. Rail anchors still in deployed source state.",
+  "URDF": "Recovered original kinematic chain. Dummy masses/inertias removed; visual link boxes and effort/velocity limits remain placeholders, not dynamics-ready."
+}

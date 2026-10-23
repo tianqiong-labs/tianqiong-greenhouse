@@ -1,0 +1,819 @@
+<?xml version='1.0' encoding='utf8'?>
+<robot name="TIANQIONG_W01_M02_KINEMATICS">
+  <link name="world">
+    </link>
+  <link name="w01_wall_proxy">
+    <visual>
+      <origin xyz="-0.3 1.75 1.4" rpy="0 0 0" />
+      <geometry>
+        <box size="0.6 3.5 2.8" />
+      </geometry>
+      <material name="m_w01_wall_proxy">
+        <color rgba=".55 .68 .63 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="wall_ground" type="fixed">
+    <parent link="world" />
+    <child link="w01_wall_proxy" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="arm_01_root_slider">
+    <visual>
+      <origin xyz=".085 0 -.29" rpy="0 0 0" />
+      <geometry>
+        <box size=".07 .35 .41" />
+      </geometry>
+      <material name="m_arm_01_root_slider">
+        <color rgba=".76 .55 .29 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_01_root_Y" type="prismatic">
+    <parent link="w01_wall_proxy" />
+    <child link="arm_01_root_slider" />
+    <origin xyz="0.0000000 0.3500000 2.8000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.21" upper="0.21" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_01_yaw">
+    </link>
+  <joint name="arm_01_yaw_Z" type="revolute">
+    <parent link="arm_01_root_slider" />
+    <child link="arm_01_yaw" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="1.57" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_01_link_1">
+    <visual>
+      <origin xyz="0.5750000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.1500000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_01_link_1">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_01_pitch_1" type="revolute">
+    <parent link="arm_01_yaw" />
+    <child link="arm_01_link_1" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_01_link_2">
+    <visual>
+      <origin xyz="0.6900000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.3800000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_01_link_2">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_01_pitch_2" type="revolute">
+    <parent link="arm_01_link_1" />
+    <child link="arm_01_link_2" />
+    <origin xyz="1.1500000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_01_link_3">
+    <visual>
+      <origin xyz="0.7600000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.5200000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_01_link_3">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_01_pitch_3" type="revolute">
+    <parent link="arm_01_link_2" />
+    <child link="arm_01_link_3" />
+    <origin xyz="1.3800000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_01_link_4_sleeve">
+    <visual>
+      <origin xyz=".50 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="1.0 .13 .13" />
+      </geometry>
+      <material name="m_arm_01_link_4_sleeve">
+        <color rgba=".37 .66 .72 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_01_pitch_4" type="revolute">
+    <parent link="arm_01_link_3" />
+    <child link="arm_01_link_4_sleeve" />
+    <origin xyz="1.5200000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_01_telescopic_rod">
+    <visual>
+      <origin xyz="-.10 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size=".22 .085 .085" />
+      </geometry>
+      <material name="m_arm_01_telescopic_rod">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_01_telescope_X" type="prismatic">
+    <parent link="arm_01_link_4_sleeve" />
+    <child link="arm_01_telescopic_rod" />
+    <origin xyz="1.0 0 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="0.6" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_01_tool_interface">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size=".09 .10 .10" />
+      </geometry>
+      <material name="m_arm_01_tool_interface">
+        <color rgba=".73 .49 .26 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_01_tool_mount" type="fixed">
+    <parent link="arm_01_telescopic_rod" />
+    <child link="arm_01_tool_interface" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="arm_02_root_slider">
+    <visual>
+      <origin xyz=".085 0 -.29" rpy="0 0 0" />
+      <geometry>
+        <box size=".07 .35 .41" />
+      </geometry>
+      <material name="m_arm_02_root_slider">
+        <color rgba=".76 .55 .29 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_02_root_Y" type="prismatic">
+    <parent link="w01_wall_proxy" />
+    <child link="arm_02_root_slider" />
+    <origin xyz="0.0000000 0.9100000 2.8000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.21" upper="0.21" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_02_yaw">
+    </link>
+  <joint name="arm_02_yaw_Z" type="revolute">
+    <parent link="arm_02_root_slider" />
+    <child link="arm_02_yaw" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="1.57" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_02_link_1">
+    <visual>
+      <origin xyz="0.5750000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.1500000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_02_link_1">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_02_pitch_1" type="revolute">
+    <parent link="arm_02_yaw" />
+    <child link="arm_02_link_1" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_02_link_2">
+    <visual>
+      <origin xyz="0.6900000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.3800000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_02_link_2">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_02_pitch_2" type="revolute">
+    <parent link="arm_02_link_1" />
+    <child link="arm_02_link_2" />
+    <origin xyz="1.1500000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_02_link_3">
+    <visual>
+      <origin xyz="0.7600000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.5200000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_02_link_3">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_02_pitch_3" type="revolute">
+    <parent link="arm_02_link_2" />
+    <child link="arm_02_link_3" />
+    <origin xyz="1.3800000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_02_link_4_sleeve">
+    <visual>
+      <origin xyz=".50 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="1.0 .13 .13" />
+      </geometry>
+      <material name="m_arm_02_link_4_sleeve">
+        <color rgba=".37 .66 .72 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_02_pitch_4" type="revolute">
+    <parent link="arm_02_link_3" />
+    <child link="arm_02_link_4_sleeve" />
+    <origin xyz="1.5200000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_02_telescopic_rod">
+    <visual>
+      <origin xyz="-.10 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size=".22 .085 .085" />
+      </geometry>
+      <material name="m_arm_02_telescopic_rod">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_02_telescope_X" type="prismatic">
+    <parent link="arm_02_link_4_sleeve" />
+    <child link="arm_02_telescopic_rod" />
+    <origin xyz="1.0 0 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="0.6" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_02_tool_interface">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size=".09 .10 .10" />
+      </geometry>
+      <material name="m_arm_02_tool_interface">
+        <color rgba=".73 .49 .26 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_02_tool_mount" type="fixed">
+    <parent link="arm_02_telescopic_rod" />
+    <child link="arm_02_tool_interface" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="arm_03_root_slider">
+    <visual>
+      <origin xyz=".085 0 -.29" rpy="0 0 0" />
+      <geometry>
+        <box size=".07 .35 .41" />
+      </geometry>
+      <material name="m_arm_03_root_slider">
+        <color rgba=".76 .55 .29 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_03_root_Y" type="prismatic">
+    <parent link="w01_wall_proxy" />
+    <child link="arm_03_root_slider" />
+    <origin xyz="0.0000000 1.4700000 2.8000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.21" upper="0.21" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_03_yaw">
+    </link>
+  <joint name="arm_03_yaw_Z" type="revolute">
+    <parent link="arm_03_root_slider" />
+    <child link="arm_03_yaw" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="1.57" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_03_link_1">
+    <visual>
+      <origin xyz="0.5750000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.1500000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_03_link_1">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_03_pitch_1" type="revolute">
+    <parent link="arm_03_yaw" />
+    <child link="arm_03_link_1" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_03_link_2">
+    <visual>
+      <origin xyz="0.6900000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.3800000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_03_link_2">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_03_pitch_2" type="revolute">
+    <parent link="arm_03_link_1" />
+    <child link="arm_03_link_2" />
+    <origin xyz="1.1500000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_03_link_3">
+    <visual>
+      <origin xyz="0.7600000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.5200000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_03_link_3">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_03_pitch_3" type="revolute">
+    <parent link="arm_03_link_2" />
+    <child link="arm_03_link_3" />
+    <origin xyz="1.3800000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_03_link_4_sleeve">
+    <visual>
+      <origin xyz=".50 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="1.0 .13 .13" />
+      </geometry>
+      <material name="m_arm_03_link_4_sleeve">
+        <color rgba=".37 .66 .72 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_03_pitch_4" type="revolute">
+    <parent link="arm_03_link_3" />
+    <child link="arm_03_link_4_sleeve" />
+    <origin xyz="1.5200000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_03_telescopic_rod">
+    <visual>
+      <origin xyz="-.10 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size=".22 .085 .085" />
+      </geometry>
+      <material name="m_arm_03_telescopic_rod">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_03_telescope_X" type="prismatic">
+    <parent link="arm_03_link_4_sleeve" />
+    <child link="arm_03_telescopic_rod" />
+    <origin xyz="1.0 0 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="0.6" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_03_tool_interface">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size=".09 .10 .10" />
+      </geometry>
+      <material name="m_arm_03_tool_interface">
+        <color rgba=".73 .49 .26 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_03_tool_mount" type="fixed">
+    <parent link="arm_03_telescopic_rod" />
+    <child link="arm_03_tool_interface" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="arm_04_root_slider">
+    <visual>
+      <origin xyz=".085 0 -.29" rpy="0 0 0" />
+      <geometry>
+        <box size=".07 .35 .41" />
+      </geometry>
+      <material name="m_arm_04_root_slider">
+        <color rgba=".76 .55 .29 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_04_root_Y" type="prismatic">
+    <parent link="w01_wall_proxy" />
+    <child link="arm_04_root_slider" />
+    <origin xyz="0.0000000 2.0300000 2.8000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.21" upper="0.21" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_04_yaw">
+    </link>
+  <joint name="arm_04_yaw_Z" type="revolute">
+    <parent link="arm_04_root_slider" />
+    <child link="arm_04_yaw" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="1.57" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_04_link_1">
+    <visual>
+      <origin xyz="0.5750000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.1500000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_04_link_1">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_04_pitch_1" type="revolute">
+    <parent link="arm_04_yaw" />
+    <child link="arm_04_link_1" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_04_link_2">
+    <visual>
+      <origin xyz="0.6900000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.3800000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_04_link_2">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_04_pitch_2" type="revolute">
+    <parent link="arm_04_link_1" />
+    <child link="arm_04_link_2" />
+    <origin xyz="1.1500000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_04_link_3">
+    <visual>
+      <origin xyz="0.7600000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.5200000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_04_link_3">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_04_pitch_3" type="revolute">
+    <parent link="arm_04_link_2" />
+    <child link="arm_04_link_3" />
+    <origin xyz="1.3800000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_04_link_4_sleeve">
+    <visual>
+      <origin xyz=".50 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="1.0 .13 .13" />
+      </geometry>
+      <material name="m_arm_04_link_4_sleeve">
+        <color rgba=".37 .66 .72 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_04_pitch_4" type="revolute">
+    <parent link="arm_04_link_3" />
+    <child link="arm_04_link_4_sleeve" />
+    <origin xyz="1.5200000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_04_telescopic_rod">
+    <visual>
+      <origin xyz="-.10 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size=".22 .085 .085" />
+      </geometry>
+      <material name="m_arm_04_telescopic_rod">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_04_telescope_X" type="prismatic">
+    <parent link="arm_04_link_4_sleeve" />
+    <child link="arm_04_telescopic_rod" />
+    <origin xyz="1.0 0 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="0.6" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_04_tool_interface">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size=".09 .10 .10" />
+      </geometry>
+      <material name="m_arm_04_tool_interface">
+        <color rgba=".73 .49 .26 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_04_tool_mount" type="fixed">
+    <parent link="arm_04_telescopic_rod" />
+    <child link="arm_04_tool_interface" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="arm_05_root_slider">
+    <visual>
+      <origin xyz=".085 0 -.29" rpy="0 0 0" />
+      <geometry>
+        <box size=".07 .35 .41" />
+      </geometry>
+      <material name="m_arm_05_root_slider">
+        <color rgba=".76 .55 .29 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_05_root_Y" type="prismatic">
+    <parent link="w01_wall_proxy" />
+    <child link="arm_05_root_slider" />
+    <origin xyz="0.0000000 2.5900000 2.8000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.21" upper="0.21" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_05_yaw">
+    </link>
+  <joint name="arm_05_yaw_Z" type="revolute">
+    <parent link="arm_05_root_slider" />
+    <child link="arm_05_yaw" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="1.57" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_05_link_1">
+    <visual>
+      <origin xyz="0.5750000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.1500000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_05_link_1">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_05_pitch_1" type="revolute">
+    <parent link="arm_05_yaw" />
+    <child link="arm_05_link_1" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_05_link_2">
+    <visual>
+      <origin xyz="0.6900000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.3800000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_05_link_2">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_05_pitch_2" type="revolute">
+    <parent link="arm_05_link_1" />
+    <child link="arm_05_link_2" />
+    <origin xyz="1.1500000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_05_link_3">
+    <visual>
+      <origin xyz="0.7600000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.5200000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_05_link_3">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_05_pitch_3" type="revolute">
+    <parent link="arm_05_link_2" />
+    <child link="arm_05_link_3" />
+    <origin xyz="1.3800000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_05_link_4_sleeve">
+    <visual>
+      <origin xyz=".50 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="1.0 .13 .13" />
+      </geometry>
+      <material name="m_arm_05_link_4_sleeve">
+        <color rgba=".37 .66 .72 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_05_pitch_4" type="revolute">
+    <parent link="arm_05_link_3" />
+    <child link="arm_05_link_4_sleeve" />
+    <origin xyz="1.5200000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_05_telescopic_rod">
+    <visual>
+      <origin xyz="-.10 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size=".22 .085 .085" />
+      </geometry>
+      <material name="m_arm_05_telescopic_rod">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_05_telescope_X" type="prismatic">
+    <parent link="arm_05_link_4_sleeve" />
+    <child link="arm_05_telescopic_rod" />
+    <origin xyz="1.0 0 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="0.6" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_05_tool_interface">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size=".09 .10 .10" />
+      </geometry>
+      <material name="m_arm_05_tool_interface">
+        <color rgba=".73 .49 .26 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_05_tool_mount" type="fixed">
+    <parent link="arm_05_telescopic_rod" />
+    <child link="arm_05_tool_interface" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="arm_06_root_slider">
+    <visual>
+      <origin xyz=".085 0 -.29" rpy="0 0 0" />
+      <geometry>
+        <box size=".07 .35 .41" />
+      </geometry>
+      <material name="m_arm_06_root_slider">
+        <color rgba=".76 .55 .29 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_06_root_Y" type="prismatic">
+    <parent link="w01_wall_proxy" />
+    <child link="arm_06_root_slider" />
+    <origin xyz="0.0000000 3.1500000 2.8000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.21" upper="0.21" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_06_yaw">
+    </link>
+  <joint name="arm_06_yaw_Z" type="revolute">
+    <parent link="arm_06_root_slider" />
+    <child link="arm_06_yaw" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="1.57" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_06_link_1">
+    <visual>
+      <origin xyz="0.5750000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.1500000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_06_link_1">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_06_pitch_1" type="revolute">
+    <parent link="arm_06_yaw" />
+    <child link="arm_06_link_1" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_06_link_2">
+    <visual>
+      <origin xyz="0.6900000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.3800000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_06_link_2">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_06_pitch_2" type="revolute">
+    <parent link="arm_06_link_1" />
+    <child link="arm_06_link_2" />
+    <origin xyz="1.1500000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_06_link_3">
+    <visual>
+      <origin xyz="0.7600000 0.0000000 0.0000000" rpy="0 0 0" />
+      <geometry>
+        <box size="1.5200000 0.1000000 0.1100000" />
+      </geometry>
+      <material name="m_arm_06_link_3">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_06_pitch_3" type="revolute">
+    <parent link="arm_06_link_2" />
+    <child link="arm_06_link_3" />
+    <origin xyz="1.3800000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_06_link_4_sleeve">
+    <visual>
+      <origin xyz=".50 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="1.0 .13 .13" />
+      </geometry>
+      <material name="m_arm_06_link_4_sleeve">
+        <color rgba=".37 .66 .72 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_06_pitch_4" type="revolute">
+    <parent link="arm_06_link_3" />
+    <child link="arm_06_link_4_sleeve" />
+    <origin xyz="1.5200000 0.0000000 0.0000000" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-3.14" upper="3.14" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_06_telescopic_rod">
+    <visual>
+      <origin xyz="-.10 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size=".22 .085 .085" />
+      </geometry>
+      <material name="m_arm_06_telescopic_rod">
+        <color rgba="0.24 0.58 0.52 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_06_telescope_X" type="prismatic">
+    <parent link="arm_06_link_4_sleeve" />
+    <child link="arm_06_telescopic_rod" />
+    <origin xyz="1.0 0 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="0.6" effort="5000" velocity="1.0" />
+  </joint>
+  <link name="arm_06_tool_interface">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size=".09 .10 .10" />
+      </geometry>
+      <material name="m_arm_06_tool_interface">
+        <color rgba=".73 .49 .26 1" />
+      </material>
+    </visual>
+    </link>
+  <joint name="arm_06_tool_mount" type="fixed">
+    <parent link="arm_06_telescopic_rod" />
+    <child link="arm_06_tool_interface" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+</robot>

@@ -1,0 +1,35 @@
+{
+  "samples": 73,
+  "arms_per_sample": 6,
+  "movable_joints": 42,
+  "URDF_vs_analytical_max_tip_error_mm": 1.2138432625796794e-12,
+  "joint_limit_violations": [],
+  "URDF_inertial_elements": 0,
+  "original_deployed_arm_geometry_below_soil_plane": [
+    {
+      "part": "M1_A01_tel_inner",
+      "zmin_mm": -20.59482521409406
+    },
+    {
+      "part": "M1_A02_tel_inner",
+      "zmin_mm": -20.59482521409406
+    },
+    {
+      "part": "M1_A03_tel_inner",
+      "zmin_mm": -20.59482521409406
+    },
+    {
+      "part": "M1_A04_tel_inner",
+      "zmin_mm": -20.59482521409406
+    },
+    {
+      "part": "M1_A05_tel_inner",
+      "zmin_mm": -20.59482521409406
+    },
+    {
+      "part": "M1_A06_tel_inner",
+      "zmin_mm": -20.59482521409406
+    }
+  ],
+  "caution": "Ground penetrations inherited from original Z=0 wrist datum; URDF visual/effort/velocity settings are placeholders, not safe controller limits. No contact/dynamics solver."
+}

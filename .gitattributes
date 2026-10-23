@@ -1,0 +1,6 @@
+# Preserve published artifact bytes and SHA256SUMS across platforms.
+* -text
+*.glb binary
+*.mp4 binary
+*.png binary
+*.zip binary
