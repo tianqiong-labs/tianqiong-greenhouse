@@ -1,0 +1,265 @@
+{
+ "wall": [
+  {
+   "z": 0,
+   "sphere_r": 67.0,
+   "wall": 51.0,
+   "ok": true
+  },
+  {
+   "z": 10,
+   "sphere_r": 66.2,
+   "wall": 50.2,
+   "ok": true
+  },
+  {
+   "z": 20,
+   "sphere_r": 63.9,
+   "wall": 47.9,
+   "ok": true
+  },
+  {
+   "z": 30,
+   "sphere_r": 59.9,
+   "wall": 43.9,
+   "ok": true
+  },
+  {
+   "z": 40,
+   "sphere_r": 53.7,
+   "wall": 37.7,
+   "ok": true
+  },
+  {
+   "z": 50,
+   "sphere_r": 44.6,
+   "wall": 28.6,
+   "ok": true
+  },
+  {
+   "z": 55,
+   "sphere_r": 38.3,
+   "wall": 22.3,
+   "ok": true
+  },
+  {
+   "z": 60,
+   "sphere_r": 29.8,
+   "wall": 13.8,
+   "ok": true
+  },
+  {
+   "z": 62,
+   "sphere_r": 25.4,
+   "wall": 9.4,
+   "ok": true
+  },
+  {
+   "z": 65,
+   "sphere_r": 16.2,
+   "wall": 0.2,
+   "ok": true
+  },
+  {
+   "z": 66,
+   "sphere_r": 11.5,
+   "wall": -4.5,
+   "ok": false
+  },
+  {
+   "z": 67,
+   "sphere_r": 0.0,
+   "wall": -16.0,
+   "ok": false
+  }
+ ],
+ "bore_breakout_z": 65.06,
+ "crown_boss": {
+  "d": 48.0,
+  "h": 18.0
+ },
+ "bore_floor": 14.0,
+ "latch_old": {
+  "pin_d": 8.0,
+  "groove_w": 6.0,
+  "groove_depth": 2.0,
+  "engage": 3.0,
+  "pin_exceeds_groove_by": 2.0,
+  "engage_exceeds_depth_by": 1.0
+ },
+ "latch_new": {
+  "column_d": 30.0,
+  "groove_d": 22.0,
+  "groove_depth": 4.0,
+  "groove_w": 12.0,
+  "claw_w": 10.0,
+  "claw_engage": 4.0,
+  "travel": 8.0,
+  "shear_area_per_claw": 40.0,
+  "shear_area_two": 80.0,
+  "axial_contact_area": 424.0
+ },
+ "slots": [
+  {
+   "arm": "A01",
+   "role": "支撑",
+   "y_before": 350.0,
+   "y_after": 350.0,
+   "occupied": [
+    284.4,
+    415.6
+   ],
+   "occupied_after": [
+    284.4,
+    415.6
+   ],
+   "slot_mm": 135.2,
+   "note": "两部署位 + 横移扫掠"
+  },
+  {
+   "arm": "A02",
+   "role": "作业",
+   "y_before": 910.0,
+   "y_after": 816.7,
+   "occupied": [
+    844.4,
+    975.6
+   ],
+   "occupied_after": [
+    751.1,
+    882.3
+   ],
+   "slot_mm": 228.5,
+   "note": "两部署位占用包络"
+  },
+  {
+   "arm": "A03",
+   "role": "支撑",
+   "y_before": 1470.0,
+   "y_after": 1283.3,
+   "occupied": [
+    1404.4,
+    1535.6
+   ],
+   "occupied_after": [
+    1217.7,
+    1348.9
+   ],
+   "slot_mm": 321.9,
+   "note": "两部署位 + 横移扫掠"
+  },
+  {
+   "arm": "A04",
+   "role": "支撑",
+   "y_before": 2030.0,
+   "y_after": 2216.7,
+   "occupied": [
+    1964.4,
+    2095.6
+   ],
+   "occupied_after": [
+    2151.1,
+    2282.3
+   ],
+   "slot_mm": 321.9,
+   "note": "两部署位 + 横移扫掠"
+  },
+  {
+   "arm": "A05",
+   "role": "作业",
+   "y_before": 2590.0,
+   "y_after": 2683.3,
+   "occupied": [
+    2524.4,
+    2655.6
+   ],
+   "occupied_after": [
+    2617.7,
+    2748.9
+   ],
+   "slot_mm": 228.5,
+   "note": "两部署位占用包络"
+  },
+  {
+   "arm": "A06",
+   "role": "支撑",
+   "y_before": 3150.0,
+   "y_after": 3150.0,
+   "occupied": [
+    3084.4,
+    3215.6
+   ],
+   "occupied_after": [
+    3084.4,
+    3215.6
+   ],
+   "slot_mm": 135.2,
+   "note": "两部署位 + 横移扫掠"
+  }
+ ],
+ "slot_total_mm": 1371.2,
+ "ratio": 0.3918,
+ "slot_spans": [
+  [
+   284.4,
+   415.6
+  ],
+  [
+   751.1,
+   975.6
+  ],
+  [
+   1217.7,
+   1535.6
+  ],
+  [
+   1964.4,
+   2282.3
+  ],
+  [
+   2524.4,
+   2748.9
+  ],
+  [
+   3084.4,
+   3215.6
+  ]
+ ],
+ "webs": [
+  [
+   0.0,
+   284.4,
+   284.4
+  ],
+  [
+   415.6,
+   751.1,
+   335.5
+  ],
+  [
+   975.6,
+   1217.7,
+   242.1
+  ],
+  [
+   1535.6,
+   1964.4,
+   428.8
+  ],
+  [
+   2282.3,
+   2524.4,
+   242.1
+  ],
+  [
+   2748.9,
+   3084.4,
+   335.5
+  ],
+  [
+   3215.6,
+   3500.0,
+   284.4
+  ]
+ ]
+}
