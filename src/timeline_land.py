@@ -110,6 +110,12 @@ if __name__ == '__main__':
     for b in boundary: print(f"  {b['seg']:16s} 段内抽查 5 点 最大误差 {b['interior_max_err']:.6f}")
 
     print('返回终点 vs 部署起始 最大关节差: %.6f' % ret_err)
+    import assert_timeline
+    errs = assert_timeline.check(frames, q_dep=frames[0]['q'])
+    if errs:
+        print('!! 跨段/段内连续性不合格，拒绝写出:', errs[:3])
+        raise SystemExit(2)
+    print('跨段连续性断言: PASS')
     print('状态轨: VALIDATED %d / SCHEMATIC %d / PENDING %d' % (
         sum(1 for s in states if s['level'] == 'VALIDATED'),
         sum(1 for s in states if s['level'] == 'SCHEMATIC'),
