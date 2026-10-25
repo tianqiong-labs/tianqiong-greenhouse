@@ -17,6 +17,14 @@ t2 = importlib.import_module('trajectory2')
 FPS = 24
 
 
+def _orient(nodes, start):
+    """把节点顺序调整成"从 start 出发"；RRT 返回的方向不可靠，必须按几何判定。"""
+    n = np.asarray(nodes, float)
+    if float(np.linalg.norm(n[0] - start)) > float(np.linalg.norm(n[-1] - start)):
+        n = n[::-1]
+    return n
+
+
 def load_segments():
     tr = json.loads((OUT / 'planA_trajectory.json').read_text(encoding='utf8'))
     cmp = json.loads((OUT / 'experiments' / 'gap_v2' / 'compare.json').read_text(encoding='utf8'))
@@ -25,7 +33,11 @@ def load_segments():
     v2 = np.array(next(r for r in cmp['rows'] if r['version'] == 'v2-target30')['path'], float)
     q_pre = np.r_[loop['ik']['pre']['q'], loop['ik']['pre']['L4']]
     q_work = np.r_[loop['ik']['work']['q'], loop['ik']['work']['L4']]
-    out = [('部署→紧凑', fold), ('紧凑→预接近(v2)', v2), ('预接近→采摘', np.vstack([q_pre, q_work]))]
+    q_dep = np.r_[np.asarray(pl.A0, float), 1600.0]   # planner.A0 已是角度
+    fold = _orient(fold, np.asarray(q_dep, float))
+    v2 = _orient(v2, fold[-1])
+    work = _orient(np.vstack([q_pre, q_work]), v2[-1])
+    out = [('部署→紧凑', fold), ('紧凑→预接近(v2)', v2), ('预接近→采摘', work)]
     back = [(f'返回·{n}', np.asarray(p, float)[::-1]) for n, p in reversed(out)]
     return out + back
 

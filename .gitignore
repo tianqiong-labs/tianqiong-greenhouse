@@ -5,3 +5,4 @@ frames/
 # 测试沙箱
 src/out/testroot/
 *.tmp
+__pycache__/
