@@ -36,10 +36,9 @@ def chain(q, y, n_per=8):
 
 
 def film_gap(P):
-    P2 = P[:, [0, 2]]
-    t = np.clip(((P2[:, None, :] - A_SEG[None]) * AB[None]).sum(2) / L2[None], 0, 1)
-    proj = A_SEG[None] + t[:, :, None] * AB[None]
-    return float(np.linalg.norm(P2[:, None, :] - proj, axis=2).min()) - R_J
+    """唯一实现：调用 geom 的折线段距离（不再本地重写）。"""
+    import geom
+    return min(geom.polyline_dist(p[[0, 2]], FILM) for p in P) - R_J
 
 
 def box_gap(P, lo, hi, radius=R_J):

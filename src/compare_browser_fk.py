@@ -51,7 +51,7 @@ if __name__ == '__main__':
     data = json.loads((OUT / 'browser_trs.json').read_text(encoding='utf8'))
 
     st = dict(wound=anim.SURPLUS, gate=0.0, drop=0.0, release=0, retract=0.0, yaw=0.0,
-              lower=0.0, compensate=0.0, pack=0.0)
+              lower=0.0, compensate=1.0, pack=0.0)
     base = anim.frame_records(st)
     q0 = frames[0]['q']
     BINDS, R0S = {}, {}

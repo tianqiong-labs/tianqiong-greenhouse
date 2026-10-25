@@ -8,3 +8,5 @@ src/out/testroot/
 __pycache__/
 frames_full/
 frames_short/
+frames_short2/
+frames_full2/

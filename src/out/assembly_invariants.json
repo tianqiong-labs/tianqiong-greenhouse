@@ -1,0 +1,6 @@
+{
+ "ok": true,
+ "max_att_dy_mm": 0.03,
+ "violations": [],
+ "note": "A1 根座 / A2 附属件平面 / A3 滑块；不依赖 bind_heads 的局部偏移"
+}

@@ -21,8 +21,9 @@ Y_COMP = [float(x) for x in pl.Y_WORK]
 
 
 def base_records():
+    # 必须用补位后的六臂状态，否则四根支撑臂与前沿滑块会停在补位前 Y
     st = dict(wound=anim.SURPLUS, gate=0.0, drop=0.0, release=0, retract=0.0,
-              yaw=0.0, lower=0.0, compensate=0.0, pack=0.0)
+              yaw=0.0, lower=0.0, compensate=1.0, pack=0.0)
     return anim.frame_records(st)
 
 
@@ -66,7 +67,7 @@ def main():
 
     # 附属件绑定（一次性建立）
     _st = dict(wound=anim.SURPLUS, gate=0.0, drop=0.0, release=0, retract=0.0, yaw=0.0,
-               lower=0.0, compensate=0.0, pack=0.0)
+               lower=0.0, compensate=1.0, pack=0.0)
     _base = anim.frame_records(_st)
     binds_by_arm, R0_by_name, q0 = {}, {}, frames[0]['q']
     for idx in (1, 4):
