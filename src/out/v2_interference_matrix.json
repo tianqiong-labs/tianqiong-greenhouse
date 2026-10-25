@@ -1,148 +1,156 @@
 {
+ "meta": {
+  "baseline": "assembly_v2",
+  "git_sha": "38ccc4e",
+  "script": "v2_interference.py",
+  "state": "deployed_compensated",
+  "scope": "interface_x_p03_rail",
+  "created": "2026-10-25T20:40:28"
+ },
  "hits": [
   {
    "module": 1,
    "arm": "A01",
    "part": "BALL",
    "target": "M1_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 350.0
   },
   {
    "module": 1,
    "arm": "A02",
    "part": "BALL",
    "target": "M1_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 816.7
   },
   {
    "module": 1,
    "arm": "A03",
    "part": "BALL",
    "target": "M1_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 1283.3
   },
   {
    "module": 1,
    "arm": "A04",
    "part": "BALL",
    "target": "M1_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 2216.7
   },
   {
    "module": 1,
    "arm": "A05",
    "part": "BALL",
    "target": "M1_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 2683.3
   },
   {
    "module": 1,
    "arm": "A06",
    "part": "BALL",
    "target": "M1_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 3150.0
   },
   {
    "module": 2,
    "arm": "A01",
    "part": "BALL",
    "target": "M2_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 4600.0
   },
   {
    "module": 2,
    "arm": "A02",
    "part": "BALL",
    "target": "M2_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 5066.7
   },
   {
    "module": 2,
    "arm": "A03",
    "part": "BALL",
    "target": "M2_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 5533.3
   },
   {
    "module": 2,
    "arm": "A04",
    "part": "BALL",
    "target": "M2_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 6466.7
   },
   {
    "module": 2,
    "arm": "A05",
    "part": "BALL",
    "target": "M2_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 6933.3
   },
   {
    "module": 2,
    "arm": "A06",
    "part": "BALL",
    "target": "M2_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 7400.0
   },
   {
    "module": 3,
    "arm": "A01",
    "part": "BALL",
    "target": "M3_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 8850.0
   },
   {
    "module": 3,
    "arm": "A02",
    "part": "BALL",
    "target": "M3_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 9316.7
   },
   {
    "module": 3,
    "arm": "A03",
    "part": "BALL",
    "target": "M3_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 9783.3
   },
   {
    "module": 3,
    "arm": "A04",
    "part": "BALL",
    "target": "M3_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 10716.7
   },
   {
    "module": 3,
    "arm": "A05",
    "part": "BALL",
    "target": "M3_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 11183.3
   },
   {
    "module": 3,
    "arm": "A06",
    "part": "BALL",
    "target": "M3_M1_P03_front_membrane_clamp",
-   "vol": 51693.5,
-   "y": null
+   "vol": 51693.47,
+   "y": 11650.0
   }
  ],
  "agg": {
@@ -150,15 +158,15 @@
    "n": 18,
    "vol": 930482.5,
    "targets": [
-    "front_membrane_clamp"
+    "M1_M1_P03_front_membrane_clamp",
+    "M2_M1_P03_front_membrane_clamp",
+    "M3_M1_P03_front_membrane_clamp"
    ]
   }
  },
  "lock_regression": {
   "ball": 0.0,
   "flange": 0.0,
-  "clamp": 9832.8
- },
- "note": "由 proc_6853efd 的正确运行 stdout 重建；上一版 JSON 含被替换的旧 wrist_*/tip，作废",
- "superseded": "v2_interference_matrix_contaminated.json"
+  "clamp": 9832.7
+ }
 }

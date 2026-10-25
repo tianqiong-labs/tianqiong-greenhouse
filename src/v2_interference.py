@@ -129,12 +129,44 @@ if __name__ == '__main__':
     lock_hit_ball = vol(ball(), cpush)
     lock_hit_fl = vol(flange_c(), cpush)
     lock_hit_cl = vol(half(1, 0.0), cpush) + vol(half(-1, 0.0), cpush)
-    print(f'
-横向挡止回归（柱 +X20）：球头 {lock_hit_ball:.1f} / 法兰 {lock_hit_fl:.1f} / 卡箍环 {lock_hit_cl:.1f} mm3')
+    print('横向挡止回归（柱 +X20）：球头 %.1f / 法兰 %.1f / 卡箍环 %.1f mm3' % (lock_hit_ball, lock_hit_fl, lock_hit_cl))
 
-(OUT / 'v2_interference_matrix.json').write_text(json.dumps(dict(
-        hits=rows, agg={p: dict(n=len(v), vol=round(sum(x['vol'] for x in v), 1),
-                                targets=sorted({x['target'] for x in v})) for p, v in agg.items()},
-        lock_regression=dict(ball=round(lock_hit_ball,1), flange=round(lock_hit_fl,1), clamp=round(lock_hit_cl,1))),
-        ensure_ascii=False, indent=1), encoding='utf8')
-    print('写入 out/v2_interference_matrix.json')
+    # ---------- 产物一致性强制校验（项目规则 R-ART-01）----------
+    import subprocess, hashlib
+    def _git_sha():
+        try:
+            return subprocess.run(['git','rev-parse','--short','HEAD'], capture_output=True,
+                                  text=True, cwd=str(HERE)).stdout.strip() or 'unknown'
+        except Exception:
+            return 'unknown'
+
+    payload = dict(
+        meta=dict(baseline='assembly_v2', git_sha=_git_sha(), script='v2_interference.py',
+                  state='deployed_compensated', scope='interface_x_p03_rail',
+                  created=__import__('datetime').datetime.now().isoformat(timespec='seconds')),
+        hits=rows,
+        agg={p2: dict(n=len(v), vol=round(sum(x['vol'] for x in v), 1),
+                      targets=sorted({x['target'] for x in v})) for p2, v in agg.items()},
+        lock_regression=dict(ball=round(lock_hit_ball, 1), flange=round(lock_hit_fl, 1),
+                             clamp=round(lock_hit_cl, 1)))
+    text = json.dumps(payload, ensure_ascii=False, indent=1)
+
+    # 校验1：不得混入已被替换的旧件
+    bad_targets = [h['target'] for h in rows
+                   if 'wrist_' in h['target'] or h['target'].endswith('_tip')]
+    assert not bad_targets, f'污染：{bad_targets[:3]}'
+
+    path = OUT / 'v2_interference_matrix.json'
+    path.write_text(text, encoding='utf8')
+
+    # 校验2：重新读取并逐字段比对
+    back = json.loads(path.read_text(encoding='utf8'))
+    assert back['agg'] == payload['agg'], 'JSON agg 与内存不一致'
+    assert len(back['hits']) == len(rows), 'JSON hits 数量不一致'
+    assert back['meta']['git_sha'] == payload['meta']['git_sha'], 'JSON meta 不一致'
+    assert abs(sum(x['vol'] for x in back['hits']) - sum(x['vol'] for x in rows)) < 1e-6
+
+    total = sum(x['vol'] for x in rows)
+    print(f'VALIDATION PASS hits={len(rows)} total_vol={total:.1f} '
+          f'clamp_block={lock_hit_cl:.1f} sha={payload["meta"]["git_sha"]}')
+    print('写入 out/v2_interference_matrix.json（已回读校验）')
