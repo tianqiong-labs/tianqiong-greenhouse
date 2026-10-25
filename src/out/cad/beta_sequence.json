@@ -1,0 +1,68 @@
+[
+ {
+  "state": "LOCKED",
+  "dx": 0.0,
+  "claws_retracted": false,
+  "ball_vs_column": 0.0,
+  "ball_vs_claw_R": 0.0,
+  "ball_vs_claw_L": 0.0,
+  "claw_vs_column_R": 0.0,
+  "claw_vs_column_L": 0.0,
+  "ok": true
+ },
+ {
+  "state": "UNLOCKING",
+  "dx": 0.0,
+  "claws_retracted": true,
+  "ball_vs_column": 0.0,
+  "ball_vs_claw_R": 0.0,
+  "ball_vs_claw_L": 0.0,
+  "claw_vs_column_R": 0.0,
+  "claw_vs_column_L": 0.0,
+  "ok": true
+ },
+ {
+  "state": "WITHDRAW_25%",
+  "dx": 30.0,
+  "claws_retracted": true,
+  "ball_vs_column": 0.0,
+  "ball_vs_claw_R": 0.0,
+  "ball_vs_claw_L": 0.0,
+  "claw_vs_column_R": 0.0,
+  "claw_vs_column_L": 0.0,
+  "ok": true
+ },
+ {
+  "state": "WITHDRAW_50%",
+  "dx": 60.0,
+  "claws_retracted": true,
+  "ball_vs_column": 0.0,
+  "ball_vs_claw_R": 0.0,
+  "ball_vs_claw_L": 0.0,
+  "claw_vs_column_R": 0.0,
+  "claw_vs_column_L": 0.0,
+  "ok": true
+ },
+ {
+  "state": "WITHDRAW_75%",
+  "dx": 90.0,
+  "claws_retracted": true,
+  "ball_vs_column": 0.0,
+  "ball_vs_claw_R": 0.0,
+  "ball_vs_claw_L": 0.0,
+  "claw_vs_column_R": 0.0,
+  "claw_vs_column_L": 0.0,
+  "ok": true
+ },
+ {
+  "state": "CLEAR",
+  "dx": 120.0,
+  "claws_retracted": true,
+  "ball_vs_column": 0.0,
+  "ball_vs_claw_R": 0.0,
+  "ball_vs_claw_L": 0.0,
+  "claw_vs_column_R": 0.0,
+  "claw_vs_column_L": 0.0,
+  "ok": true
+ }
+]
