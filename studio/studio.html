@@ -414,6 +414,15 @@ window.STUDIO = {
 };
 setTime(0); applyCam(camAt(0)); render();
 window.STUDIO_READY = true;
+window.__OBJ = objects;
+window.STUDIO.matrixOf = function(name){
+  const o = objects[name];
+  if (!o) return null;
+  o.updateWorldMatrix(true, false);
+  return Array.from(o.matrixWorld.elements);
+};
+window.STUDIO.names = function(){ return Object.keys(objects); };
+
 </script>
 </body>
 </html>

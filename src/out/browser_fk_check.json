@@ -1,0 +1,49 @@
+{
+ "samples": 60,
+ "objects": [
+  "M2_F04_M1_A02_J2_base",
+  "M2_F04_M1_A02_J2_gateL",
+  "M2_F04_M1_A02_J3_magnet_aux",
+  "M2_M1_A02_link2",
+  "M2_M1_A02_tel_inner",
+  "M2_M1_A05_link3"
+ ],
+ "times": [
+  0.0,
+  5.0,
+  11.4167,
+  18.0,
+  25.2083,
+  27.0,
+  29.664,
+  40.0,
+  52.0,
+  59.329
+ ],
+ "max_pos_err_mm": 0.024476,
+ "mean_pos_err_mm": 0.002993,
+ "max_rot_err_deg": 0.00105,
+ "mean_rot_err_deg": 0.000115,
+ "worst": [
+  {
+   "t": 59.329,
+   "name": "M2_M1_A02_link2",
+   "pos": 0.024476450489334386,
+   "rot": 0.0010087370858080915
+  },
+  {
+   "t": 29.664,
+   "name": "M2_M1_A02_tel_inner",
+   "pos": 0.023915061645920922,
+   "rot": 0.0010497208609157697
+  },
+  {
+   "t": 29.664,
+   "name": "M2_F04_M1_A02_J3_magnet_aux",
+   "pos": 0.02331825480106253,
+   "rot": 0.0007616905111891759
+  }
+ ],
+ "verdict": "PASS",
+ "note": "读取浏览器节点的 position/quaternion 原始值，父级已核实为 identity"
+}
