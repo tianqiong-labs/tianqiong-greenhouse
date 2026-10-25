@@ -1,0 +1,83 @@
+{
+ "params": {
+  "ball_r": 67.0,
+  "column_d": 28.0,
+  "bore_d": 30.0,
+  "bore_depth": 67.0,
+  "chamfer": 3.0,
+  "groove_d": 24.0,
+  "groove_z": [
+   38.0,
+   44.0
+  ],
+  "pin_d": 8.0,
+  "pin_travel": 6.0,
+  "pin_engage": 3.0,
+  "margin": 4.0
+ },
+ "initial": {
+  "ball_bore_vs_column": 1.0,
+  "bore_depth_vs_column_insert": 67.0,
+  "ball_vs_clamp_mm": -53.17,
+  "column_vs_clamp_mm": -9.5,
+  "note": "孔柱为设计配合（正=间隙）；压条两处仍为穿透，需开槽"
+ },
+ "slots": [
+  {
+   "arm": "A01",
+   "role": "支撑（不可收臂）",
+   "dy": 0.0,
+   "sweep_mm": 0.0,
+   "slot_mm": 135.3
+  },
+  {
+   "arm": "A02",
+   "role": "作业（可收臂）",
+   "dy": -93.3,
+   "sweep_mm": 0.0,
+   "slot_mm": 135.3
+  },
+  {
+   "arm": "A03",
+   "role": "支撑（不可收臂）",
+   "dy": -186.7,
+   "sweep_mm": 186.7,
+   "slot_mm": 322.0
+  },
+  {
+   "arm": "A04",
+   "role": "支撑（不可收臂）",
+   "dy": 186.7,
+   "sweep_mm": 186.7,
+   "slot_mm": 322.0
+  },
+  {
+   "arm": "A05",
+   "role": "作业（可收臂）",
+   "dy": 93.3,
+   "sweep_mm": 0.0,
+   "slot_mm": 135.3
+  },
+  {
+   "arm": "A06",
+   "role": "支撑（不可收臂）",
+   "dy": 0.0,
+   "sweep_mm": 0.0,
+   "slot_mm": 135.3
+  }
+ ],
+ "summary": {
+  "slot_total_mm": 1185.2,
+  "ratio": 0.3386,
+  "remaining_web_mm": 2314.8
+ },
+ "webs": [
+  282.4,
+  331.4,
+  237.9,
+  611.4,
+  238.0,
+  331.4,
+  282.3
+ ]
+}
