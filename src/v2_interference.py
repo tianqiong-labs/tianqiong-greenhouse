@@ -125,12 +125,14 @@ if __name__ == '__main__':
 
     # 跑道槽后横向挡止回归
     col = column()
-    lock_hit_ball = vol(ball(), col.translate((20, 0, 0)))
-    lock_hit_fl = vol(flange_c(), col.translate((20, 0, 0)))
-    print(f'\n横向挡止回归：柱+X20 vs 球头 {lock_hit_ball:.1f} mm3（跑道槽已开口，预期 0）')
-    print(f'              柱+X20 vs C 形法兰 {lock_hit_fl:.1f} mm3（应 >0 = 挡止来自法兰）')
+    cpush = col.translate((20, 0, 0))
+    lock_hit_ball = vol(ball(), cpush)
+    lock_hit_fl = vol(flange_c(), cpush)
+    lock_hit_cl = vol(half(1, 0.0), cpush) + vol(half(-1, 0.0), cpush)
+    print(f'
+横向挡止回归（柱 +X20）：球头 {lock_hit_ball:.1f} / 法兰 {lock_hit_fl:.1f} / 卡箍环 {lock_hit_cl:.1f} mm3')
 
-    (OUT / 'v2_interference_matrix.json').write_text(json.dumps(dict(
+(OUT / 'v2_interference_matrix.json').write_text(json.dumps(dict(
         hits=rows, agg={p: dict(n=len(v), vol=round(sum(x['vol'] for x in v), 1),
                                 targets=sorted({x['target'] for x in v})) for p, v in agg.items()},
         lock_regression=dict(ball=round(lock_hit_ball,1), flange=round(lock_hit_fl,1), clamp=round(lock_hit_cl,1))),

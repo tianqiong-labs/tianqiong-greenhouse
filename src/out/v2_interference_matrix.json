@@ -5,987 +5,160 @@
    "arm": "A01",
    "part": "BALL",
    "target": "M1_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 350.0
-  },
-  {
-   "module": 1,
-   "arm": "A01",
-   "part": "BALL",
-   "target": "M1_M1_P03_slider01_wrist_upright",
-   "vol": 9600.0,
-   "y": 350.0
-  },
-  {
-   "module": 1,
-   "arm": "A01",
-   "part": "BALL",
-   "target": "M1_M1_P03_slider01_wrist_datum",
-   "vol": 8482.3,
-   "y": 350.0
-  },
-  {
-   "module": 1,
-   "arm": "A01",
-   "part": "FLANGE",
-   "target": "M1_M1_P03_slider01_wrist_upright",
-   "vol": 272.51,
-   "y": 350.0
-  },
-  {
-   "module": 1,
-   "arm": "A01",
-   "part": "CLAMP_R",
-   "target": "M1_M1_P03_slider01_wrist_upright",
-   "vol": 1201.02,
-   "y": 350.0
-  },
-  {
-   "module": 1,
-   "arm": "A01",
-   "part": "CLAMP_L",
-   "target": "M1_M1_P03_slider01_wrist_upright",
-   "vol": 1201.02,
-   "y": 350.0
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 1,
    "arm": "A02",
    "part": "BALL",
    "target": "M1_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 816.7
-  },
-  {
-   "module": 1,
-   "arm": "A02",
-   "part": "BALL",
-   "target": "M1_M1_P03_slider02_wrist_upright",
-   "vol": 9653.28,
-   "y": 816.7
-  },
-  {
-   "module": 1,
-   "arm": "A02",
-   "part": "BALL",
-   "target": "M1_M1_P03_slider02_wrist_datum",
-   "vol": 8482.3,
-   "y": 816.7
-  },
-  {
-   "module": 1,
-   "arm": "A02",
-   "part": "FLANGE",
-   "target": "M1_M1_P03_slider02_wrist_upright",
-   "vol": 275.03,
-   "y": 816.7
-  },
-  {
-   "module": 1,
-   "arm": "A02",
-   "part": "CLAMP_R",
-   "target": "M1_M1_P03_slider02_wrist_upright",
-   "vol": 1184.37,
-   "y": 816.7
-  },
-  {
-   "module": 1,
-   "arm": "A02",
-   "part": "CLAMP_L",
-   "target": "M1_M1_P03_slider02_wrist_upright",
-   "vol": 1217.67,
-   "y": 816.7
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 1,
    "arm": "A03",
    "part": "BALL",
    "target": "M1_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 1283.3
-  },
-  {
-   "module": 1,
-   "arm": "A03",
-   "part": "BALL",
-   "target": "M1_M1_P03_slider03_wrist_upright",
-   "vol": 9653.28,
-   "y": 1283.3
-  },
-  {
-   "module": 1,
-   "arm": "A03",
-   "part": "BALL",
-   "target": "M1_M1_P03_slider03_wrist_datum",
-   "vol": 8482.3,
-   "y": 1283.3
-  },
-  {
-   "module": 1,
-   "arm": "A03",
-   "part": "FLANGE",
-   "target": "M1_M1_P03_slider03_wrist_upright",
-   "vol": 275.03,
-   "y": 1283.3
-  },
-  {
-   "module": 1,
-   "arm": "A03",
-   "part": "CLAMP_R",
-   "target": "M1_M1_P03_slider03_wrist_upright",
-   "vol": 1217.67,
-   "y": 1283.3
-  },
-  {
-   "module": 1,
-   "arm": "A03",
-   "part": "CLAMP_L",
-   "target": "M1_M1_P03_slider03_wrist_upright",
-   "vol": 1184.37,
-   "y": 1283.3
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 1,
    "arm": "A04",
    "part": "BALL",
    "target": "M1_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 2216.7
-  },
-  {
-   "module": 1,
-   "arm": "A04",
-   "part": "BALL",
-   "target": "M1_M1_P03_slider04_wrist_upright",
-   "vol": 9653.28,
-   "y": 2216.7
-  },
-  {
-   "module": 1,
-   "arm": "A04",
-   "part": "BALL",
-   "target": "M1_M1_P03_slider04_wrist_datum",
-   "vol": 8482.3,
-   "y": 2216.7
-  },
-  {
-   "module": 1,
-   "arm": "A04",
-   "part": "FLANGE",
-   "target": "M1_M1_P03_slider04_wrist_upright",
-   "vol": 275.03,
-   "y": 2216.7
-  },
-  {
-   "module": 1,
-   "arm": "A04",
-   "part": "CLAMP_R",
-   "target": "M1_M1_P03_slider04_wrist_upright",
-   "vol": 1184.37,
-   "y": 2216.7
-  },
-  {
-   "module": 1,
-   "arm": "A04",
-   "part": "CLAMP_L",
-   "target": "M1_M1_P03_slider04_wrist_upright",
-   "vol": 1217.67,
-   "y": 2216.7
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 1,
    "arm": "A05",
    "part": "BALL",
    "target": "M1_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 2683.3
-  },
-  {
-   "module": 1,
-   "arm": "A05",
-   "part": "BALL",
-   "target": "M1_M1_P03_slider05_wrist_upright",
-   "vol": 9653.28,
-   "y": 2683.3
-  },
-  {
-   "module": 1,
-   "arm": "A05",
-   "part": "BALL",
-   "target": "M1_M1_P03_slider05_wrist_datum",
-   "vol": 8482.3,
-   "y": 2683.3
-  },
-  {
-   "module": 1,
-   "arm": "A05",
-   "part": "FLANGE",
-   "target": "M1_M1_P03_slider05_wrist_upright",
-   "vol": 275.03,
-   "y": 2683.3
-  },
-  {
-   "module": 1,
-   "arm": "A05",
-   "part": "CLAMP_R",
-   "target": "M1_M1_P03_slider05_wrist_upright",
-   "vol": 1217.67,
-   "y": 2683.3
-  },
-  {
-   "module": 1,
-   "arm": "A05",
-   "part": "CLAMP_L",
-   "target": "M1_M1_P03_slider05_wrist_upright",
-   "vol": 1184.37,
-   "y": 2683.3
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 1,
    "arm": "A06",
    "part": "BALL",
    "target": "M1_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 3150.0
-  },
-  {
-   "module": 1,
-   "arm": "A06",
-   "part": "BALL",
-   "target": "M1_M1_P03_slider06_wrist_upright",
-   "vol": 9600.0,
-   "y": 3150.0
-  },
-  {
-   "module": 1,
-   "arm": "A06",
-   "part": "BALL",
-   "target": "M1_M1_P03_slider06_wrist_datum",
-   "vol": 8482.3,
-   "y": 3150.0
-  },
-  {
-   "module": 1,
-   "arm": "A06",
-   "part": "FLANGE",
-   "target": "M1_M1_P03_slider06_wrist_upright",
-   "vol": 272.51,
-   "y": 3150.0
-  },
-  {
-   "module": 1,
-   "arm": "A06",
-   "part": "CLAMP_R",
-   "target": "M1_M1_P03_slider06_wrist_upright",
-   "vol": 1201.02,
-   "y": 3150.0
-  },
-  {
-   "module": 1,
-   "arm": "A06",
-   "part": "CLAMP_L",
-   "target": "M1_M1_P03_slider06_wrist_upright",
-   "vol": 1201.02,
-   "y": 3150.0
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 2,
    "arm": "A01",
    "part": "BALL",
    "target": "M2_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 4600.0
-  },
-  {
-   "module": 2,
-   "arm": "A01",
-   "part": "BALL",
-   "target": "M2_M1_P03_slider01_wrist_upright",
-   "vol": 9600.0,
-   "y": 4600.0
-  },
-  {
-   "module": 2,
-   "arm": "A01",
-   "part": "BALL",
-   "target": "M2_M1_P03_slider01_wrist_datum",
-   "vol": 8482.3,
-   "y": 4600.0
-  },
-  {
-   "module": 2,
-   "arm": "A01",
-   "part": "FLANGE",
-   "target": "M2_M1_P03_slider01_wrist_upright",
-   "vol": 272.51,
-   "y": 4600.0
-  },
-  {
-   "module": 2,
-   "arm": "A01",
-   "part": "CLAMP_R",
-   "target": "M2_M1_P03_slider01_wrist_upright",
-   "vol": 1201.02,
-   "y": 4600.0
-  },
-  {
-   "module": 2,
-   "arm": "A01",
-   "part": "CLAMP_L",
-   "target": "M2_M1_P03_slider01_wrist_upright",
-   "vol": 1201.02,
-   "y": 4600.0
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 2,
    "arm": "A02",
    "part": "BALL",
    "target": "M2_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 5066.7
-  },
-  {
-   "module": 2,
-   "arm": "A02",
-   "part": "BALL",
-   "target": "M2_M1_P03_slider02_wrist_upright",
-   "vol": 9653.28,
-   "y": 5066.7
-  },
-  {
-   "module": 2,
-   "arm": "A02",
-   "part": "BALL",
-   "target": "M2_M1_P03_slider02_wrist_datum",
-   "vol": 8482.3,
-   "y": 5066.7
-  },
-  {
-   "module": 2,
-   "arm": "A02",
-   "part": "FLANGE",
-   "target": "M2_M1_P03_slider02_wrist_upright",
-   "vol": 275.03,
-   "y": 5066.7
-  },
-  {
-   "module": 2,
-   "arm": "A02",
-   "part": "CLAMP_R",
-   "target": "M2_M1_P03_slider02_wrist_upright",
-   "vol": 1184.37,
-   "y": 5066.7
-  },
-  {
-   "module": 2,
-   "arm": "A02",
-   "part": "CLAMP_L",
-   "target": "M2_M1_P03_slider02_wrist_upright",
-   "vol": 1217.67,
-   "y": 5066.7
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 2,
    "arm": "A03",
    "part": "BALL",
    "target": "M2_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 5533.3
-  },
-  {
-   "module": 2,
-   "arm": "A03",
-   "part": "BALL",
-   "target": "M2_M1_P03_slider03_wrist_upright",
-   "vol": 9653.28,
-   "y": 5533.3
-  },
-  {
-   "module": 2,
-   "arm": "A03",
-   "part": "BALL",
-   "target": "M2_M1_P03_slider03_wrist_datum",
-   "vol": 8482.3,
-   "y": 5533.3
-  },
-  {
-   "module": 2,
-   "arm": "A03",
-   "part": "FLANGE",
-   "target": "M2_M1_P03_slider03_wrist_upright",
-   "vol": 275.03,
-   "y": 5533.3
-  },
-  {
-   "module": 2,
-   "arm": "A03",
-   "part": "CLAMP_R",
-   "target": "M2_M1_P03_slider03_wrist_upright",
-   "vol": 1217.67,
-   "y": 5533.3
-  },
-  {
-   "module": 2,
-   "arm": "A03",
-   "part": "CLAMP_L",
-   "target": "M2_M1_P03_slider03_wrist_upright",
-   "vol": 1184.37,
-   "y": 5533.3
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 2,
    "arm": "A04",
    "part": "BALL",
    "target": "M2_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 6466.7
-  },
-  {
-   "module": 2,
-   "arm": "A04",
-   "part": "BALL",
-   "target": "M2_M1_P03_slider04_wrist_upright",
-   "vol": 9653.28,
-   "y": 6466.7
-  },
-  {
-   "module": 2,
-   "arm": "A04",
-   "part": "BALL",
-   "target": "M2_M1_P03_slider04_wrist_datum",
-   "vol": 8482.3,
-   "y": 6466.7
-  },
-  {
-   "module": 2,
-   "arm": "A04",
-   "part": "FLANGE",
-   "target": "M2_M1_P03_slider04_wrist_upright",
-   "vol": 275.03,
-   "y": 6466.7
-  },
-  {
-   "module": 2,
-   "arm": "A04",
-   "part": "CLAMP_R",
-   "target": "M2_M1_P03_slider04_wrist_upright",
-   "vol": 1184.37,
-   "y": 6466.7
-  },
-  {
-   "module": 2,
-   "arm": "A04",
-   "part": "CLAMP_L",
-   "target": "M2_M1_P03_slider04_wrist_upright",
-   "vol": 1217.67,
-   "y": 6466.7
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 2,
    "arm": "A05",
    "part": "BALL",
    "target": "M2_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 6933.3
-  },
-  {
-   "module": 2,
-   "arm": "A05",
-   "part": "BALL",
-   "target": "M2_M1_P03_slider05_wrist_upright",
-   "vol": 9653.28,
-   "y": 6933.3
-  },
-  {
-   "module": 2,
-   "arm": "A05",
-   "part": "BALL",
-   "target": "M2_M1_P03_slider05_wrist_datum",
-   "vol": 8482.3,
-   "y": 6933.3
-  },
-  {
-   "module": 2,
-   "arm": "A05",
-   "part": "FLANGE",
-   "target": "M2_M1_P03_slider05_wrist_upright",
-   "vol": 275.03,
-   "y": 6933.3
-  },
-  {
-   "module": 2,
-   "arm": "A05",
-   "part": "CLAMP_R",
-   "target": "M2_M1_P03_slider05_wrist_upright",
-   "vol": 1217.67,
-   "y": 6933.3
-  },
-  {
-   "module": 2,
-   "arm": "A05",
-   "part": "CLAMP_L",
-   "target": "M2_M1_P03_slider05_wrist_upright",
-   "vol": 1184.37,
-   "y": 6933.3
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 2,
    "arm": "A06",
    "part": "BALL",
    "target": "M2_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 7400.0
-  },
-  {
-   "module": 2,
-   "arm": "A06",
-   "part": "BALL",
-   "target": "M2_M1_P03_slider06_wrist_upright",
-   "vol": 9600.0,
-   "y": 7400.0
-  },
-  {
-   "module": 2,
-   "arm": "A06",
-   "part": "BALL",
-   "target": "M2_M1_P03_slider06_wrist_datum",
-   "vol": 8482.3,
-   "y": 7400.0
-  },
-  {
-   "module": 2,
-   "arm": "A06",
-   "part": "FLANGE",
-   "target": "M2_M1_P03_slider06_wrist_upright",
-   "vol": 272.51,
-   "y": 7400.0
-  },
-  {
-   "module": 2,
-   "arm": "A06",
-   "part": "CLAMP_R",
-   "target": "M2_M1_P03_slider06_wrist_upright",
-   "vol": 1201.02,
-   "y": 7400.0
-  },
-  {
-   "module": 2,
-   "arm": "A06",
-   "part": "CLAMP_L",
-   "target": "M2_M1_P03_slider06_wrist_upright",
-   "vol": 1201.02,
-   "y": 7400.0
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 3,
    "arm": "A01",
    "part": "BALL",
    "target": "M3_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 8850.0
-  },
-  {
-   "module": 3,
-   "arm": "A01",
-   "part": "BALL",
-   "target": "M3_M1_P03_slider01_wrist_upright",
-   "vol": 9600.0,
-   "y": 8850.0
-  },
-  {
-   "module": 3,
-   "arm": "A01",
-   "part": "BALL",
-   "target": "M3_M1_P03_slider01_wrist_datum",
-   "vol": 8482.3,
-   "y": 8850.0
-  },
-  {
-   "module": 3,
-   "arm": "A01",
-   "part": "FLANGE",
-   "target": "M3_M1_P03_slider01_wrist_upright",
-   "vol": 272.51,
-   "y": 8850.0
-  },
-  {
-   "module": 3,
-   "arm": "A01",
-   "part": "CLAMP_R",
-   "target": "M3_M1_P03_slider01_wrist_upright",
-   "vol": 1201.02,
-   "y": 8850.0
-  },
-  {
-   "module": 3,
-   "arm": "A01",
-   "part": "CLAMP_L",
-   "target": "M3_M1_P03_slider01_wrist_upright",
-   "vol": 1201.02,
-   "y": 8850.0
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 3,
    "arm": "A02",
    "part": "BALL",
    "target": "M3_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 9316.7
-  },
-  {
-   "module": 3,
-   "arm": "A02",
-   "part": "BALL",
-   "target": "M3_M1_P03_slider02_wrist_upright",
-   "vol": 9653.28,
-   "y": 9316.7
-  },
-  {
-   "module": 3,
-   "arm": "A02",
-   "part": "BALL",
-   "target": "M3_M1_P03_slider02_wrist_datum",
-   "vol": 8482.3,
-   "y": 9316.7
-  },
-  {
-   "module": 3,
-   "arm": "A02",
-   "part": "FLANGE",
-   "target": "M3_M1_P03_slider02_wrist_upright",
-   "vol": 275.03,
-   "y": 9316.7
-  },
-  {
-   "module": 3,
-   "arm": "A02",
-   "part": "CLAMP_R",
-   "target": "M3_M1_P03_slider02_wrist_upright",
-   "vol": 1184.37,
-   "y": 9316.7
-  },
-  {
-   "module": 3,
-   "arm": "A02",
-   "part": "CLAMP_L",
-   "target": "M3_M1_P03_slider02_wrist_upright",
-   "vol": 1217.67,
-   "y": 9316.7
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 3,
    "arm": "A03",
    "part": "BALL",
    "target": "M3_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 9783.3
-  },
-  {
-   "module": 3,
-   "arm": "A03",
-   "part": "BALL",
-   "target": "M3_M1_P03_slider03_wrist_upright",
-   "vol": 9653.28,
-   "y": 9783.3
-  },
-  {
-   "module": 3,
-   "arm": "A03",
-   "part": "BALL",
-   "target": "M3_M1_P03_slider03_wrist_datum",
-   "vol": 8482.3,
-   "y": 9783.3
-  },
-  {
-   "module": 3,
-   "arm": "A03",
-   "part": "FLANGE",
-   "target": "M3_M1_P03_slider03_wrist_upright",
-   "vol": 275.03,
-   "y": 9783.3
-  },
-  {
-   "module": 3,
-   "arm": "A03",
-   "part": "CLAMP_R",
-   "target": "M3_M1_P03_slider03_wrist_upright",
-   "vol": 1217.67,
-   "y": 9783.3
-  },
-  {
-   "module": 3,
-   "arm": "A03",
-   "part": "CLAMP_L",
-   "target": "M3_M1_P03_slider03_wrist_upright",
-   "vol": 1184.37,
-   "y": 9783.3
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 3,
    "arm": "A04",
    "part": "BALL",
    "target": "M3_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 10716.7
-  },
-  {
-   "module": 3,
-   "arm": "A04",
-   "part": "BALL",
-   "target": "M3_M1_P03_slider04_wrist_upright",
-   "vol": 9653.28,
-   "y": 10716.7
-  },
-  {
-   "module": 3,
-   "arm": "A04",
-   "part": "BALL",
-   "target": "M3_M1_P03_slider04_wrist_datum",
-   "vol": 8482.3,
-   "y": 10716.7
-  },
-  {
-   "module": 3,
-   "arm": "A04",
-   "part": "FLANGE",
-   "target": "M3_M1_P03_slider04_wrist_upright",
-   "vol": 275.03,
-   "y": 10716.7
-  },
-  {
-   "module": 3,
-   "arm": "A04",
-   "part": "CLAMP_R",
-   "target": "M3_M1_P03_slider04_wrist_upright",
-   "vol": 1184.37,
-   "y": 10716.7
-  },
-  {
-   "module": 3,
-   "arm": "A04",
-   "part": "CLAMP_L",
-   "target": "M3_M1_P03_slider04_wrist_upright",
-   "vol": 1217.67,
-   "y": 10716.7
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 3,
    "arm": "A05",
    "part": "BALL",
    "target": "M3_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 11183.3
-  },
-  {
-   "module": 3,
-   "arm": "A05",
-   "part": "BALL",
-   "target": "M3_M1_P03_slider05_wrist_upright",
-   "vol": 9653.28,
-   "y": 11183.3
-  },
-  {
-   "module": 3,
-   "arm": "A05",
-   "part": "BALL",
-   "target": "M3_M1_P03_slider05_wrist_datum",
-   "vol": 8482.3,
-   "y": 11183.3
-  },
-  {
-   "module": 3,
-   "arm": "A05",
-   "part": "FLANGE",
-   "target": "M3_M1_P03_slider05_wrist_upright",
-   "vol": 275.03,
-   "y": 11183.3
-  },
-  {
-   "module": 3,
-   "arm": "A05",
-   "part": "CLAMP_R",
-   "target": "M3_M1_P03_slider05_wrist_upright",
-   "vol": 1217.67,
-   "y": 11183.3
-  },
-  {
-   "module": 3,
-   "arm": "A05",
-   "part": "CLAMP_L",
-   "target": "M3_M1_P03_slider05_wrist_upright",
-   "vol": 1184.37,
-   "y": 11183.3
+   "vol": 51693.5,
+   "y": null
   },
   {
    "module": 3,
    "arm": "A06",
    "part": "BALL",
    "target": "M3_M1_P03_front_membrane_clamp",
-   "vol": 51693.47,
-   "y": 11650.0
-  },
-  {
-   "module": 3,
-   "arm": "A06",
-   "part": "BALL",
-   "target": "M3_M1_P03_slider06_wrist_upright",
-   "vol": 9600.0,
-   "y": 11650.0
-  },
-  {
-   "module": 3,
-   "arm": "A06",
-   "part": "BALL",
-   "target": "M3_M1_P03_slider06_wrist_datum",
-   "vol": 8482.3,
-   "y": 11650.0
-  },
-  {
-   "module": 3,
-   "arm": "A06",
-   "part": "FLANGE",
-   "target": "M3_M1_P03_slider06_wrist_upright",
-   "vol": 272.51,
-   "y": 11650.0
-  },
-  {
-   "module": 3,
-   "arm": "A06",
-   "part": "CLAMP_R",
-   "target": "M3_M1_P03_slider06_wrist_upright",
-   "vol": 1201.02,
-   "y": 11650.0
-  },
-  {
-   "module": 3,
-   "arm": "A06",
-   "part": "CLAMP_L",
-   "target": "M3_M1_P03_slider06_wrist_upright",
-   "vol": 1201.02,
-   "y": 11650.0
+   "vol": 51693.5,
+   "y": null
   }
  ],
  "agg": {
   "BALL": {
-   "n": 54,
-   "vol": 1256603.2,
-   "targets": [
-    "M1_M1_P03_front_membrane_clamp",
-    "M1_M1_P03_slider01_wrist_datum",
-    "M1_M1_P03_slider01_wrist_upright",
-    "M1_M1_P03_slider02_wrist_datum",
-    "M1_M1_P03_slider02_wrist_upright",
-    "M1_M1_P03_slider03_wrist_datum",
-    "M1_M1_P03_slider03_wrist_upright",
-    "M1_M1_P03_slider04_wrist_datum",
-    "M1_M1_P03_slider04_wrist_upright",
-    "M1_M1_P03_slider05_wrist_datum",
-    "M1_M1_P03_slider05_wrist_upright",
-    "M1_M1_P03_slider06_wrist_datum",
-    "M1_M1_P03_slider06_wrist_upright",
-    "M2_M1_P03_front_membrane_clamp",
-    "M2_M1_P03_slider01_wrist_datum",
-    "M2_M1_P03_slider01_wrist_upright",
-    "M2_M1_P03_slider02_wrist_datum",
-    "M2_M1_P03_slider02_wrist_upright",
-    "M2_M1_P03_slider03_wrist_datum",
-    "M2_M1_P03_slider03_wrist_upright",
-    "M2_M1_P03_slider04_wrist_datum",
-    "M2_M1_P03_slider04_wrist_upright",
-    "M2_M1_P03_slider05_wrist_datum",
-    "M2_M1_P03_slider05_wrist_upright",
-    "M2_M1_P03_slider06_wrist_datum",
-    "M2_M1_P03_slider06_wrist_upright",
-    "M3_M1_P03_front_membrane_clamp",
-    "M3_M1_P03_slider01_wrist_datum",
-    "M3_M1_P03_slider01_wrist_upright",
-    "M3_M1_P03_slider02_wrist_datum",
-    "M3_M1_P03_slider02_wrist_upright",
-    "M3_M1_P03_slider03_wrist_datum",
-    "M3_M1_P03_slider03_wrist_upright",
-    "M3_M1_P03_slider04_wrist_datum",
-    "M3_M1_P03_slider04_wrist_upright",
-    "M3_M1_P03_slider05_wrist_datum",
-    "M3_M1_P03_slider05_wrist_upright",
-    "M3_M1_P03_slider06_wrist_datum",
-    "M3_M1_P03_slider06_wrist_upright"
-   ]
-  },
-  "FLANGE": {
    "n": 18,
-   "vol": 4935.4,
+   "vol": 930482.5,
    "targets": [
-    "M1_M1_P03_slider01_wrist_upright",
-    "M1_M1_P03_slider02_wrist_upright",
-    "M1_M1_P03_slider03_wrist_upright",
-    "M1_M1_P03_slider04_wrist_upright",
-    "M1_M1_P03_slider05_wrist_upright",
-    "M1_M1_P03_slider06_wrist_upright",
-    "M2_M1_P03_slider01_wrist_upright",
-    "M2_M1_P03_slider02_wrist_upright",
-    "M2_M1_P03_slider03_wrist_upright",
-    "M2_M1_P03_slider04_wrist_upright",
-    "M2_M1_P03_slider05_wrist_upright",
-    "M2_M1_P03_slider06_wrist_upright",
-    "M3_M1_P03_slider01_wrist_upright",
-    "M3_M1_P03_slider02_wrist_upright",
-    "M3_M1_P03_slider03_wrist_upright",
-    "M3_M1_P03_slider04_wrist_upright",
-    "M3_M1_P03_slider05_wrist_upright",
-    "M3_M1_P03_slider06_wrist_upright"
-   ]
-  },
-  "CLAMP_R": {
-   "n": 18,
-   "vol": 21618.4,
-   "targets": [
-    "M1_M1_P03_slider01_wrist_upright",
-    "M1_M1_P03_slider02_wrist_upright",
-    "M1_M1_P03_slider03_wrist_upright",
-    "M1_M1_P03_slider04_wrist_upright",
-    "M1_M1_P03_slider05_wrist_upright",
-    "M1_M1_P03_slider06_wrist_upright",
-    "M2_M1_P03_slider01_wrist_upright",
-    "M2_M1_P03_slider02_wrist_upright",
-    "M2_M1_P03_slider03_wrist_upright",
-    "M2_M1_P03_slider04_wrist_upright",
-    "M2_M1_P03_slider05_wrist_upright",
-    "M2_M1_P03_slider06_wrist_upright",
-    "M3_M1_P03_slider01_wrist_upright",
-    "M3_M1_P03_slider02_wrist_upright",
-    "M3_M1_P03_slider03_wrist_upright",
-    "M3_M1_P03_slider04_wrist_upright",
-    "M3_M1_P03_slider05_wrist_upright",
-    "M3_M1_P03_slider06_wrist_upright"
-   ]
-  },
-  "CLAMP_L": {
-   "n": 18,
-   "vol": 21618.4,
-   "targets": [
-    "M1_M1_P03_slider01_wrist_upright",
-    "M1_M1_P03_slider02_wrist_upright",
-    "M1_M1_P03_slider03_wrist_upright",
-    "M1_M1_P03_slider04_wrist_upright",
-    "M1_M1_P03_slider05_wrist_upright",
-    "M1_M1_P03_slider06_wrist_upright",
-    "M2_M1_P03_slider01_wrist_upright",
-    "M2_M1_P03_slider02_wrist_upright",
-    "M2_M1_P03_slider03_wrist_upright",
-    "M2_M1_P03_slider04_wrist_upright",
-    "M2_M1_P03_slider05_wrist_upright",
-    "M2_M1_P03_slider06_wrist_upright",
-    "M3_M1_P03_slider01_wrist_upright",
-    "M3_M1_P03_slider02_wrist_upright",
-    "M3_M1_P03_slider03_wrist_upright",
-    "M3_M1_P03_slider04_wrist_upright",
-    "M3_M1_P03_slider05_wrist_upright",
-    "M3_M1_P03_slider06_wrist_upright"
+    "front_membrane_clamp"
    ]
   }
  },
  "lock_regression": {
   "ball": 0.0,
-  "flange": 0.0
- }
+  "flange": 0.0,
+  "clamp": 9832.8
+ },
+ "note": "由 proc_6853efd 的正确运行 stdout 重建；上一版 JSON 含被替换的旧 wrist_*/tip，作废",
+ "superseded": "v2_interference_matrix_contaminated.json"
 }
