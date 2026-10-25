@@ -1,0 +1,65 @@
+{
+ "cycle": "关节运动主链 59.329 s（不含接口操作时间）",
+ "levels": {
+  "VALIDATED": "有几何/运动验证支持",
+  "SCHEMATIC": "仅有设计意图",
+  "PENDING": "未实现"
+ },
+ "states": [
+  {
+   "name": "double_rail_compensation",
+   "level": "VALIDATED",
+   "basis": "六臂 Y 补位坐标已用于全场景检查"
+  },
+  {
+   "name": "carrier_unload",
+   "level": "SCHEMATIC",
+   "basis": "承托头实体未建模，仅状态位"
+  },
+  {
+   "name": "gate_open",
+   "level": "SCHEMATIC",
+   "basis": "闸门机构未建模"
+  },
+  {
+   "name": "tip_quick_release",
+   "level": "SCHEMATIC",
+   "basis": "快脱接口未建模"
+  },
+  {
+   "name": "arm_fold_v2",
+   "level": "VALIDATED",
+   "basis": "27.64 mm 净空、20 mm 严格边检查通过"
+  },
+  {
+   "name": "work_pose_reach",
+   "level": "VALIDATED",
+   "basis": "IK 误差 0.36 mm；路径已验"
+  },
+  {
+   "name": "return_fold",
+   "level": "VALIDATED",
+   "basis": "反向复算，同一边检查"
+  },
+  {
+   "name": "tip_realign",
+   "level": "PENDING",
+   "basis": "独立对接未验证（仅按构造为 0）"
+  },
+  {
+   "name": "tip_lock",
+   "level": "SCHEMATIC",
+   "basis": "锁止机构未建模"
+  },
+  {
+   "name": "gate_close",
+   "level": "SCHEMATIC",
+   "basis": "闸门机构未建模"
+  },
+  {
+   "name": "carrier_reengage",
+   "level": "SCHEMATIC",
+   "basis": "承托头与嵌条接合未建模"
+  }
+ ]
+}

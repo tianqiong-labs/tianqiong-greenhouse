@@ -1,0 +1,7 @@
+{
+ "name": "deployed",
+ "q": {},
+ "solids": 1209,
+ "dropped_groups": [],
+ "note": "geometry only; no collision/strength/actuator verification"
+}

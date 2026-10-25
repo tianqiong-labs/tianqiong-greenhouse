@@ -1,0 +1,33 @@
+{
+ "fp_source": "planner.py@5D+cosine",
+ "fp_geometry": "roof_path+wall+housing",
+ "fp_params": {
+  "R": 73.0,
+  "LIM": 150.0,
+  "V_J": 30.0,
+  "A_J": 120.0,
+  "V_T": 250.0,
+  "A_T": 1000.0
+ },
+ "endpoints": {
+  "start": [
+   -1.6,
+   -20.1,
+   -38.63,
+   -57.18,
+   1600.0
+  ],
+  "goal": [
+   -60.0,
+   116.9,
+   -71.5,
+   81.2,
+   1098.0
+  ]
+ },
+ "run_id": "trajectory-20261025-141338-caa9a4",
+ "kind": "trajectory",
+ "status": "invalid",
+ "note": "运动学不合规",
+ "payload_sha256": "aba4a550ce747d86275ef06692858319ab6c37c6a213ef762b2d91cbde24091e"
+}

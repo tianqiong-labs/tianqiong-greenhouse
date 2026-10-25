@@ -1,0 +1,10 @@
+起点可行: (True, 256.99999999999955, 1000000000.0, 62.0)
+终点可行: (True, 22.24862349690875, 1000000000.0, 62.0)
+  [5D +L4] seed=0 iters=748 t=0.8s FOUND
+      {'nodes': 5, 'film_mm': 0.9, 'neighbour_mm': 1000000000.0, 'housing_mm': 62.0, 'q_min': [-80.2, -20.1, -71.5, -57.2], 'q_max': [-1.6, 1  [7D +yaw+dy] seed=0 iters=466215 t=45.0s fail
+  [7D +yaw+dy] seed=1 iters=473888 t=45.0s fail
+
+写入 out/planA.json
+/planA.json
+exit=0
+exit=0
