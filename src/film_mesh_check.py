@@ -60,7 +60,7 @@ if __name__ == '__main__':
     d = load()
     T = tri_of(d['catalog'], next(b['mesh'] for b in d['base'] if b['name'] == 'M2_FILM'))
     fr = json.loads((OUT / 'modeA_v2_timeline.json').read_text(encoding='utf8'))['frame_records']
-    Y_ABS = [2 * PITCH + float(pl.Y_WORK[1]), 2 * PITCH + float(pl.Y_WORK[4])]
+    Y_ABS = [1 * PITCH + float(pl.Y_WORK[1]), 1 * PITCH + float(pl.Y_WORK[4])]   # 英雄模块索引 1
     best = (1e9, None, None); below = 0; n = 0
     for fi in range(0, len(fr), 2):
         q = np.asarray(fr[fi]['q'], float)
@@ -69,7 +69,14 @@ if __name__ == '__main__':
         for y in Y_ABS:
             P = base.copy(); P[:, 1] = y
             gj = min(gj, float(pt_tri(P, T).min()) - R_JOINT)
-            gl = min(gl, float(pt_tri((P[:-1] + P[1:]) / 2, T).min()) - R_LINK)
+            # 沿每段按 40 mm 密集取样（不只中点）
+            samp = []
+            for a, b in zip(P[:-1], P[1:]):
+                L = float(np.linalg.norm(b - a)); nseg = max(2, int(L / 40.0))
+                for t in np.linspace(0, 1, nseg + 1)[1:-1]:
+                    samp.append(a + (b - a) * t)
+            if samp:
+                gl = min(gl, float(pt_tri(np.array(samp), T).min()) - R_LINK)
         g = min(gj, gl); n += 1
         if g < 30: below += 1
         if g < best[0]: best = (g, fi, 'joint' if gj < gl else 'link')
