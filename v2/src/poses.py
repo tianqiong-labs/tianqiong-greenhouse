@@ -10,6 +10,7 @@ Usage:
     python poses.py --check
     python poses.py --export deployed transport
 """
+import re
 from pathlib import Path
 import argparse, importlib.util, json, sys
 import numpy as np
@@ -38,19 +39,40 @@ PART_SUFFIX = {'_stem': 'head_lower', '_base': 'head_lower', '_magnet_aux': 'hea
 
 
 def resolve(name):
-    """Record name -> assembly component id."""
-    import re as _re
-    # module records are double-prefixed: M<k>_M1_<part>. The OUTER index is the
-    # real module; the inner M1_ comes from rebuilding each module separately.
-    mo = _re.match(r'^M(\d+)_(.*)$', name)
+    """记录名 -> 装配组件 id。顺序很关键：先识别新族（模块号直接开头），再剥双重前缀。"""
+    # 新一代记录：M1_FILM / M1_BAND1 / M1_DRUM / M1_CLAMP / SEAL1 / M1_P03_slider01_body
+    m_new = re.match(r'^(M\d+)_(FILM|BAND\d|BEAD\d|WEB\d|CLAMP|DRUM_HOUSING|DRUM)$', name)
+    if m_new:
+        mod, part = m_new.groups()
+        if part.startswith('DRUM'):
+            return f'{mod}_DRUM'
+        if part == 'CLAMP':          # 前沿压条挂在锚轨上，随轨搬运
+            return f'{mod}_P03_slot'
+        return f'{mod}_W01'
+    if name.startswith('SEAL'):
+        head = name.split('_')[0]
+        if name.endswith('_LAP'):        # 密封搭接的前沿压条挂在过渡轨上
+            return 'BR' + head[4:]
+        return head
+
+    # 双重前缀：M<k>_M1_<part>，外层才是真实模块
+    mo = re.match(r'^M(\d+)_(.*)$', name)
     outer = None
     if mo:
         outer, rest = mo.group(1), mo.group(2)
         name = rest
         if outer != '1' and name.startswith('M1_'):
             name = f'M{outer}_' + name[3:]
+
     if name.endswith('root_flashing_clamp'):
         return 'F04_flashing'
+    if '_P03_slider' in name:
+        head, _, idx = name.partition('_P03_slider')
+        num = re.match(r'(\d+)', idx)
+        return f'{head}_SLIDER{int(num.group(1))}' if num else f'{head}_P03_slot'
+    if '_P03_' in name:
+        return (name.split('_P03_')[0] + '_P03_anchor_group') if 'anchor' in name \
+            else (name.split('_P03_')[0] + '_P03_slot')
     if name.startswith('F04_M') and '_J' in name:
         comp = name.split('F04_', 1)[1]
         if outer and outer != '1' and comp.startswith('M1_'):
@@ -67,19 +89,11 @@ def resolve(name):
         if name.startswith('F04_'):
             return 'F04_membrane'
         return name.split('_')[0]
-    # carrier parts: M<k>_F04_M<a>_A<i>_J<j>_stem
-    if '_F04_' in name:
-        comp = name.split('_F04_', 1)[1]
-        for suf, sub in PART_SUFFIX.items():
-            if comp.endswith(suf):
-                return comp[:-len(suf)] + '_' + sub
-        return comp
-    # arm parts: only names that actually carry an arm id
     if name.endswith('_tel_outer'):
         return name[:-len('_tel_outer')] + '_telescope_outer'
     if name.endswith('_tel_inner'):
         return name[:-len('_tel_inner')] + '_telescope_inner'
-    if '_link' in name and name.rsplit('_', 1)[-1].startswith('link'):
+    if name.rsplit('_', 1)[-1].startswith('link'):
         return name
     if '_A' in name:
         arm, _, last = name.rpartition('_')
@@ -88,10 +102,6 @@ def resolve(name):
         if last.startswith('joint') and last[5:].isdigit():
             k = int(last[5:])
             return _arm_link(arm, k - 1)
-    if '_P03_' in name:
-        if 'anchor' in name:
-            return name.split('_P03_')[0] + '_P03_anchor_group'
-        return name.split('_P03_')[0] + '_P03_slot'
     for cand in sorted(A.comps, key=len, reverse=True):
         if name.startswith(cand):
             return cand
@@ -105,7 +115,8 @@ def _arm_link(arm, incoming):
 
 def pose_transform(q):
     W = A.world(q)
-    T = {c: W[c] @ A.zero_frame_inv(c) for c in set(A.comps) | set(A.child_of)}
+    T = {c: (W[c] @ A.zero_frame_inv(c)) if c in W else np.eye(4)
+         for c in set(A.comps) | set(A.child_of)}
     return T
 
 

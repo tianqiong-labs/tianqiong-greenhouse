@@ -142,6 +142,55 @@ def build_house(modules=3):
     for k in range(modules):
         c, j = build_module(k)
         comps += c; joints += j
+    # ---- 覆盖系统：每模块一张膜 + 母墙侧卷筒 + 模块间密封搭接 ----
+    for k in range(modules):
+        tag = f'M{k+1}'
+        dy = k * MODULE_PITCH
+        comps.append(dict(id=f'{tag}_FILM', kind='module_membrane_sheet',
+                          role='one continuous sheet per large module (not cut at arm sections)',
+                          datum=dict(thickness_mm=P['membrane_thickness'], stock_length_mm=P['membrane_stock_length'],
+                                     winding='wall side'),
+                          note='cross-section continuous; adjacent modules joined by a detachable seal lap'))
+        comps.append(dict(id=f'{tag}_DRUM', kind='winding_drum',
+                          role='wall-side roll-up drum', datum=dict(core_radius_mm=60.0, center_xz=[-210.0, 2860.0]),
+                          note='integrated in the mother wall top; surplus winds here, not at the front rail'))
+        joints.append(dict(id=f'{tag}_DRUM_wind', type='revolute', parent=f'{tag}_W01', child=f'{tag}_DRUM',
+                           origin=_v(-210.0, dy, 2860.0), axis=[0, 1, 0], range_deg=[0, 5400], implementation='physical',
+                           driver='wall-side winder (declared)', note='pays out / takes up the module sheet'))
+        joints.append(dict(id=f'{tag}_FILM_bind', type='deformable', parent=f'{tag}_DRUM', child=f'{tag}_FILM',
+                           origin=_v(-210.0, dy, 2860.0), axis=[0, 1, 0], implementation='declared',
+                           driver='film winding (not a rigid body)',
+                           note='membrane is generated geometrically from the wound length; not a rigid joint'))
+        joints.append(dict(id=f'{tag}_WHEEL_lift', type='prismatic', parent=f'{tag}_W01', child=f'{tag}_WHEEL',
+                           origin=_v(-300.0, dy + 1750, 0.0), axis=[0, 0, 1], range_mm=[0, 160],
+                           implementation='physical', driver='vertical lift wheels (declared)',
+                           note='wheels extend -> wall rises 160 mm; retract -> wall lands (source mobile_wall_lift)'))
+        comps.append(dict(id=f'{tag}_WHEEL', kind='wheel_group', role='4 wheels on vertical lift',
+                          datum=dict(lift_mm=160, wheel_centers_y=[345.0, 3155.0])))
+        for i in range(6):
+            comps.append(dict(id=f'{tag}_SLIDER{i+1}', kind='front_slider', role='P03 slider stays in the rail'))
+            joints.append(dict(id=f'{tag}_SLIDER{i+1}_Y', type='prismatic', parent=f'{tag}_P03_slot', child=f'{tag}_SLIDER{i+1}',
+                               origin=_v(RAIL_X, dy + float(Y0[i]), 0.0), axis=[0, 1, 0], range_mm=[0, 915.4],
+                               implementation='physical', driver='synced with the root carriage'))
+            joints.append(dict(id=f'{tag}_A{i+1:02d}_tip_coupling', type='coupling',
+                               parent=f'{tag}_SLIDER{i+1}', child=f'{tag}_A{i+1:02d}_telescope_inner',
+                               origin=_v(RAIL_X, dy + float(Y0[i]), 0.0), axis=[0, 0, 1], implementation='physical',
+                               driver='quick-release tip coupling (declared)',
+                               note='closed-loop grasp; must be released before retract/fold; slider stays in the rail'))
+    for g in range(modules - 1):
+        comps.append(dict(id=f'SEAL{g+1}', kind='seal_lap', role='detachable flexible seal between modules',
+                          datum=dict(gap_y0=P['module_length'] + g * MODULE_PITCH, overlap_mm=100.0),
+                          state_bindings=dict(deployed='gap datum (bolted lap)',
+                                              transport=f'rides with M{g+1} large module',
+                                              handling='seal is a separate part and can be removed/stacked on its own')))
+
+    for g in range(modules - 1):
+        joints.append(dict(id=f'SEAL{g+1}_fixed', type='fixed', parent=f'M{g+1}_W01', child=f'SEAL{g+1}',
+                           origin=_v(0, P['module_length'] + g * MODULE_PITCH, 0), axis=[0, 0, 1],
+                           implementation='physical', driver='bolted seal lap',
+                           note='state-bound: deployed at the gap datum, transport rides with the left module, '
+                                'and the seal can be removed and stacked on its own'))
+
     # infill + end walls + membrane
     for g in range(modules - 1):
         y = P['module_length'] + g * MODULE_PITCH

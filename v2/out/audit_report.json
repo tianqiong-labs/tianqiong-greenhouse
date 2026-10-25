@@ -12,26 +12,26 @@
     {
      "file": "assembly.json",
      "exists": true,
-     "size_mb": 0.21,
-     "sha256": "d3e4af8eb5bb6290"
+     "size_mb": 0.23,
+     "sha256": "3ad5093f1379f575"
     },
     {
      "file": "deployed.step",
      "exists": true,
-     "size_mb": 20.58,
-     "sha256": "4bee85ca59095a45"
+     "size_mb": 25.21,
+     "sha256": "6b8b82b8a2f2e152"
     },
     {
      "file": "transport.step",
      "exists": true,
-     "size_mb": 18.33,
-     "sha256": "9e6a7a5d0a511425"
+     "size_mb": 18.42,
+     "sha256": "71441e407b18e2fa"
     },
     {
      "file": "transport.pose.json",
      "exists": true,
      "size_mb": 0.0,
-     "sha256": "6d83396d475d04a4"
+     "sha256": "634d510a76b3e0ea"
     }
    ]
   },
@@ -104,7 +104,7 @@
   {
    "level": "info",
    "area": "C-virtual",
-   "message": "标注为方案/未验证的关节 175 个；实体机构 183 个",
+   "message": "标注为方案/未验证的关节 175 个；实体机构 207 个",
    "detail": [
     "M1_P03_anchor_retract",
     "M1_P03_lift_Z",
@@ -133,7 +133,7 @@
   {
    "level": "ok",
    "area": "E-mapping",
-   "message": "构件映射：1180 已映射 / 0 未映射",
+   "message": "构件映射：1209 已映射 / 0 未映射",
    "detail": []
   },
   {
@@ -157,13 +157,13 @@
   {
    "level": "info",
    "area": "H-step",
-   "message": "deployed.step: 1181 实体, 包络 {'x': [-713.0, 4919.4], 'y': [-105.0, 12105.0], 'z': [-160.0, 3150.4]}",
+   "message": "deployed.step: 1210 实体, 包络 {'x': [-713.0, 4800.4], 'y': [-80.0, 12080.0], 'z': [-160.0, 3151.6]}",
    "detail": []
   },
   {
    "level": "info",
    "area": "H-step",
-   "message": "transport.step: 1159 实体, 包络 {'x': [-1047.0, 1360.6], 'y': [-50.0, 12050.0], 'z': [-60.0, 3094.9]}",
+   "message": "transport.step: 1163 实体, 包络 {'x': [-1047.0, 4498.0], 'y': [-50.0, 12050.0], 'z': [-60.0, 3333.0]}",
    "detail": []
   },
   {
@@ -397,7 +397,7 @@
    "M3_A06_J3_gate_R",
    "F04_wind"
   ],
-  "physical_count": 183
+  "physical_count": 207
  },
  "dof": {
   "per_arm": {
@@ -675,7 +675,7 @@
   "nonconforming": []
  },
  "records": {
-  "mapped": 1180,
+  "mapped": 1209,
   "unresolved": 0,
   "duplicates": 0
  },
@@ -684,36 +684,36 @@
    "M1": [
     [
      -713.0,
-     -42.0,
+     -50.0,
      -160.0
     ],
     [
      4715.0,
-     3542.0,
+     3550.0,
      3028.9
     ]
    ],
    "M2": [
     [
      -713.0,
-     4208.0,
+     4200.0,
      -160.0
     ],
     [
      4715.0,
-     7792.0,
+     7800.0,
      3028.9
     ]
    ],
    "M3": [
     [
      -713.0,
-     8458.0,
+     8450.0,
      -160.0
     ],
     [
      4715.0,
-     12042.0,
+     12050.0,
      3028.9
     ]
    ]
@@ -723,29 +723,29 @@
  "deployed_identity_error": 1.1102230246251565e-16,
  "steps": {
   "deployed": {
-   "solids": 1181,
+   "solids": 1210,
    "bbox": {
     "x": [
      -713.0,
-     4919.4
+     4800.4
     ],
     "y": [
-     -105.0,
-     12105.0
+     -80.0,
+     12080.0
     ],
     "z": [
      -160.0,
-     3150.4
+     3151.6
     ]
    },
-   "solids_in_deployed_tip_region": 231
+   "solids_in_deployed_tip_region": 227
   },
   "transport": {
-   "solids": 1159,
+   "solids": 1163,
    "bbox": {
     "x": [
      -1047.0,
-     1360.6
+     4498.0
     ],
     "y": [
      -50.0,
@@ -753,10 +753,10 @@
     ],
     "z": [
      -60.0,
-     3094.9
+     3333.0
     ]
    },
-   "solids_in_deployed_tip_region": 0
+   "solids_in_deployed_tip_region": 2
   }
  },
  "states": [

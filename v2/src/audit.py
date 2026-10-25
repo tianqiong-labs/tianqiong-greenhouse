@@ -79,7 +79,8 @@ class Audit:
                 bad_child.append((j['id'], j['child']))
             if j['parent'] == j['child']:
                 self_loop.append(j['id'])
-            parent_of[j['child']].append(j['id'])
+            if j['type'] not in ('coupling', 'deformable'):
+                parent_of[j['child']].append(j['id'])
         for child, js in parent_of.items():
             if len(js) > 1:
                 multi_parent.append((child, js))
@@ -87,6 +88,8 @@ class Audit:
         # cycles
         adj = defaultdict(list)
         for j in self.jlist:
+            if j['type'] in ('coupling', 'deformable'):
+                continue
             adj[j['parent']].append(j['child'])
         WHITE, GREY, BLACK = 0, 1, 2
         color = defaultdict(int)
@@ -112,7 +115,8 @@ class Audit:
         self.add('error' if cycles else 'ok', 'B-cycles', f'运动链闭环 {len(cycles)}', cycles[:3])
 
         # orphan components: never a parent and never a child
-        child_ids = set(self.A.child_of)
+        child_ids = set(self.A.child_of) | {j['child'] for j in self.jlist}
+        parents = {j['parent'] for j in self.jlist}
         parents = {j['parent'] for j in self.jlist}
         orphans = [c for c in self.comps if c not in child_ids and c not in parents]
         self.add('warn' if orphans else 'ok', 'B-orphans', f'孤立组件 {len(orphans)}', orphans)
@@ -126,7 +130,7 @@ class Audit:
             n = np.linalg.norm(ax)
             if n < 1e-9:
                 zero_axis.append(j['id'])
-            if j['type'] == 'fixed':
+            if j['type'] in ('fixed', 'coupling', 'deformable'):
                 continue
             if j['type'] == 'prismatic':
                 lo, hi = j.get('range_mm', [0, 0])
@@ -156,7 +160,7 @@ class Audit:
         for j in self.jlist:
             for k in range(1, 7):
                 tag = f'A{k:02d}'
-                if tag in j['id'] and '_J' not in j['id']:
+                if tag in j['id'] and '_J' not in j['id'] and self.joints[j['id']]['type'] not in ('coupling', 'deformable'):
                     mod = j['id'].split('_')[0]
                     per_arm[f'{mod}_{tag}'].append(j['id'])
                     break
@@ -292,6 +296,8 @@ class Audit:
         stuck = []
         for r, M, comp in pairs:
             if r['group'] in static_groups or 'flashing' in r['name']:
+                continue
+            if comp.endswith(('_FILM', '_DRUM', '_DRUM_HOUSING')) or comp.startswith('SEAL'):
                 continue
             if comp.startswith(('SW', 'EW')):
                 continue

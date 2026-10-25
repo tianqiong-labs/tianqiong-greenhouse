@@ -90,12 +90,85 @@ def end_wall_record(index, y_start, profile, door=False):
 
 
 # ---------------------------------------------------------------- state assembly
-def house_records(states, compensate=0.0):
-    """One continuous membrane + bands for the house, per-module running gear."""
-    shell, _ = m.build_state(modules=N_MODULES, compensate=0.0)
-    keep = {'film', 'band', 'roll', 'proposal'}
-    recs = [r for r in shell if r['group'] in keep or r['name'] == 'F04_W01_root_flashing_clamp']
+ROOF_STANDOFF = m.P['roof_vertical_standoff']
+DRUM_CENTER = (-210.0, 2800.0)     # 母墙侧卷筒中心：墙顶内嵌，切点 (-150, 2800) 处膜垂直上引
+DRUM_CORE_R = 60.0
 
+
+def roof_path():
+    """棚面剖面折线：墙顶 -> 屋脊 -> 四段关节上方 -> 前沿。"""
+    js = m.arm_points(0)[:, [0, 2]].copy()
+    js[:, 1] += ROOF_STANDOFF
+    path = [[-150.0, 2800.0], [-150.0, float(js[0, 1])]] + js.tolist() +            [[m.P['front_guide_x'], 280.0], [m.P['front_guide_x'], m.P['front_guide_z']]]
+    return np.asarray(path, float)
+
+
+def wall_wound_profile():
+    """膜从母墙侧卷筒展开、越过墙顶屋脊、沿棚面到前沿压条。
+
+    余量收在母墙侧卷筒上（不是前沿卷轴）。返回 (剖面点列, 余量, 卷筒中心)。
+    """
+    path = roof_path()
+    surplus = m.P['membrane_stock_length'] - m.path_length(path)
+    center = np.asarray(DRUM_CENTER, float)
+    spiral = m.spiral_exact(path[0], center, surplus, DRUM_CORE_R, m.P['coil_pitch'])
+    profile = np.vstack([spiral[::-1], path[1:]])   # 首点与螺旋末端重合，去掉重复
+    return profile, surplus, center
+
+
+def module_membrane_records(module_index):
+    """每个大型模块一张横截面连续的膜；不按四段连杆切分。"""
+    dy = module_index * gh_pitch()
+    width = m.P['module_length'] + 2 * m.P['side_margin']
+    y0 = dy - m.P['side_margin']
+    profile, surplus, center = wall_wound_profile()
+    tag = f'M{module_index+1}'
+    recs = [m.sheet_record(f'{tag}_FILM', 'film', profile, y0, width, m.P['membrane_thickness'])]
+
+    path = roof_path()
+    for k in (1, 2, 3):
+        seg = m.band_segment(path, k, m.P['band_width'] / 2)
+        seg = m.offset_polyline(seg, m.P['membrane_thickness'] / 2 + m.P['band_thickness'] / 2)
+        recs.append(m.sheet_record(f'{tag}_BAND{k}', 'band', seg, y0, width, m.P['band_thickness']))
+        x, z = path[k]
+        bz = z - m.P['bead_drop']
+        recs.append(m.cylinder(f'{tag}_BEAD{k}', 'band', [x, y0, bz], [x, y0 + width, bz], m.P['bead_radius']))
+        recs.append(m.box(f'{tag}_WEB{k}', 'band', [x, y0 + width / 2, (bz + 6 + z - .5) / 2],
+                          [m.P['web_thickness'], width, z - .5 - bz - 6]))
+
+    # 前沿压条（可释放，膜的前端夹在这里）
+    recs.append(m.box(f'{tag}_CLAMP', 'head', [4485.0, y0 + width / 2, 24.0], [24, width, 21]))
+    # 母墙侧卷筒 + 壳体
+    recs.append(m.cylinder(f'{tag}_DRUM', 'roll', [center[0], y0, center[1]], [center[0], y0 + width, center[1]], 52.0))
+    recs.append(m.box(f'{tag}_DRUM_HOUSING', 'roll', [center[0], y0 + width / 2, center[1] + 40],
+                      [150, width, 150]))
+    return recs
+
+
+def seal_records(gap_index):
+    """模块之间可拆卸的柔性密封搭接：一块窄膜 + 三条跨缝嵌条 + 压条。"""
+    dy = m.P['module_length'] + gap_index * gh_pitch()
+    overlap = 100.0
+    y0 = dy - overlap
+    width = m.P['small_wall_gap'] + 2 * overlap
+    path = roof_path()
+    tag = f'SEAL{gap_index+1}'
+    recs = [m.sheet_record(tag, 'film', path, y0, width, m.P['membrane_thickness'])]
+    for k in (1, 2, 3):
+        x, z = path[k]
+        bz = z - m.P['bead_drop']
+        recs.append(m.cylinder(f'{tag}_BEAD{k}', 'band', [x, y0, bz], [x, y0 + width, bz], m.P['bead_radius']))
+    recs.append(m.box(f'{tag}_LAP', 'wall', [4485.0, y0 + width / 2, 30.0], [26, width, 12]))
+    return recs
+
+
+def gh_pitch():
+    return m.P['module_length'] + m.P['small_wall_gap']
+
+
+def house_records(states, compensate=0.0):
+    """每模块独立覆盖单元 + 模块间密封搭接；结构件按模块状态生成。"""
+    recs = []
     for k, st in enumerate(states):
         part, _ = m.build_state(modules=1, **st)
         for r in part:
@@ -103,15 +176,18 @@ def house_records(states, compensate=0.0):
                 continue
             if r['name'] == 'F04_W01_root_flashing_clamp':
                 continue
-            r2 = shift(r, k * PITCH)
+            r2 = shift(r, k * gh_pitch())
             r2['name'] = f'M{k+1}_' + r['name']
             recs.append(r2)
 
+    for k in range(N_MODULES):
+        recs += module_membrane_records(k)
     for g in range(N_MODULES - 1):
+        recs += seal_records(g)
         recs += bridge_records(g)
         recs += gap_wall_records(g)
 
-    profile, _, _, _ = m.deployed_profile()
+    profile = roof_path()
     recs.append(end_wall_record(1, -80.0, profile, door=True))
     recs.append(end_wall_record(2, float(TOTAL_LEN), profile, door=False))
     return recs

@@ -67,7 +67,8 @@ class Assembly:
         self.Z = {j['id']: frame(j['origin'], j['axis']) for j in self.data['joints']}
         # zero-pose world frame of each component: identity for roots, else the
         # frame of the joint that creates it
-        self.child_of = {j['child']: j['id'] for j in self.data['joints']}
+        self.child_of = {j['child']: j['id'] for j in self.data['joints']
+                         if j['type'] not in ('coupling', 'deformable')}
     def zero_frame_inv(self, comp):
         jid = self.child_of.get(comp)
         return np.linalg.inv(self.Z[jid]) if jid else np.eye(4)
@@ -78,7 +79,7 @@ class Assembly:
         return float(j.get('zero_deg', 0.0)) if j['type'] == 'revolute' else float(j.get('zero_mm', 0.0))
 
     def motion(self, j, q):
-        if j['type'] == 'fixed':
+        if j['type'] in ('fixed', 'coupling', 'deformable'):
             return np.eye(4)
         val = q.get(j['id'], self.zero_value(j))
         return _rot_z(val) if j['type'] == 'revolute' else _trans_z(val)
@@ -95,6 +96,8 @@ class Assembly:
                 raise RuntimeError('kinematic loop at ' + comp)
             out[comp] = world
             for j in self.by_parent.get(comp, []):
+                if j['type'] in ('coupling', 'deformable'):
+                    continue          # 闭链约束/柔性件：不作为树边
                 nxt = world @ self.zero_frame_inv(comp) @ self.Z[j['id']] @ self.motion(j, q)
                 walk(j['child'], nxt, depth + 1)
 

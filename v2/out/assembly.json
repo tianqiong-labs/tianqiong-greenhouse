@@ -1136,6 +1136,232 @@
    }
   },
   {
+   "id": "M1_FILM",
+   "kind": "module_membrane_sheet",
+   "role": "one continuous sheet per large module (not cut at arm sections)",
+   "datum": {
+    "thickness_mm": 0.8,
+    "stock_length_mm": 7200.0,
+    "winding": "wall side"
+   },
+   "note": "cross-section continuous; adjacent modules joined by a detachable seal lap"
+  },
+  {
+   "id": "M1_DRUM",
+   "kind": "winding_drum",
+   "role": "wall-side roll-up drum",
+   "datum": {
+    "core_radius_mm": 60.0,
+    "center_xz": [
+     -210.0,
+     2860.0
+    ]
+   },
+   "note": "integrated in the mother wall top; surplus winds here, not at the front rail"
+  },
+  {
+   "id": "M1_WHEEL",
+   "kind": "wheel_group",
+   "role": "4 wheels on vertical lift",
+   "datum": {
+    "lift_mm": 160,
+    "wheel_centers_y": [
+     345.0,
+     3155.0
+    ]
+   }
+  },
+  {
+   "id": "M1_SLIDER1",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M1_SLIDER2",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M1_SLIDER3",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M1_SLIDER4",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M1_SLIDER5",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M1_SLIDER6",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M2_FILM",
+   "kind": "module_membrane_sheet",
+   "role": "one continuous sheet per large module (not cut at arm sections)",
+   "datum": {
+    "thickness_mm": 0.8,
+    "stock_length_mm": 7200.0,
+    "winding": "wall side"
+   },
+   "note": "cross-section continuous; adjacent modules joined by a detachable seal lap"
+  },
+  {
+   "id": "M2_DRUM",
+   "kind": "winding_drum",
+   "role": "wall-side roll-up drum",
+   "datum": {
+    "core_radius_mm": 60.0,
+    "center_xz": [
+     -210.0,
+     2860.0
+    ]
+   },
+   "note": "integrated in the mother wall top; surplus winds here, not at the front rail"
+  },
+  {
+   "id": "M2_WHEEL",
+   "kind": "wheel_group",
+   "role": "4 wheels on vertical lift",
+   "datum": {
+    "lift_mm": 160,
+    "wheel_centers_y": [
+     345.0,
+     3155.0
+    ]
+   }
+  },
+  {
+   "id": "M2_SLIDER1",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M2_SLIDER2",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M2_SLIDER3",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M2_SLIDER4",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M2_SLIDER5",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M2_SLIDER6",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M3_FILM",
+   "kind": "module_membrane_sheet",
+   "role": "one continuous sheet per large module (not cut at arm sections)",
+   "datum": {
+    "thickness_mm": 0.8,
+    "stock_length_mm": 7200.0,
+    "winding": "wall side"
+   },
+   "note": "cross-section continuous; adjacent modules joined by a detachable seal lap"
+  },
+  {
+   "id": "M3_DRUM",
+   "kind": "winding_drum",
+   "role": "wall-side roll-up drum",
+   "datum": {
+    "core_radius_mm": 60.0,
+    "center_xz": [
+     -210.0,
+     2860.0
+    ]
+   },
+   "note": "integrated in the mother wall top; surplus winds here, not at the front rail"
+  },
+  {
+   "id": "M3_WHEEL",
+   "kind": "wheel_group",
+   "role": "4 wheels on vertical lift",
+   "datum": {
+    "lift_mm": 160,
+    "wheel_centers_y": [
+     345.0,
+     3155.0
+    ]
+   }
+  },
+  {
+   "id": "M3_SLIDER1",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M3_SLIDER2",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M3_SLIDER3",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M3_SLIDER4",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M3_SLIDER5",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "M3_SLIDER6",
+   "kind": "front_slider",
+   "role": "P03 slider stays in the rail"
+  },
+  {
+   "id": "SEAL1",
+   "kind": "seal_lap",
+   "role": "detachable flexible seal between modules",
+   "datum": {
+    "gap_y0": 3500.0,
+    "overlap_mm": 100.0
+   },
+   "state_bindings": {
+    "deployed": "gap datum (bolted lap)",
+    "transport": "rides with M1 large module",
+    "handling": "seal is a separate part and can be removed/stacked on its own"
+   }
+  },
+  {
+   "id": "SEAL2",
+   "kind": "seal_lap",
+   "role": "detachable flexible seal between modules",
+   "datum": {
+    "gap_y0": 7750.0,
+    "overlap_mm": 100.0
+   },
+   "state_bindings": {
+    "deployed": "gap datum (bolted lap)",
+    "transport": "rides with M2 large module",
+    "handling": "seal is a separate part and can be removed/stacked on its own"
+   }
+  },
+  {
    "id": "SW1",
    "kind": "small_wall",
    "role": "750 mm infill between large modules",
@@ -10586,6 +10812,977 @@
    "note": "closed slot 4 mm > web 1.5 mm and < bead 12 mm"
   },
   {
+   "id": "M1_DRUM_wind",
+   "type": "revolute",
+   "parent": "M1_W01",
+   "child": "M1_DRUM",
+   "origin": [
+    -210.0,
+    0.0,
+    2860.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_deg": [
+    0,
+    5400
+   ],
+   "implementation": "physical",
+   "driver": "wall-side winder (declared)",
+   "note": "pays out / takes up the module sheet"
+  },
+  {
+   "id": "M1_FILM_bind",
+   "type": "deformable",
+   "parent": "M1_DRUM",
+   "child": "M1_FILM",
+   "origin": [
+    -210.0,
+    0.0,
+    2860.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "implementation": "declared",
+   "driver": "film winding (not a rigid body)",
+   "note": "membrane is generated geometrically from the wound length; not a rigid joint"
+  },
+  {
+   "id": "M1_WHEEL_lift",
+   "type": "prismatic",
+   "parent": "M1_W01",
+   "child": "M1_WHEEL",
+   "origin": [
+    -300.0,
+    1750.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "range_mm": [
+    0,
+    160
+   ],
+   "implementation": "physical",
+   "driver": "vertical lift wheels (declared)",
+   "note": "wheels extend -> wall rises 160 mm; retract -> wall lands (source mobile_wall_lift)"
+  },
+  {
+   "id": "M1_SLIDER1_Y",
+   "type": "prismatic",
+   "parent": "M1_P03_slot",
+   "child": "M1_SLIDER1",
+   "origin": [
+    4620.0,
+    350.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M1_A01_tip_coupling",
+   "type": "coupling",
+   "parent": "M1_SLIDER1",
+   "child": "M1_A01_telescope_inner",
+   "origin": [
+    4620.0,
+    350.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M1_SLIDER2_Y",
+   "type": "prismatic",
+   "parent": "M1_P03_slot",
+   "child": "M1_SLIDER2",
+   "origin": [
+    4620.0,
+    910.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M1_A02_tip_coupling",
+   "type": "coupling",
+   "parent": "M1_SLIDER2",
+   "child": "M1_A02_telescope_inner",
+   "origin": [
+    4620.0,
+    910.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M1_SLIDER3_Y",
+   "type": "prismatic",
+   "parent": "M1_P03_slot",
+   "child": "M1_SLIDER3",
+   "origin": [
+    4620.0,
+    1470.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M1_A03_tip_coupling",
+   "type": "coupling",
+   "parent": "M1_SLIDER3",
+   "child": "M1_A03_telescope_inner",
+   "origin": [
+    4620.0,
+    1470.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M1_SLIDER4_Y",
+   "type": "prismatic",
+   "parent": "M1_P03_slot",
+   "child": "M1_SLIDER4",
+   "origin": [
+    4620.0,
+    2030.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M1_A04_tip_coupling",
+   "type": "coupling",
+   "parent": "M1_SLIDER4",
+   "child": "M1_A04_telescope_inner",
+   "origin": [
+    4620.0,
+    2030.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M1_SLIDER5_Y",
+   "type": "prismatic",
+   "parent": "M1_P03_slot",
+   "child": "M1_SLIDER5",
+   "origin": [
+    4620.0,
+    2590.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M1_A05_tip_coupling",
+   "type": "coupling",
+   "parent": "M1_SLIDER5",
+   "child": "M1_A05_telescope_inner",
+   "origin": [
+    4620.0,
+    2590.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M1_SLIDER6_Y",
+   "type": "prismatic",
+   "parent": "M1_P03_slot",
+   "child": "M1_SLIDER6",
+   "origin": [
+    4620.0,
+    3150.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M1_A06_tip_coupling",
+   "type": "coupling",
+   "parent": "M1_SLIDER6",
+   "child": "M1_A06_telescope_inner",
+   "origin": [
+    4620.0,
+    3150.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M2_DRUM_wind",
+   "type": "revolute",
+   "parent": "M2_W01",
+   "child": "M2_DRUM",
+   "origin": [
+    -210.0,
+    4250.0,
+    2860.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_deg": [
+    0,
+    5400
+   ],
+   "implementation": "physical",
+   "driver": "wall-side winder (declared)",
+   "note": "pays out / takes up the module sheet"
+  },
+  {
+   "id": "M2_FILM_bind",
+   "type": "deformable",
+   "parent": "M2_DRUM",
+   "child": "M2_FILM",
+   "origin": [
+    -210.0,
+    4250.0,
+    2860.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "implementation": "declared",
+   "driver": "film winding (not a rigid body)",
+   "note": "membrane is generated geometrically from the wound length; not a rigid joint"
+  },
+  {
+   "id": "M2_WHEEL_lift",
+   "type": "prismatic",
+   "parent": "M2_W01",
+   "child": "M2_WHEEL",
+   "origin": [
+    -300.0,
+    6000.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "range_mm": [
+    0,
+    160
+   ],
+   "implementation": "physical",
+   "driver": "vertical lift wheels (declared)",
+   "note": "wheels extend -> wall rises 160 mm; retract -> wall lands (source mobile_wall_lift)"
+  },
+  {
+   "id": "M2_SLIDER1_Y",
+   "type": "prismatic",
+   "parent": "M2_P03_slot",
+   "child": "M2_SLIDER1",
+   "origin": [
+    4620.0,
+    4600.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M2_A01_tip_coupling",
+   "type": "coupling",
+   "parent": "M2_SLIDER1",
+   "child": "M2_A01_telescope_inner",
+   "origin": [
+    4620.0,
+    4600.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M2_SLIDER2_Y",
+   "type": "prismatic",
+   "parent": "M2_P03_slot",
+   "child": "M2_SLIDER2",
+   "origin": [
+    4620.0,
+    5160.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M2_A02_tip_coupling",
+   "type": "coupling",
+   "parent": "M2_SLIDER2",
+   "child": "M2_A02_telescope_inner",
+   "origin": [
+    4620.0,
+    5160.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M2_SLIDER3_Y",
+   "type": "prismatic",
+   "parent": "M2_P03_slot",
+   "child": "M2_SLIDER3",
+   "origin": [
+    4620.0,
+    5720.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M2_A03_tip_coupling",
+   "type": "coupling",
+   "parent": "M2_SLIDER3",
+   "child": "M2_A03_telescope_inner",
+   "origin": [
+    4620.0,
+    5720.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M2_SLIDER4_Y",
+   "type": "prismatic",
+   "parent": "M2_P03_slot",
+   "child": "M2_SLIDER4",
+   "origin": [
+    4620.0,
+    6280.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M2_A04_tip_coupling",
+   "type": "coupling",
+   "parent": "M2_SLIDER4",
+   "child": "M2_A04_telescope_inner",
+   "origin": [
+    4620.0,
+    6280.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M2_SLIDER5_Y",
+   "type": "prismatic",
+   "parent": "M2_P03_slot",
+   "child": "M2_SLIDER5",
+   "origin": [
+    4620.0,
+    6840.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M2_A05_tip_coupling",
+   "type": "coupling",
+   "parent": "M2_SLIDER5",
+   "child": "M2_A05_telescope_inner",
+   "origin": [
+    4620.0,
+    6840.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M2_SLIDER6_Y",
+   "type": "prismatic",
+   "parent": "M2_P03_slot",
+   "child": "M2_SLIDER6",
+   "origin": [
+    4620.0,
+    7400.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M2_A06_tip_coupling",
+   "type": "coupling",
+   "parent": "M2_SLIDER6",
+   "child": "M2_A06_telescope_inner",
+   "origin": [
+    4620.0,
+    7400.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M3_DRUM_wind",
+   "type": "revolute",
+   "parent": "M3_W01",
+   "child": "M3_DRUM",
+   "origin": [
+    -210.0,
+    8500.0,
+    2860.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_deg": [
+    0,
+    5400
+   ],
+   "implementation": "physical",
+   "driver": "wall-side winder (declared)",
+   "note": "pays out / takes up the module sheet"
+  },
+  {
+   "id": "M3_FILM_bind",
+   "type": "deformable",
+   "parent": "M3_DRUM",
+   "child": "M3_FILM",
+   "origin": [
+    -210.0,
+    8500.0,
+    2860.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "implementation": "declared",
+   "driver": "film winding (not a rigid body)",
+   "note": "membrane is generated geometrically from the wound length; not a rigid joint"
+  },
+  {
+   "id": "M3_WHEEL_lift",
+   "type": "prismatic",
+   "parent": "M3_W01",
+   "child": "M3_WHEEL",
+   "origin": [
+    -300.0,
+    10250.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "range_mm": [
+    0,
+    160
+   ],
+   "implementation": "physical",
+   "driver": "vertical lift wheels (declared)",
+   "note": "wheels extend -> wall rises 160 mm; retract -> wall lands (source mobile_wall_lift)"
+  },
+  {
+   "id": "M3_SLIDER1_Y",
+   "type": "prismatic",
+   "parent": "M3_P03_slot",
+   "child": "M3_SLIDER1",
+   "origin": [
+    4620.0,
+    8850.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M3_A01_tip_coupling",
+   "type": "coupling",
+   "parent": "M3_SLIDER1",
+   "child": "M3_A01_telescope_inner",
+   "origin": [
+    4620.0,
+    8850.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M3_SLIDER2_Y",
+   "type": "prismatic",
+   "parent": "M3_P03_slot",
+   "child": "M3_SLIDER2",
+   "origin": [
+    4620.0,
+    9410.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M3_A02_tip_coupling",
+   "type": "coupling",
+   "parent": "M3_SLIDER2",
+   "child": "M3_A02_telescope_inner",
+   "origin": [
+    4620.0,
+    9410.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M3_SLIDER3_Y",
+   "type": "prismatic",
+   "parent": "M3_P03_slot",
+   "child": "M3_SLIDER3",
+   "origin": [
+    4620.0,
+    9970.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M3_A03_tip_coupling",
+   "type": "coupling",
+   "parent": "M3_SLIDER3",
+   "child": "M3_A03_telescope_inner",
+   "origin": [
+    4620.0,
+    9970.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M3_SLIDER4_Y",
+   "type": "prismatic",
+   "parent": "M3_P03_slot",
+   "child": "M3_SLIDER4",
+   "origin": [
+    4620.0,
+    10530.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M3_A04_tip_coupling",
+   "type": "coupling",
+   "parent": "M3_SLIDER4",
+   "child": "M3_A04_telescope_inner",
+   "origin": [
+    4620.0,
+    10530.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M3_SLIDER5_Y",
+   "type": "prismatic",
+   "parent": "M3_P03_slot",
+   "child": "M3_SLIDER5",
+   "origin": [
+    4620.0,
+    11090.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M3_A05_tip_coupling",
+   "type": "coupling",
+   "parent": "M3_SLIDER5",
+   "child": "M3_A05_telescope_inner",
+   "origin": [
+    4620.0,
+    11090.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "M3_SLIDER6_Y",
+   "type": "prismatic",
+   "parent": "M3_P03_slot",
+   "child": "M3_SLIDER6",
+   "origin": [
+    4620.0,
+    11650.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "range_mm": [
+    0,
+    915.4
+   ],
+   "implementation": "physical",
+   "driver": "synced with the root carriage"
+  },
+  {
+   "id": "M3_A06_tip_coupling",
+   "type": "coupling",
+   "parent": "M3_SLIDER6",
+   "child": "M3_A06_telescope_inner",
+   "origin": [
+    4620.0,
+    11650.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "quick-release tip coupling (declared)",
+   "note": "closed-loop grasp; must be released before retract/fold; slider stays in the rail"
+  },
+  {
+   "id": "SEAL1_fixed",
+   "type": "fixed",
+   "parent": "M1_W01",
+   "child": "SEAL1",
+   "origin": [
+    0.0,
+    3500.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "bolted seal lap",
+   "note": "state-bound: deployed at the gap datum, transport rides with the left module, and the seal can be removed and stacked on its own"
+  },
+  {
+   "id": "SEAL2_fixed",
+   "type": "fixed",
+   "parent": "M2_W01",
+   "child": "SEAL2",
+   "origin": [
+    0.0,
+    7750.0,
+    0.0
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "implementation": "physical",
+   "driver": "bolted seal lap",
+   "note": "state-bound: deployed at the gap datum, transport rides with the left module, and the seal can be removed and stacked on its own"
+  },
+  {
    "id": "F04_flashing_fixed",
    "type": "fixed",
    "parent": "M1_W01",
@@ -10742,13 +11939,13 @@
   }
  ],
  "implementation_counts": {
-  "physical": 244,
-  "declared": 175
+  "physical": 288,
+  "declared": 178
  },
  "joint_counts": {
-  "prismatic": 267,
-  "revolute": 91,
-  "total": 419
+  "prismatic": 288,
+  "revolute": 94,
+  "total": 466
  },
  "fold_pose": {
   "pattern_deg": [
