@@ -1,0 +1,73 @@
+{
+ "metric": "杆件离散采样点 → 膜折线线段；半径 73 mm；邻臂 49 mm",
+ "total_s": 59.329,
+ "fps24": {
+  "min": {
+   "film": 27.64,
+   "neighbour": 368.6,
+   "housing": 43.39,
+   "rail": 0.0,
+   "wall": 0.0
+  },
+  "frames": 2848
+ },
+ "fps240": {
+  "min": {
+   "film": 27.64,
+   "neighbour": 368.6,
+   "housing": 43.39,
+   "rail": 0.0,
+   "wall": 0.0
+  },
+  "frames": 28478,
+  "windows": [
+   [
+    0,
+    59.54
+   ]
+  ]
+ },
+ "tightest": [
+  {
+   "t": 11.4167,
+   "film": 27.64,
+   "arm": "A02",
+   "neighbour": 368.6
+  },
+  {
+   "t": 11.4167,
+   "film": 27.64,
+   "arm": "A05",
+   "neighbour": 368.6
+  },
+  {
+   "t": 47.9167,
+   "film": 27.64,
+   "arm": "A02",
+   "neighbour": 368.6
+  },
+  {
+   "t": 47.9167,
+   "film": 27.64,
+   "arm": "A05",
+   "neighbour": 368.6
+  },
+  {
+   "t": 11.375,
+   "film": 27.65,
+   "arm": "A02",
+   "neighbour": 368.6
+  },
+  {
+   "t": 11.375,
+   "film": 27.65,
+   "arm": "A05",
+   "neighbour": 368.6
+  }
+ ],
+ "violations": {
+  "negative_gaps": 0,
+  "invariant": 0
+ },
+ "note": "240 fps 为真实重采样（仅高风险窗口）；24 fps 为全段筛查"
+}
