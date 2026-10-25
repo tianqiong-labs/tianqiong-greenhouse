@@ -1,0 +1,17 @@
+{
+ "method": "点-三角距离（膜 faces 三角化）",
+ "frames": 713,
+ "min_gap_mm": 27.64,
+ "at_frame": 1078,
+ "at_t": 44.916667,
+ "part": "joint",
+ "below_30": 11,
+ "y_abs": [
+  5066.7,
+  6933.3
+ ],
+ "radii": {
+  "joint": 73.0,
+  "link": 49.0
+ }
+}
