@@ -38,7 +38,13 @@
   }
  ],
  "detent": {
-  "hit": 13.58,
-  "clear": 380.56
+  "pin_vs_hole_rest": 0.0,
+  "hole_removed": 120.67,
+  "push2_pin": 98.88,
+  "push2_retracted": 0.0,
+  "push20_pin": 391.37,
+  "push20_retracted": 0.0,
+  "corrected": "销沿X退回28mm；半环开Ø6.4孔",
+  "ok": true
  }
 }
