@@ -1,0 +1,9 @@
+{
+ "run_id": "20261025-142655-modeA_loop-533c6f",
+ "target": "modeA_loop.json",
+ "target_sha256": "91b732c9f0d3601d8d5cf9f74e9c129af194d35ce2287824223a57e07c31387a",
+ "at": "2026-10-25T14:26:55",
+ "published_at": "2026-10-25T14:26:55",
+ "repaired": true,
+ "repair_note": "发布测试再次把指针写到 runs/_strict_conc.json，已按真实发布记录恢复；闸门已加硬隔离"
+}

@@ -1,0 +1,26 @@
+{
+ "fp_source": "planner+trajectory2",
+ "fp_geometry": "roof_path+wall+housing",
+ "endpoints": {
+  "start": [
+   -1.6,
+   -20.1,
+   -38.63,
+   -57.18,
+   1600.0
+  ],
+  "work": [
+   -16.4,
+   -121.8,
+   -33.7,
+   16.8,
+   1002.2
+  ]
+ },
+ "run_id": "20261025-142632-modeA_loop-715bc6",
+ "kind": "modeA_loop",
+ "at": "2026-10-25T14:26:32",
+ "status": "ok",
+ "note": "五维闭环（yaw=0）",
+ "payload_sha256": "91b732c9f0d3601d8d5cf9f74e9c129af194d35ce2287824223a57e07c31387a"
+}

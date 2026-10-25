@@ -1,0 +1,24 @@
+{
+ "v2_20": {
+  "passed": false,
+  "min_gap_mm": 20.59,
+  "rejected_as_expected": true
+ },
+ "v2_30": {
+  "passed": true,
+  "min_gap_mm": 38.04,
+  "min_gap_mm_corrected": 27.64
+ },
+ "concurrency": {
+  "new_publish": [
+   true,
+   "published"
+  ],
+  "stale_publish": [
+   false,
+   "运行时间不晚于当前（2026-10-26T00:00:00 <= 2026-10-27T00:00:00），判为过期运行"
+  ],
+  "final_sha_matches_new": true
+ },
+ "corrected_note": "v2-30 的 38.04 mm 因顶点距离高估而作废；修正后 27.64 mm，未达 30 mm 目标"
+}

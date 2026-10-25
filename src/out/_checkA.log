@@ -1,0 +1,23 @@
+[A] keys=105 build=8.0s
+  t= 0.00 ev=0
+  t= 4.00 ev=0
+  t= 8.00 ev=0
+  t=12.00 ev=0
+  t=16.00 ev=64
+  t=20.00 ev=196
+  t=24.00 ev=233
+
+[A] frames=625 events=285 collisions=177 warns=108 min_gap=-39.47 teleports=0
+   19.792 collision -39.47 M2_M1_A04_link1 <-> M2_F04_M1_A02_J2_magnet_aux
+   19.833 collision -18.01 M2_M1_A04_link1 <-> M2_F04_M1_A02_J2_magnet_aux
+   25.125 collision 0.13 M1_M1_A01_link2 <-> M1_F04_M1_A02_J2_magnet_aux
+   25.125 collision 0.13 M1_M1_A03_link2 <-> M1_F04_M1_A02_J2_magnet_aux
+   25.125 collision 0.13 M1_M1_A04_link2 <-> M1_F04_M1_A05_J2_magnet_aux
+   25.125 collision 0.13 M1_M1_A06_link2 <-> M1_F04_M1_A05_J2_magnet_aux
+   25.125 collision 0.13 M3_M1_A01_link2 <-> M3_F04_M1_A02_J2_magnet_aux
+   25.125 collision 0.13 M3_M1_A03_link2 <-> M3_F04_M1_A02_J2_magnet_aux
+   25.125 collision 0.13 M3_M1_A04_link2 <-> M3_F04_M1_A05_J2_magnet_aux
+   25.125 collision 0.13 M3_M1_A06_link2 <-> M3_F04_M1_A05_J2_magnet_aux
+   14.042 collision 0.26 M2_M1_A01_link3 <-> M2_M1_A02_link3
+   14.042 collision 0.26 M2_M1_A03_link3 <-> M2_M1_A02_link3
+done

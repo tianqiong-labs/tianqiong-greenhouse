@@ -1,0 +1,89 @@
+{
+ "model": {
+  "r_link": 49.0,
+  "r_joint": 73.0,
+  "y_state": "compensated",
+  "y_work": [
+   350.0,
+   816.7,
+   1283.3,
+   2216.7,
+   2683.3,
+   3150.0
+  ]
+ },
+ "results": {
+  "v1": {
+   "total_s": 134.92,
+   "frames": 3244,
+   "worst": {
+    "film": 11.5,
+    "static": 368.6,
+    "housing": 116.4,
+    "rail": 0.0,
+    "wall": 0.0
+   },
+   "at": {
+    "film": [
+     33.29,
+     "紧凑→预接近"
+    ],
+    "static": [
+     0.0,
+     "部署→紧凑"
+    ],
+    "housing": [
+     7.58,
+     "部署→紧凑"
+    ],
+    "rail": [
+     0.88,
+     "部署→紧凑"
+    ],
+    "wall": [
+     0.0,
+     "部署→紧凑"
+    ]
+   },
+   "violations": 0,
+   "dense_film": 11.55,
+   "tight_frames": 3244
+  },
+  "v2-30": {
+   "total_s": 59.42,
+   "frames": 1432,
+   "worst": {
+    "film": 38.0,
+    "static": 368.6,
+    "housing": 116.4,
+    "rail": 0.0,
+    "wall": 0.0
+   },
+   "at": {
+    "film": [
+     24.12,
+     "紧凑→预接近"
+    ],
+    "static": [
+     0.0,
+     "部署→紧凑"
+    ],
+    "housing": [
+     7.58,
+     "部署→紧凑"
+    ],
+    "rail": [
+     0.88,
+     "部署→紧凑"
+    ],
+    "wall": [
+     0.0,
+     "部署→紧凑"
+    ]
+   },
+   "violations": 0,
+   "dense_film": 38.04,
+   "tight_frames": 1432
+  }
+ }
+}

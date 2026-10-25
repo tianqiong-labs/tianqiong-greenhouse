@@ -1,0 +1,7 @@
+# 逐帧中间产物（可由脚本重生成，体积 300MB+）
+frames_v11/
+frames_anim/
+frames/
+# 测试沙箱
+src/out/testroot/
+*.tmp

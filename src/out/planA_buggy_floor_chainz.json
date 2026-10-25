@@ -1,0 +1,54 @@
+{
+ "start": {
+  "q": [
+   -1.6,
+   -20.1,
+   -38.63402497781479,
+   -57.18221617233679
+  ],
+  "L4": 1600.0
+ },
+ "goal": {
+  "q": [
+   -60.0,
+   116.9,
+   -71.5,
+   81.2
+  ],
+  "L4": 1098.0
+ },
+ "params": {
+  "R": 73.0,
+  "MARGIN": 20.0,
+  "LIM": 150.0,
+  "FLOOR": 0.0
+ },
+ "stages": [
+  {
+   "stage": "4D 俯仰",
+   "dims": 4,
+   "found": false,
+   "best": null
+  },
+  {
+   "stage": "5D +L4",
+   "dims": 5,
+   "found": false,
+   "best": null
+  },
+  {
+   "stage": "7D +yaw+dy",
+   "dims": 7,
+   "found": false,
+   "best": null
+  }
+ ],
+ "meta": {
+  "superseded": true,
+  "why": "起点被地面约束误判非法（臂端 z=0），叠加 chain3d 起点高度写成 0 导致整链下沉 2800 mm；全部阶段失败均为假结果",
+  "invalid_bugs": [
+   "floor tolerance",
+   "chain3d root height"
+  ]
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "unit_tests": true,
+ "invariants_violations": 0,
+ "v2_30": {
+  "passed": true,
+  "min_mm": 27.64
+ },
+ "v2_20": {
+  "passed": false,
+  "min_mm": 20.27,
+  "rejected_as_expected": true
+ },
+ "metric": "point-to-segment, radius 73 mm"
+}

@@ -1,0 +1,64 @@
+{
+ "name": "modeA_fold_v1",
+ "frozen_at": "2026-10-25",
+ "source_run": "trajectory-20261025-141352-80ef2f",
+ "sha256": "147c81958fff9ce2d46911b70a360543e5f34502ab6b5efd70ae0b6834c25a63",
+ "total_s": 11.417,
+ "min_film_mm": {
+  "vertical": 42.25,
+  "perpendicular": 11.6
+ },
+ "l2_scene": {
+  "static_mm": 368.6,
+  "twin_mm": 1768.6,
+  "housing_mm": 116.4,
+  "violations": 0,
+  "y_state": "compensated"
+ },
+ "path_nodes": 4,
+ "note": "42.25 为折叠段\"竖直\"口径；11.5/38.0 为全场景\"垂直\"口径，两者不可混为一谈；v2 为推荐候选，v1 保留回退；v2 的 38.04 已作废（顶点距离高估），修正为 27.64 mm，落在 20–30 区间",
+ "metrics": {
+  "fold_segment": {
+   "segment_id": "deployed->compact",
+   "duration_s": 11.417,
+   "film_vertical_mm": 42.25,
+   "film_perp_mm": null,
+   "validation_run_id": "trajectory-20261025-141352-80ef2f",
+   "artifact": "planA_trajectory.json",
+   "artifact_sha256": "147c81958fff9ce2d46911b70a360543e5f34502ab6b5efd70ae0b6834c25a63"
+  },
+  "pre_approach_segment_v1": {
+   "segment_id": "compact->pre",
+   "duration_s": 12.41,
+   "film_perp_mm": 11.6,
+   "validation_run_id": "modeA_loop-20261025-142655-modeA_loop-533c6f",
+   "artifact": "modeA_loop.json",
+   "artifact_sha256": "91b732c9f0d3601d8d5cf9f74e9c129af194d35ce2287824223a57e07c31387a"
+  },
+  "pre_approach_segment_v2": {
+   "segment_id": "compact->pre",
+   "duration_s": 13.79,
+   "film_perp_mm": 27.64,
+   "validation_run_id": "gap_v2-experiment",
+   "artifact": "experiments/gap_v2/compare.json",
+   "artifact_sha256": "ee02e6523d3687d5a08575f6cf03b8465e2f0ed0c784b7b464e8fb9ceae5f931",
+   "corrected": true
+  },
+  "six_arm_scene_v1": {
+   "film_perp_mm": 11.5,
+   "static_mm": 368.6,
+   "housing_mm": 116.4,
+   "violations": 0,
+   "artifact": "experiments/gap_v2/scene_compare.json",
+   "artifact_sha256": "7c8d0424282036e03e318b4bcc2d7f9a7d27760cda37262a89fbaaacf1eb90c8"
+  },
+  "six_arm_scene_v2": {
+   "film_perp_mm": 27.64,
+   "static_mm": 368.6,
+   "housing_mm": 116.4,
+   "violations": 0,
+   "artifact": "experiments/gap_v2/scene_compare.json",
+   "artifact_sha256": "7c8d0424282036e03e318b4bcc2d7f9a7d27760cda37262a89fbaaacf1eb90c8"
+  }
+ }
+}
