@@ -1,0 +1,115 @@
+{
+ "datum": {
+  "origin": [
+   4500.0,
+   0.0,
+   0.0
+  ],
+  "x": "+X 朝锚轨",
+  "z": "+Z 向上",
+  "insert_dir": "-Z"
+ },
+ "sizes": {
+  "tip_r": 67.0,
+  "collar_r": 40.0,
+  "groove_r": 32.0,
+  "collar_z": [
+   54.0,
+   72.0
+  ],
+  "slider_bottom_z": 157.5,
+  "post_len": 60.0,
+  "post_r": 50.0,
+  "bore_r": 44.0,
+  "latch": [
+   12.0,
+   20.0,
+   36.0
+  ],
+  "hinge_y": 42.0,
+  "travel": 52.5,
+  "retract": 120.0
+ },
+ "gap_found_mm": 90.5,
+ "clearances": {
+  "伸出_对接杆_vs_压条": 10.5,
+  "伸出_对接杆_vs_锚轨腹板": 10.0,
+  "伸出_对接杆_vs_滑块": 57.7,
+  "伸出_对接杆底_z": 45.0,
+  "伸出_凹槽被摆爪覆盖": 10.0,
+  "闭合_摆爪内面_r": 32.0,
+  "闭合_对凹槽夹紧量(0=贴合)": 0.0,
+  "闭合_对颈环让开量(负=干涉)": 8.0,
+  "张开_摆爪内面_r": 50.0,
+  "收回_对接杆底_z": 157.5,
+  "收回_杆底与球头顶间隙": 30.5
+ },
+ "joints": [
+  {
+   "name": "J_if_insert",
+   "type": "prismatic",
+   "axis": [
+    0,
+    0,
+    -1
+   ],
+   "range": [
+    0.0,
+    52.5
+   ],
+   "engaged_at": 52.5,
+   "note": "滑块侧对接杆升降：0=收上 60=伸出套住颈环"
+  },
+  {
+   "name": "J_if_latch_L",
+   "type": "revolute",
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "range": [
+    0.0,
+    25.0
+   ],
+   "engaged_at": 25.0,
+   "note": "左摆爪：0=张开 25=闭合"
+  },
+  {
+   "name": "J_if_latch_R",
+   "type": "revolute",
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "range": [
+    -25.0,
+    0.0
+   ],
+   "engaged_at": -25.0,
+   "note": "右摆爪：0=张开 -25=闭合"
+  },
+  {
+   "name": "J_if_retract",
+   "type": "prismatic",
+   "axis": [
+    -1,
+    0,
+    0
+   ],
+   "range": [
+    0.0,
+    120.0
+   ],
+   "engaged_at": 0.0,
+   "note": "臂侧撤离（机构动作，验证期用于脱开检查）"
+  }
+ ],
+ "states": [
+  "locked: insert=60, latch=±25",
+  "unlocked: latch=0 (张开)",
+  "withdrawn: insert=0 + 臂 -X 120",
+  "redock: 臂 +X 120 → insert=60 → latch 闭合"
+ ]
+}
