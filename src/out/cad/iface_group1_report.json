@@ -1,0 +1,97 @@
+{
+ "report": {
+  "locked": {
+   "parts": {
+    "TIP_BALL": {
+     "valid": true,
+     "volume": 592717.5
+    },
+    "COLUMN": {
+     "valid": true,
+     "volume": 123313.8
+    },
+    "RING": {
+     "valid": true,
+     "volume": 21205.8
+    },
+    "BASE": {
+     "valid": true,
+     "volume": 272762.4
+    },
+    "CLAW_R": {
+     "valid": true,
+     "volume": 2160.0
+    },
+    "CLAW_L": {
+     "valid": true,
+     "volume": 2160.0
+    }
+   },
+   "interference": {}
+  },
+  "unlocked": {
+   "parts": {
+    "TIP_BALL": {
+     "valid": true,
+     "volume": 592717.5
+    },
+    "COLUMN": {
+     "valid": true,
+     "volume": 123313.8
+    },
+    "RING": {
+     "valid": true,
+     "volume": 21205.8
+    },
+    "BASE": {
+     "valid": true,
+     "volume": 272762.4
+    },
+    "CLAW_R": {
+     "valid": true,
+     "volume": 2160.0
+    },
+    "CLAW_L": {
+     "valid": true,
+     "volume": 2160.0
+    }
+   },
+   "interference": {}
+  },
+  "separated": {
+   "parts": {
+    "TIP_BALL": {
+     "valid": true,
+     "volume": 592717.5
+    },
+    "COLUMN": {
+     "valid": true,
+     "volume": 123313.8
+    },
+    "RING": {
+     "valid": true,
+     "volume": 21205.8
+    },
+    "BASE": {
+     "valid": true,
+     "volume": 272762.4
+    }
+   },
+   "interference": {}
+  }
+ },
+ "probe": {
+  "bore_radius": 16.0,
+  "column_radius": 15.0,
+  "radial_clearance": 1.0,
+  "floor_z": 14.0,
+  "column_bottom_z": 14.0,
+  "axial_overlap": 0.0,
+  "bore_mouth_z": 76.0,
+  "insert_depth": 62.0,
+  "groove_depth": 4.0,
+  "groove_width": 12.0,
+  "claw_bearing_area": 96.0,
+  "column_end_area": 706.9
+ }
+}
