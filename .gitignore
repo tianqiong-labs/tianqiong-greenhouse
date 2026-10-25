@@ -6,3 +6,5 @@ frames/
 src/out/testroot/
 *.tmp
 __pycache__/
+frames_full/
+frames_short/
