@@ -1,0 +1,152 @@
+{
+ "rows": [
+  {
+   "case": "LOCKED",
+   "interference": {
+    "BALL-COLUMN": 0.0,
+    "BALL-GATE": 7744.727,
+    "COLUMN-GATE": 0.0,
+    "BALL-CLAW_R": 0.0,
+    "BALL-CLAW_L": 0.0,
+    "COLUMN-CLAW_R": 0.0,
+    "COLUMN-CLAW_L": 0.0
+   },
+   "illegal": {
+    "BALL-GATE": 7744.727
+   }
+  },
+  {
+   "case": "LOCKED_escape_+X20",
+   "interference": {
+    "BALL-COLUMN": 0.0,
+    "BALL-GATE": 7744.727,
+    "COLUMN-GATE": 22966.74,
+    "BALL-CLAW_R": 0.0,
+    "BALL-CLAW_L": 0.0,
+    "COLUMN-CLAW_R": 0.0,
+    "COLUMN-CLAW_L": 0.0
+   },
+   "illegal": {
+    "BALL-GATE": 7744.727,
+    "COLUMN-GATE": 22966.74
+   }
+  },
+  {
+   "case": "UNLOCKED",
+   "interference": {
+    "BALL-COLUMN": 0.0,
+    "BALL-GATE": 15296.247,
+    "COLUMN-GATE": 0.0,
+    "BALL-CLAW_R": 0.0,
+    "BALL-CLAW_L": 0.0,
+    "COLUMN-CLAW_R": 0.0,
+    "COLUMN-CLAW_L": 0.0
+   },
+   "illegal": {
+    "BALL-GATE": 15296.247
+   }
+  },
+  {
+   "case": "UNLOCKED_push_+X20",
+   "interference": {
+    "BALL-COLUMN": 0.0,
+    "BALL-GATE": 15296.247,
+    "COLUMN-GATE": 0.0,
+    "BALL-CLAW_R": 0.0,
+    "BALL-CLAW_L": 0.0,
+    "COLUMN-CLAW_R": 0.0,
+    "COLUMN-CLAW_L": 0.0
+   },
+   "illegal": {
+    "BALL-GATE": 15296.247
+   }
+  },
+  {
+   "case": "WITHDRAW_0",
+   "interference": {
+    "BALL-COLUMN": 0.0,
+    "BALL-GATE": 15296.247,
+    "COLUMN-GATE": 0.0,
+    "BALL-CLAW_R": 0.0,
+    "BALL-CLAW_L": 0.0,
+    "COLUMN-CLAW_R": 0.0,
+    "COLUMN-CLAW_L": 0.0
+   },
+   "illegal": {
+    "BALL-GATE": 15296.247
+   }
+  },
+  {
+   "case": "WITHDRAW_15",
+   "interference": {
+    "BALL-COLUMN": 0.0,
+    "BALL-GATE": 9491.197,
+    "COLUMN-GATE": 0.0,
+    "BALL-CLAW_R": 0.0,
+    "BALL-CLAW_L": 0.0,
+    "COLUMN-CLAW_R": 0.0,
+    "COLUMN-CLAW_L": 0.0
+   },
+   "illegal": {
+    "BALL-GATE": 9491.197
+   }
+  },
+  {
+   "case": "WITHDRAW_30",
+   "interference": {
+    "BALL-COLUMN": 52.22,
+    "BALL-GATE": 2521.936,
+    "COLUMN-GATE": 0.0,
+    "BALL-CLAW_R": 0.0,
+    "BALL-CLAW_L": 0.0,
+    "COLUMN-CLAW_R": 0.0,
+    "COLUMN-CLAW_L": 0.0
+   },
+   "illegal": {
+    "BALL-COLUMN": 52.22,
+    "BALL-GATE": 2521.936
+   }
+  },
+  {
+   "case": "WITHDRAW_60",
+   "interference": {
+    "BALL-COLUMN": 0.0,
+    "BALL-GATE": 0.0,
+    "COLUMN-GATE": 0.0,
+    "BALL-CLAW_R": 0.0,
+    "BALL-CLAW_L": 0.0,
+    "COLUMN-CLAW_R": 0.0,
+    "COLUMN-CLAW_L": 0.0
+   },
+   "illegal": {}
+  },
+  {
+   "case": "WITHDRAW_90",
+   "interference": {
+    "BALL-COLUMN": 0.0,
+    "BALL-GATE": 0.0,
+    "COLUMN-GATE": 0.0,
+    "BALL-CLAW_R": 0.0,
+    "BALL-CLAW_L": 0.0,
+    "COLUMN-CLAW_R": 0.0,
+    "COLUMN-CLAW_L": 0.0
+   },
+   "illegal": {}
+  },
+  {
+   "case": "WITHDRAW_120",
+   "interference": {
+    "BALL-COLUMN": 0.0,
+    "BALL-GATE": 0.0,
+    "COLUMN-GATE": 0.0,
+    "BALL-CLAW_R": 0.0,
+    "BALL-CLAW_L": 0.0,
+    "COLUMN-CLAW_R": 0.0,
+    "COLUMN-CLAW_L": 0.0
+   },
+   "illegal": {}
+  }
+ ],
+ "blocked_when_locked": true,
+ "free_when_unlocked": false
+}
