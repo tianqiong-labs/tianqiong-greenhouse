@@ -75,6 +75,21 @@ if __name__ == '__main__':
     ret_err = float(np.abs(np.asarray(qT) - q_dep).max())
 
     endpoint = dict(t=round(T_total, 4), q=[round(float(x), 4) for x in qT], seg=name_T, exact=True)
+    # 校验前置于任何写盘；部署基准是独立常量，不取被检数据自身
+    import os
+    if os.environ.get('TQ_INJECT_SPLICE'):
+        off = float(os.environ['TQ_INJECT_SPLICE'])
+        for f in frames:
+            if f['seg'].startswith('紧凑→预接近'):
+                f['q'] = [round(x + off, 4) for x in f['q']]
+        print(f'[注入] 紧凑→预接近 段整体偏移 {off}°')
+    q_dep_ref = np.r_[np.asarray(pl.A0, float), 1600.0]
+    import assert_timeline as _at
+    _errs = _at.check(frames, q_dep=q_dep_ref)
+    if _errs:
+        print('!! 连续性/姿态不合格，未写出任何文件:', _errs[:3])
+        raise SystemExit(2)
+
     payload = dict(
         status='candidate (v2-30)', fps=FPS, total_s=round(T_total, 4),
         n_frames=len(frames), exact_endpoint=endpoint,
@@ -110,12 +125,7 @@ if __name__ == '__main__':
     for b in boundary: print(f"  {b['seg']:16s} 段内抽查 5 点 最大误差 {b['interior_max_err']:.6f}")
 
     print('返回终点 vs 部署起始 最大关节差: %.6f' % ret_err)
-    import assert_timeline
-    errs = assert_timeline.check(frames, q_dep=frames[0]['q'])
-    if errs:
-        print('!! 跨段/段内连续性不合格，拒绝写出:', errs[:3])
-        raise SystemExit(2)
-    print('跨段连续性断言: PASS')
+    print('跨段连续性断言: PASS（基准=独立部署构型）')
     print('状态轨: VALIDATED %d / SCHEMATIC %d / PENDING %d' % (
         sum(1 for s in states if s['level'] == 'VALIDATED'),
         sum(1 for s in states if s['level'] == 'SCHEMATIC'),

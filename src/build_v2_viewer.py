@@ -93,9 +93,16 @@ def main():
             if any(k.startswith(nm.split('_head')[0]) and '_head' in k for k in moves):
                 continue
         out_frames.append(dict(t=f['video_time'], vt=f['video_time'], st=f['source_time'],
-                               seg=f['seg'], moves=moves))
+                               seg=f['seg'], label=f"{f['seg']} · t={f['video_time']:.2f}s",
+                               moves=moves))
 
     payload = dict(meta=dict(source='modeA_v2_timeline.json', status=tl['status'],
+                             modules=anim.N, hero=HERO,
+                             total_length_mm=anim.TOTAL,
+                             length_mm=anim.TOTAL,
+                             width_mm=anim.N * 3500 + (anim.N - 1) * 750 + 100,
+                             membrane_width_mm=anim.N * 3500 + (anim.N - 1) * 750 + 100,
+                             interfaces_per_module=18,
                              fps=tl['fps'], total_s=tl['total_s'], n_frames=len(out_frames),
                              y_state='compensated', y_work=Y_COMP,
                              exact_endpoint=tl['exact_endpoint']['t']),
