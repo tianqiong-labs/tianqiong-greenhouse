@@ -1,5 +1,5 @@
 {
- "cycle": "关节运动主链 59.329 s（不含接口操作时间）",
+ "cycle": "关节运动主链 59.329 s（不含接口操作时间）；附属件随动已绑定，闸门开启运动仍未建模",
  "levels": {
   "VALIDATED": "有几何/运动验证支持",
   "SCHEMATIC": "仅有设计意图",
@@ -10,6 +10,11 @@
    "name": "double_rail_compensation",
    "level": "VALIDATED",
    "basis": "六臂 Y 补位坐标已用于全场景检查"
+  },
+  {
+   "name": "carrier_rigid_binding",
+   "level": "VALIDATED",
+   "basis": "42 个附属件按父刚体 4×4 绑定；6 构型局部变换偏差 0.000000000 mm；导出与独立重算 0.000000000 mm"
   },
   {
    "name": "carrier_unload",

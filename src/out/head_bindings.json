@@ -1,0 +1,889 @@
+{
+ "rule": "Jk -> link_k；父坐标系由 link 方向 + 平面法向构造（yaw=0 下精确）",
+ "precondition": "启用根部 yaw 后必须改用 CAD 完整装配矩阵",
+ "count": 42,
+ "items": [
+  {
+   "name": "M2_F04_M1_A02_J1_stem",
+   "kind": "box",
+   "fam": "head",
+   "J": 1,
+   "c0": [
+    1149.5516322964074,
+    5160.0,
+    2917.8901154678956
+   ],
+   "quat0": null,
+   "size": [
+    18,
+    26,
+    170.0
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 1,
+   "|offset|mm": 1159.3
+  },
+  {
+   "name": "M2_F04_M1_A02_J1_base",
+   "kind": "box",
+   "fam": "head",
+   "J": 1,
+   "c0": [
+    1149.5516322964074,
+    5160.0,
+    3005.3901154678956
+   ],
+   "quat0": null,
+   "size": [
+    28,
+    50,
+    5
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 1,
+   "|offset|mm": 1171.5
+  },
+  {
+   "name": "M2_F04_M1_A02_J1_sideL",
+   "kind": "box",
+   "fam": "head",
+   "J": 1,
+   "c0": [
+    1139.0516322964074,
+    5160.0,
+    3016.8901154678956
+   ],
+   "quat0": null,
+   "size": [
+    5,
+    50,
+    18
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 1,
+   "|offset|mm": 1163.3
+  },
+  {
+   "name": "M2_F04_M1_A02_J1_gateL",
+   "kind": "box",
+   "fam": "gate",
+   "J": 1,
+   "c0": [
+    1142.0516322964074,
+    5160.0,
+    3027.3901154678956
+   ],
+   "quat0": null,
+   "size": [
+    11,
+    50,
+    3
+   ],
+   "radius": null,
+   "group": "gate",
+   "arm": 1,
+   "|offset|mm": 1168.2
+  },
+  {
+   "name": "M2_F04_M1_A02_J1_sideR",
+   "kind": "box",
+   "fam": "head",
+   "J": 1,
+   "c0": [
+    1160.0516322964074,
+    5160.0,
+    3016.8901154678956
+   ],
+   "quat0": null,
+   "size": [
+    5,
+    50,
+    18
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 1,
+   "|offset|mm": 1183.8
+  },
+  {
+   "name": "M2_F04_M1_A02_J1_gateR",
+   "kind": "box",
+   "fam": "gate",
+   "J": 1,
+   "c0": [
+    1157.0516322964074,
+    5160.0,
+    3027.3901154678956
+   ],
+   "quat0": null,
+   "size": [
+    11,
+    50,
+    3
+   ],
+   "radius": null,
+   "group": "gate",
+   "arm": 1,
+   "|offset|mm": 1182.9
+  },
+  {
+   "name": "M2_F04_M1_A02_J1_magnet_aux",
+   "kind": "box",
+   "fam": "magnet",
+   "J": 1,
+   "c0": [
+    1149.5516322964074,
+    5160.0,
+    3000.8901154678956
+   ],
+   "quat0": null,
+   "size": [
+    12,
+    16,
+    3
+   ],
+   "radius": null,
+   "group": "magnet",
+   "arm": 1,
+   "|offset|mm": 1170.7
+  },
+  {
+   "name": "M2_F04_M1_A02_J2_stem",
+   "kind": "box",
+   "fam": "head",
+   "J": 2,
+   "c0": [
+    2445.5017001871056,
+    5160.0,
+    2443.6397369397455
+   ],
+   "quat0": null,
+   "size": [
+    18,
+    26,
+    170.0
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 1,
+   "|offset|mm": 1339.2
+  },
+  {
+   "name": "M2_F04_M1_A02_J2_base",
+   "kind": "box",
+   "fam": "head",
+   "J": 2,
+   "c0": [
+    2445.5017001871056,
+    5160.0,
+    2531.1397369397455
+   ],
+   "quat0": null,
+   "size": [
+    28,
+    50,
+    5
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 1,
+   "|offset|mm": 1320.7
+  },
+  {
+   "name": "M2_F04_M1_A02_J2_sideL",
+   "kind": "box",
+   "fam": "head",
+   "J": 2,
+   "c0": [
+    2435.0017001871056,
+    5160.0,
+    2542.6397369397455
+   ],
+   "quat0": null,
+   "size": [
+    5,
+    50,
+    18
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 1,
+   "|offset|mm": 1308.4
+  },
+  {
+   "name": "M2_F04_M1_A02_J2_gateL",
+   "kind": "box",
+   "fam": "gate",
+   "J": 2,
+   "c0": [
+    2438.0017001871056,
+    5160.0,
+    2553.1397369397455
+   ],
+   "quat0": null,
+   "size": [
+    11,
+    50,
+    3
+   ],
+   "radius": null,
+   "group": "gate",
+   "arm": 1,
+   "|offset|mm": 1309.6
+  },
+  {
+   "name": "M2_F04_M1_A02_J2_sideR",
+   "kind": "box",
+   "fam": "head",
+   "J": 2,
+   "c0": [
+    2456.0017001871056,
+    5160.0,
+    2542.6397369397455
+   ],
+   "quat0": null,
+   "size": [
+    5,
+    50,
+    18
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 1,
+   "|offset|mm": 1329.0
+  },
+  {
+   "name": "M2_F04_M1_A02_J2_gateR",
+   "kind": "box",
+   "fam": "gate",
+   "J": 2,
+   "c0": [
+    2453.0017001871056,
+    5160.0,
+    2553.1397369397455
+   ],
+   "quat0": null,
+   "size": [
+    11,
+    50,
+    3
+   ],
+   "radius": null,
+   "group": "gate",
+   "arm": 1,
+   "|offset|mm": 1324.3
+  },
+  {
+   "name": "M2_F04_M1_A02_J2_magnet_aux",
+   "kind": "box",
+   "fam": "magnet",
+   "J": 2,
+   "c0": [
+    2445.5017001871056,
+    5160.0,
+    2526.6397369397455
+   ],
+   "quat0": null,
+   "size": [
+    12,
+    16,
+    3
+   ],
+   "radius": null,
+   "group": "magnet",
+   "arm": 1,
+   "|offset|mm": 1321.5
+  },
+  {
+   "name": "M2_F04_M1_A02_J3_stem",
+   "kind": "box",
+   "fam": "head",
+   "J": 3,
+   "c0": [
+    3632.849464669662,
+    5160.0,
+    1494.6374786820124
+   ],
+   "quat0": null,
+   "size": [
+    18,
+    26,
+    170.0
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 1,
+   "|offset|mm": 1434.2
+  },
+  {
+   "name": "M2_F04_M1_A02_J3_base",
+   "kind": "box",
+   "fam": "head",
+   "J": 3,
+   "c0": [
+    3632.849464669662,
+    5160.0,
+    1582.1374786820124
+   ],
+   "quat0": null,
+   "size": [
+    28,
+    50,
+    5
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 1,
+   "|offset|mm": 1387.3
+  },
+  {
+   "name": "M2_F04_M1_A02_J3_sideL",
+   "kind": "box",
+   "fam": "head",
+   "J": 3,
+   "c0": [
+    3622.349464669662,
+    5160.0,
+    1593.6374786820124
+   ],
+   "quat0": null,
+   "size": [
+    5,
+    50,
+    18
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 1,
+   "|offset|mm": 1372.5
+  },
+  {
+   "name": "M2_F04_M1_A02_J3_gateL",
+   "kind": "box",
+   "fam": "gate",
+   "J": 3,
+   "c0": [
+    3625.349464669662,
+    5160.0,
+    1604.1374786820124
+   ],
+   "quat0": null,
+   "size": [
+    11,
+    50,
+    3
+   ],
+   "radius": null,
+   "group": "gate",
+   "arm": 1,
+   "|offset|mm": 1369.7
+  },
+  {
+   "name": "M2_F04_M1_A02_J3_sideR",
+   "kind": "box",
+   "fam": "head",
+   "J": 3,
+   "c0": [
+    3643.349464669662,
+    5160.0,
+    1593.6374786820124
+   ],
+   "quat0": null,
+   "size": [
+    5,
+    50,
+    18
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 1,
+   "|offset|mm": 1390.5
+  },
+  {
+   "name": "M2_F04_M1_A02_J3_gateR",
+   "kind": "box",
+   "fam": "gate",
+   "J": 3,
+   "c0": [
+    3640.349464669662,
+    5160.0,
+    1604.1374786820124
+   ],
+   "quat0": null,
+   "size": [
+    11,
+    50,
+    3
+   ],
+   "radius": null,
+   "group": "gate",
+   "arm": 1,
+   "|offset|mm": 1382.7
+  },
+  {
+   "name": "M2_F04_M1_A02_J3_magnet_aux",
+   "kind": "box",
+   "fam": "magnet",
+   "J": 3,
+   "c0": [
+    3632.849464669662,
+    5160.0,
+    1577.6374786820124
+   ],
+   "quat0": null,
+   "size": [
+    12,
+    16,
+    3
+   ],
+   "radius": null,
+   "group": "magnet",
+   "arm": 1,
+   "|offset|mm": 1389.7
+  },
+  {
+   "name": "M2_F04_M1_A05_J1_stem",
+   "kind": "box",
+   "fam": "head",
+   "J": 1,
+   "c0": [
+    1149.5516322964074,
+    6840.0,
+    2917.8901154678956
+   ],
+   "quat0": null,
+   "size": [
+    18,
+    26,
+    170.0
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 4,
+   "|offset|mm": 1159.3
+  },
+  {
+   "name": "M2_F04_M1_A05_J1_base",
+   "kind": "box",
+   "fam": "head",
+   "J": 1,
+   "c0": [
+    1149.5516322964074,
+    6840.0,
+    3005.3901154678956
+   ],
+   "quat0": null,
+   "size": [
+    28,
+    50,
+    5
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 4,
+   "|offset|mm": 1171.5
+  },
+  {
+   "name": "M2_F04_M1_A05_J1_sideL",
+   "kind": "box",
+   "fam": "head",
+   "J": 1,
+   "c0": [
+    1139.0516322964074,
+    6840.0,
+    3016.8901154678956
+   ],
+   "quat0": null,
+   "size": [
+    5,
+    50,
+    18
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 4,
+   "|offset|mm": 1163.3
+  },
+  {
+   "name": "M2_F04_M1_A05_J1_gateL",
+   "kind": "box",
+   "fam": "gate",
+   "J": 1,
+   "c0": [
+    1142.0516322964074,
+    6840.0,
+    3027.3901154678956
+   ],
+   "quat0": null,
+   "size": [
+    11,
+    50,
+    3
+   ],
+   "radius": null,
+   "group": "gate",
+   "arm": 4,
+   "|offset|mm": 1168.2
+  },
+  {
+   "name": "M2_F04_M1_A05_J1_sideR",
+   "kind": "box",
+   "fam": "head",
+   "J": 1,
+   "c0": [
+    1160.0516322964074,
+    6840.0,
+    3016.8901154678956
+   ],
+   "quat0": null,
+   "size": [
+    5,
+    50,
+    18
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 4,
+   "|offset|mm": 1183.8
+  },
+  {
+   "name": "M2_F04_M1_A05_J1_gateR",
+   "kind": "box",
+   "fam": "gate",
+   "J": 1,
+   "c0": [
+    1157.0516322964074,
+    6840.0,
+    3027.3901154678956
+   ],
+   "quat0": null,
+   "size": [
+    11,
+    50,
+    3
+   ],
+   "radius": null,
+   "group": "gate",
+   "arm": 4,
+   "|offset|mm": 1182.9
+  },
+  {
+   "name": "M2_F04_M1_A05_J1_magnet_aux",
+   "kind": "box",
+   "fam": "magnet",
+   "J": 1,
+   "c0": [
+    1149.5516322964074,
+    6840.0,
+    3000.8901154678956
+   ],
+   "quat0": null,
+   "size": [
+    12,
+    16,
+    3
+   ],
+   "radius": null,
+   "group": "magnet",
+   "arm": 4,
+   "|offset|mm": 1170.7
+  },
+  {
+   "name": "M2_F04_M1_A05_J2_stem",
+   "kind": "box",
+   "fam": "head",
+   "J": 2,
+   "c0": [
+    2445.5017001871056,
+    6840.0,
+    2443.6397369397455
+   ],
+   "quat0": null,
+   "size": [
+    18,
+    26,
+    170.0
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 4,
+   "|offset|mm": 1339.2
+  },
+  {
+   "name": "M2_F04_M1_A05_J2_base",
+   "kind": "box",
+   "fam": "head",
+   "J": 2,
+   "c0": [
+    2445.5017001871056,
+    6840.0,
+    2531.1397369397455
+   ],
+   "quat0": null,
+   "size": [
+    28,
+    50,
+    5
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 4,
+   "|offset|mm": 1320.7
+  },
+  {
+   "name": "M2_F04_M1_A05_J2_sideL",
+   "kind": "box",
+   "fam": "head",
+   "J": 2,
+   "c0": [
+    2435.0017001871056,
+    6840.0,
+    2542.6397369397455
+   ],
+   "quat0": null,
+   "size": [
+    5,
+    50,
+    18
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 4,
+   "|offset|mm": 1308.4
+  },
+  {
+   "name": "M2_F04_M1_A05_J2_gateL",
+   "kind": "box",
+   "fam": "gate",
+   "J": 2,
+   "c0": [
+    2438.0017001871056,
+    6840.0,
+    2553.1397369397455
+   ],
+   "quat0": null,
+   "size": [
+    11,
+    50,
+    3
+   ],
+   "radius": null,
+   "group": "gate",
+   "arm": 4,
+   "|offset|mm": 1309.6
+  },
+  {
+   "name": "M2_F04_M1_A05_J2_sideR",
+   "kind": "box",
+   "fam": "head",
+   "J": 2,
+   "c0": [
+    2456.0017001871056,
+    6840.0,
+    2542.6397369397455
+   ],
+   "quat0": null,
+   "size": [
+    5,
+    50,
+    18
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 4,
+   "|offset|mm": 1329.0
+  },
+  {
+   "name": "M2_F04_M1_A05_J2_gateR",
+   "kind": "box",
+   "fam": "gate",
+   "J": 2,
+   "c0": [
+    2453.0017001871056,
+    6840.0,
+    2553.1397369397455
+   ],
+   "quat0": null,
+   "size": [
+    11,
+    50,
+    3
+   ],
+   "radius": null,
+   "group": "gate",
+   "arm": 4,
+   "|offset|mm": 1324.3
+  },
+  {
+   "name": "M2_F04_M1_A05_J2_magnet_aux",
+   "kind": "box",
+   "fam": "magnet",
+   "J": 2,
+   "c0": [
+    2445.5017001871056,
+    6840.0,
+    2526.6397369397455
+   ],
+   "quat0": null,
+   "size": [
+    12,
+    16,
+    3
+   ],
+   "radius": null,
+   "group": "magnet",
+   "arm": 4,
+   "|offset|mm": 1321.5
+  },
+  {
+   "name": "M2_F04_M1_A05_J3_stem",
+   "kind": "box",
+   "fam": "head",
+   "J": 3,
+   "c0": [
+    3632.849464669662,
+    6840.0,
+    1494.6374786820124
+   ],
+   "quat0": null,
+   "size": [
+    18,
+    26,
+    170.0
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 4,
+   "|offset|mm": 1434.2
+  },
+  {
+   "name": "M2_F04_M1_A05_J3_base",
+   "kind": "box",
+   "fam": "head",
+   "J": 3,
+   "c0": [
+    3632.849464669662,
+    6840.0,
+    1582.1374786820124
+   ],
+   "quat0": null,
+   "size": [
+    28,
+    50,
+    5
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 4,
+   "|offset|mm": 1387.3
+  },
+  {
+   "name": "M2_F04_M1_A05_J3_sideL",
+   "kind": "box",
+   "fam": "head",
+   "J": 3,
+   "c0": [
+    3622.349464669662,
+    6840.0,
+    1593.6374786820124
+   ],
+   "quat0": null,
+   "size": [
+    5,
+    50,
+    18
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 4,
+   "|offset|mm": 1372.5
+  },
+  {
+   "name": "M2_F04_M1_A05_J3_gateL",
+   "kind": "box",
+   "fam": "gate",
+   "J": 3,
+   "c0": [
+    3625.349464669662,
+    6840.0,
+    1604.1374786820124
+   ],
+   "quat0": null,
+   "size": [
+    11,
+    50,
+    3
+   ],
+   "radius": null,
+   "group": "gate",
+   "arm": 4,
+   "|offset|mm": 1369.7
+  },
+  {
+   "name": "M2_F04_M1_A05_J3_sideR",
+   "kind": "box",
+   "fam": "head",
+   "J": 3,
+   "c0": [
+    3643.349464669662,
+    6840.0,
+    1593.6374786820124
+   ],
+   "quat0": null,
+   "size": [
+    5,
+    50,
+    18
+   ],
+   "radius": null,
+   "group": "head",
+   "arm": 4,
+   "|offset|mm": 1390.5
+  },
+  {
+   "name": "M2_F04_M1_A05_J3_gateR",
+   "kind": "box",
+   "fam": "gate",
+   "J": 3,
+   "c0": [
+    3640.349464669662,
+    6840.0,
+    1604.1374786820124
+   ],
+   "quat0": null,
+   "size": [
+    11,
+    50,
+    3
+   ],
+   "radius": null,
+   "group": "gate",
+   "arm": 4,
+   "|offset|mm": 1382.7
+  },
+  {
+   "name": "M2_F04_M1_A05_J3_magnet_aux",
+   "kind": "box",
+   "fam": "magnet",
+   "J": 3,
+   "c0": [
+    3632.849464669662,
+    6840.0,
+    1577.6374786820124
+   ],
+   "quat0": null,
+   "size": [
+    12,
+    16,
+    3
+   ],
+   "radius": null,
+   "group": "magnet",
+   "arm": 4,
+   "|offset|mm": 1389.7
+  }
+ ]
+}

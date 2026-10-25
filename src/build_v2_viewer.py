@@ -12,6 +12,7 @@ OUT = HERE / 'out'
 STUDIO = HERE.parent / 'studio'
 anim = importlib.import_module('anim')
 packlib = importlib.import_module('packlib')
+bind = importlib.import_module('bind_heads')
 m = anim.m
 pl = importlib.import_module('planner')
 
@@ -63,6 +64,24 @@ def main():
             catalog[r['vm']] = dict(md, color=r['color'])
         out_base.append(dict(name=r['name'], group=r['group'], mesh=r['vm'], trs=r['trs']))
 
+    # 附属件绑定（一次性建立）
+    _st = dict(wound=anim.SURPLUS, gate=0.0, drop=0.0, release=0, retract=0.0, yaw=0.0,
+               lower=0.0, compensate=0.0, pack=0.0)
+    _base = anim.frame_records(_st)
+    binds_by_arm, R0_by_name, q0 = {}, {}, frames[0]['q']
+    for idx in (1, 4):
+        y_abs = HERO * anim.PITCH + Y_COMP[idx]
+        recs_i = [r for r in _base if r['name'].startswith(f'M{HERO+1}_')
+                  and f'_A{idx+1:02d}_' in r['name'] and r['group'] in ('head', 'gate', 'magnet')]
+        bl = bind.build_bindings(recs_i, q0, y_abs, idx)
+        pts0 = bind.arm_points(q0, idx, y_abs)
+        for b in bl:
+            R0, _P = bind.frame_from(pts0, b['J'] - 1)
+            R0_by_name[b['name']] = R0
+            b['arm'] = idx
+        binds_by_arm[idx] = bl
+    print('绑定附属件', sum(len(v) for v in binds_by_arm.values()))
+
     out_frames = []
     for f in frames:
         q = f['q']
@@ -92,6 +111,14 @@ def main():
                 continue
             if any(k.startswith(nm.split('_head')[0]) and '_head' in k for k in moves):
                 continue
+        # 附属件随动（父刚体 4×4）
+        for idx in (1, 4):
+            y_abs = HERO * anim.PITCH + Y_COMP[idx]
+            w = bind.arm_world(binds_by_arm[idx], q, idx, y_abs, R0s=R0_by_name)
+            for nm, (pos, quat) in w.items():
+                base_trs = trs0.get(nm)
+                sc = base_trs[2] if base_trs else [1, 1, 1]
+                moves[nm] = [pos.tolist(), quat.tolist(), sc]
         out_frames.append(dict(t=f['video_time'], vt=f['video_time'], st=f['source_time'],
                                seg=f['seg'], label=f"{f['seg']} · t={f['video_time']:.2f}s",
                                moves=moves))
