@@ -50,6 +50,11 @@ def ball():
     return b.cut(cq.Workplane("XY").box(120, 32, 66).translate((44, 0, 45)))
 
 
+def bar():
+    """前膜压条：已知与球头干涉（历史 -53 mm），用作"必须检出"的回归对。"""
+    return cq.Workplane("XY").box(24, 3500, 21).translate((4485, 1750, 24))
+
+
 def column():
     c = cq.Workplane("XY").workplane(offset=14).circle(15).extrude(180)
     g = (cq.Workplane("XY").workplane(offset=38).circle(15).extrude(12)
@@ -75,17 +80,20 @@ def run_tests():
         except IntersectError:
             results.append(("异常注入", True, "抛 IntersectError 且 gate 拦截"))
 
-    b, c = ball(), column()
-    # 回归2：已知穿透必须检出（球头 vs 腕柱）
-    v = safe_intersect(b, c)
-    results.append(("球头×腕柱检出", v > 0, f"{v:.1f} mm3"))
+    b, c, br = ball(), column(), bar()
+    # 回归2a：已知穿透必须检出（球头 vs 前膜压条）
+    v = safe_intersect(b, br)
+    results.append(("球头×压条检出", v > 0, f"{v:.1f} mm3"))
+    # 回归2b：设计配合（孔柱间隙）必须为 0，不能误报
+    v2 = safe_intersect(b, c)
+    results.append(("球头×腕柱=间隙配合", abs(v2) < 1e-6, f"{v2:.1f} mm3"))
     # 目标清单必须含腕柱/导轨
     missing = [k for k in ("COLUMN", "ARM_RAIL") if k not in targets()]
     results.append(("清单含腕柱/导轨", not missing, f"缺失 {missing}"))
 
     # 回归3：撤离与反向插入坐标一致
-    fwd = [safe_intersect(at_x(b, dx), c) for dx in (0, 30, 60)]
-    back = [safe_intersect(at_x(b, dx), c) for dx in (60, 30, 0)]
+    fwd = [safe_intersect(at_x(b, dx), br) for dx in (0, 30, 60)]
+    back = [safe_intersect(at_x(b, dx), br) for dx in (60, 30, 0)]
     ok = all(abs(f - r) < 1e-6 for f, r in zip(fwd, back[::-1]))
     results.append(("撤离/插入同坐标", ok, f"fwd={[round(x,1) for x in fwd]} rev={[round(x,1) for x in back]}"))
 
