@@ -1,0 +1,20 @@
+{
+ "old": [
+  4390.0,
+  4400.0
+ ],
+ "new": [
+  4291.0,
+  4301.0
+ ],
+ "z": [
+  22.0,
+  30.0
+ ],
+ "min_clearance": 15.7,
+ "membrane_edge_move": 190.0,
+ "note": "膜边前缘内移 190 mm/模块 -> 膜面跨度缩短 570 mm（方向更正：不是增加）；卷筒余量 602 -> 1172 mm。代价是檐口出现 190 mm 宽的开放带，需独立裙边封闭。背压轨内移不改变球头穿越膜面高度(≈24)的事实。",
+ "membrane_length_change_mm": -570,
+ "roll_surplus_before_mm": 602,
+ "roll_surplus_after_mm": 1172
+}
