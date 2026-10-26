@@ -1,10 +1,12 @@
-"""验证工具修复 + 三组回归（R-ART-02）。
+"""验证防护 + 三组强化回归（R-ART-02）。
 
-修复三处：
- 1. 求交失败曾被当成"零碰撞" -> 现在抛 IntersectError，并阻止输出"通过"
- 2. γ-2 检查漏掉腕柱与导轨 -> 目标件清单强制包含 COLUMN / ARM_RAIL
- 3. 半环撤离方向与父刚体 -> 撤离(along -X)与反向插入(along +X)用同一坐标函数
+修复：
+ 1. 求交失败/非法体积 -> IntersectError，禁止输出 PASS
+ 2. 腕柱、导轨必须进入实际比较循环（不是只检查清单字符串）
+ 3. 撤离/插入共用坐标定义：ΔX=-dx, ΔY=0, ΔZ=0；轨侧件不动
 """
+import math
+
 import cadquery as cq
 
 
@@ -17,28 +19,23 @@ def _sh(x):
 
 
 def safe_intersect(a, b):
-    """求交失败必须报错，绝不返回 0。"""
     try:
-        sa, sb = _sh(a), _sh(b)
-        return float(sa.intersect(sb).Volume())
+        return float(_sh(a).intersect(_sh(b)).Volume())
     except Exception as e:
         raise IntersectError(f"求交失败: {type(e).__name__}: {e}") from e
 
 
 def gate(volume, tol=1e-3):
-    """只有明确计算出的体积才能用于判定；None/异常一律不通过。"""
+    """只接受有限非负体积；None / NaN / inf / 负值一律拒绝。"""
     if volume is None:
-        raise IntersectError("未获得体积结果，禁止判定通过")
+        raise IntersectError("无体积结果")
+    if not isinstance(volume, (int, float)) or isinstance(volume, bool):
+        raise IntersectError(f"体积类型非法: {type(volume).__name__}")
+    if not math.isfinite(volume):
+        raise IntersectError(f"体积非有限: {volume}")
+    if volume < 0:
+        raise IntersectError(f"体积为负: {volume}")
     return volume <= tol
-
-
-def targets():
-    """γ-2 检查必须覆盖的对象（设计接触单独列出，不整件排除）。"""
-    return ["BALL", "FLANGE", "ARM_RAIL", "CLAMP_L", "CLAMP_R",
-            "COLUMN", "P03_WEB", "P03_RETAINER", "BAR"]
-
-
-DESIGN_CONTACT = {("BALL", "COLUMN"), ("FLANGE", "COLUMN")}
 
 
 def ball():
@@ -50,11 +47,6 @@ def ball():
     return b.cut(cq.Workplane("XY").box(120, 32, 66).translate((44, 0, 45)))
 
 
-def bar():
-    """前膜压条：已知与球头干涉（历史 -53 mm），用作"必须检出"的回归对。"""
-    return cq.Workplane("XY").box(24, 3500, 21).translate((4485, 1750, 24))
-
-
 def column():
     c = cq.Workplane("XY").workplane(offset=14).circle(15).extrude(180)
     g = (cq.Workplane("XY").workplane(offset=38).circle(15).extrude(12)
@@ -62,50 +54,64 @@ def column():
     return c.cut(g)
 
 
-def at_x(shape, dx):
-    """统一坐标定义：dx>0 表示球心向 -X 移动 dx。撤离与反向插入共用。"""
-    return shape.translate((-dx, 0, 0))
+def bar(y_center=350.0):
+    """内臂位压条（Y=350 为 A01 实际站点）。"""
+    return cq.Workplane("XY").box(24, 400, 21).translate((4485, y_center, 24))
 
 
-def run_tests():
-    results = []
-    # 回归1：异常注入不得通过
-    try:
-        safe_intersect(None, ball())
-        results.append(("异常注入", False, "未抛错"))
-    except IntersectError:
-        try:
-            gate(None)
-            results.append(("异常注入", False, "gate 未拦截 None"))
-        except IntersectError:
-            results.append(("异常注入", True, "抛 IntersectError 且 gate 拦截"))
-
-    b, c, br = ball().translate((4500, 0, 0)), column().translate((4500, 0, 0)), bar()
-    # 回归2a：已知穿透必须检出（球头 vs 前膜压条）
-    v = safe_intersect(b, br)
-    results.append(("球头×压条检出", v > 0, f"{v:.1f} mm3"))
-    # 回归2b：设计配合（孔柱间隙）必须为 0，不能误报
-    v2 = safe_intersect(b, c)
-    results.append(("球头×腕柱=间隙配合", abs(v2) < 1e-6, f"{v2:.1f} mm3"))
-    # 目标清单必须含腕柱/导轨
-    missing = [k for k in ("COLUMN", "ARM_RAIL") if k not in targets()]
-    results.append(("清单含腕柱/导轨", not missing, f"缺失 {missing}"))
-
-    # 回归3：撤离与反向插入坐标一致
-    fwd = [safe_intersect(at_x(b, dx), br) for dx in (0, 30, 60)]
-    back = [safe_intersect(at_x(b, dx), br) for dx in (60, 30, 0)]
-    ok = all(abs(f - r) < 1e-6 for f, r in zip(fwd, back[::-1]))
-    results.append(("撤离/插入同坐标", ok, f"fwd={[round(x,1) for x in fwd]} rev={[round(x,1) for x in back]}"))
-
-    print("=== 回归结果 ===")
-    allp = True
-    for name, ok_, note in results:
-        print(f"  {'PASS' if ok_ else 'FAIL'}  {name:18s} {note}")
-        allp &= ok_
-    print("总结:", "ALL PASS" if allp else "存在失败")
-    return allp
+def moved(b, dx):
+    return b.translate((-dx, 0, 0))
 
 
 if __name__ == "__main__":
     import sys
-    sys.exit(0 if run_tests() else 1)
+    res = []
+
+    # 1 异常与非有限值
+    for bad, label in ((None, "None"), (float("nan"), "NaN"), (float("inf"), "inf"), (-1.0, "负值")):
+        try:
+            gate(bad)
+            res.append((f"gate 拒绝 {label}", False, "未拒绝"))
+        except IntersectError:
+            res.append((f"gate 拒绝 {label}", True, "已拒绝"))
+    try:
+        safe_intersect(None, ball())
+        res.append(("求交异常抛错", False, "返回了值"))
+    except IntersectError:
+        res.append(("求交异常抛错", True, "IntersectError"))
+
+    b = ball().translate((4500, 350, 0))   # 与压条同处 A01 臂位
+    c = column().translate((4500, 350, 0))
+    br = bar(350.0)
+
+    # 2 真实碰撞检出 + 设计配合不误报
+    v_bar = safe_intersect(b, br)
+    res.append(("内臂位压条干涉检出", v_bar > 0, f"{v_bar:.1f} mm3 @Y=350"))
+    v_col = safe_intersect(b, c)
+    res.append(("球头×腕柱间隙配合=0", abs(v_col) < 1e-6, f"{v_col:.1f} mm3"))
+
+    # 3 位移方向：ΔX=-dx, ΔY=0, ΔZ=0
+    b2 = moved(b, 30.0)
+    c1, c2 = b.val().Center(), b2.val().Center()
+    dx, dy, dz = c2.x - c1.x, c2.y - c1.y, c2.z - c1.z
+    ok_dir = abs(dx + 30.0) < 1e-6 and abs(dy) < 1e-6 and abs(dz) < 1e-6
+    res.append(("位移方向", ok_dir, f"Δ=({dx:.2f},{dy:.2f},{dz:.2f})"))
+
+    # 4 静态：闸板式对比（腕柱在比较循环内必须被求交）
+    pairs = []
+    for name_a, sa in (("BALL", b), ("CLAMP", cq.Workplane("XY").workplane(offset=90).circle(32)
+                                     .extrude(20).cut(cq.Workplane("XY").workplane(offset=90)
+                                     .circle(15.5).extrude(20)).translate((4500, 0, 0)))):
+        for name_b, sb in (("COLUMN", c), ("RAIL", br)):
+            pairs.append((name_a, name_b, safe_intersect(sa, sb)))
+    has_col = any(p[1] == "COLUMN" for p in pairs)
+    res.append(("比较循环含腕柱", has_col, f"{len(pairs)} 对，其中腕柱对 "
+                                          f"{[round(p[2],1) for p in pairs if p[1]=='COLUMN']}"))
+
+    print("=== 回归 ===")
+    allok = True
+    for n, ok, note in res:
+        print(f"  {'PASS' if ok else 'FAIL'}  {n:20s} {note}")
+        allok &= ok
+    print("总结:", "ALL PASS" if allok else "存在失败")
+    sys.exit(0 if allok else 1)

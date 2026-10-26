@@ -3,6 +3,9 @@
 法兰改为朝 +X 开口的 C 形（保留 −X 侧与两侧承力），
 然后在完整 A03 接口上重跑 0…120 mm 撤离与反向插入。
 """
+import sys as _sys
+_sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+from verify_guards import safe_intersect, gate, IntersectError
 import cadquery as cq, importlib.util, json
 from pathlib import Path
 import numpy as np
@@ -76,10 +79,7 @@ def arm_parts(dx=0.0, s=20.0):
 
 
 def vol(a, b):
-    try:
-        return round(a.val().intersect(b.val()).Volume(), 3)
-    except Exception:
-        return -1.0
+    return round(safe_intersect(a, b), 3)
 
 
 if __name__ == '__main__':

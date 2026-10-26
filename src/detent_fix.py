@@ -1,4 +1,7 @@
 """锁销修正：半环开 Ø6.4 止退孔；销沿 X 退回 28 mm。重算并覆写 z76_section.json 的 detent 字段。"""
+import sys as _sys
+_sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+from verify_guards import safe_intersect, gate, IntersectError
 import cadquery as cq, json
 from pathlib import Path
 OUT = Path(__file__).resolve().parent/'out'/'cad'
@@ -16,8 +19,7 @@ def pin(dx=0.0):
     return cq.Workplane("YZ").workplane(offset=-27).circle(PIN_R).extrude(16).translate((dx,PIN_Y,PIN_Z))
 
 def v(a,b):
-    try: return round(a.val().intersect(b.val()).Volume(),2)
-    except: return 0.0
+    return round(safe_intersect(a,b),2)
 
 h=half(); h0=half(hole=False)
 rows=dict(

@@ -4,6 +4,9 @@
 对象：18 套接口 × {前膜压条, 上压条1/2, 锚轨腹板, 同臂滑块}
 另做：跑道槽后的横向挡止回归（LOCKED 时柱 +X 20）。
 """
+import sys as _sys
+_sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+from verify_guards import safe_intersect, gate, IntersectError
 import cadquery as cq, importlib.util, json, math
 from pathlib import Path
 import numpy as np
@@ -75,10 +78,7 @@ def overlap(a, b, pad=0.0):
 
 
 def vol(a, b):
-    try:
-        return float(_sh(a).intersect(_sh(b)).Volume())
-    except Exception:
-        return 0.0
+    return safe_intersect(a, b)   # 失败抛 IntersectError，不再返回 0
 
 
 if __name__ == '__main__':

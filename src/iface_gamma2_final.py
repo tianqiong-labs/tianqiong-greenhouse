@@ -5,6 +5,9 @@
   凸台顶 z=76；卡箍 z 90…110；上压条 z 133.5 起。
   唯一可用走线：−X 内侧（x −30…−16），距柱轴 ≥16，且不在通道内。
 """
+import sys as _sys
+_sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+from verify_guards import safe_intersect, gate, IntersectError
 import cadquery as cq, json
 from pathlib import Path
 
@@ -57,7 +60,7 @@ def half(sign, s=0.0, dx=0.0, dz=0.0):
                  .extrude(CLAMP_Z1 - CLAMP_Z0)))
     h = ring.intersect(cq.Workplane("XY").workplane(offset=CLAMP_Z0)
                        .rect(200, 40).extrude(CLAMP_Z1 - CLAMP_Z0).translate((0, sign * 20, 0)))
-    return h.translate((0, sign * s + dx, dz))
+    return h.translate((dx, sign * s, dz))   # s 沿 Y 开合，dx 沿 X 撤离
 
 
 def rail():
@@ -78,10 +81,7 @@ def bracket(sign, s=0.0, dz=0.0):
 
 
 def vol(a, b):
-    try:
-        return round(a.val().intersect(b.val()).Volume(), 3)
-    except Exception:
-        return -1.0
+    return round(safe_intersect(a, b), 3)
 
 
 def scene(s, ball_dx=0.0, ball_dz=0.0, claws_ret=True):
@@ -99,7 +99,7 @@ def scene(s, ball_dx=0.0, ball_dz=0.0, claws_ret=True):
 
 
 def check(parts, label):
-    names = [n for n in parts if n not in ('COLUMN', 'RAIL')]
+    names = list(parts)   # 腕柱与导轨必须参与检查，不得整件排除
     bad = {}
     for i in range(len(names)):
         for j in range(i + 1, len(names)):
