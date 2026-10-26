@@ -87,7 +87,7 @@ def vol(a, b):
 def scene(s, ball_dx=0.0, ball_dz=0.0, claws_ret=True):
     b = tip_ball().translate((-ball_dx, 0, -ball_dz))
     c = column()
-    parts = {'BALL': b, 'COLUMN': c, 'RAIL': rail(),
+    parts = {'BALL': b, 'COLUMN': c, 'RAIL': rail().translate((-ball_dx, 0, -ball_dz)),
              'CLAMP_R': half(1, s, -ball_dx, -ball_dz), 'CLAMP_L': half(-1, s, -ball_dx, -ball_dz),
              'CARR_R': carriage(1, s, -ball_dz).translate((-ball_dx, 0, 0)),
              'CARR_L': carriage(-1, s, -ball_dz).translate((-ball_dx, 0, 0)),

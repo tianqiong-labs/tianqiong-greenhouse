@@ -20,9 +20,14 @@ def _sh(x):
 
 def safe_intersect(a, b):
     try:
-        return float(_sh(a).intersect(_sh(b)).Volume())
+        v = float(_sh(a).intersect(_sh(b)).Volume())
     except Exception as e:
         raise IntersectError(f"求交失败: {type(e).__name__}: {e}") from e
+    if not math.isfinite(v):
+        raise IntersectError(f"体积非有限: {v}")
+    if v < 0:
+        raise IntersectError(f"体积为负: {v}")
+    return v
 
 
 def gate(volume, tol=1e-3):
@@ -97,12 +102,26 @@ if __name__ == "__main__":
     ok_dir = abs(dx + 30.0) < 1e-6 and abs(dy) < 1e-6 and abs(dz) < 1e-6
     res.append(("位移方向", ok_dir, f"Δ=({dx:.2f},{dy:.2f},{dz:.2f})"))
 
-    # 4 静态：闸板式对比（腕柱在比较循环内必须被求交）
+    # 4 真实入口：调用 iface_gamma2_final.check()，并注入已知穿透
+    import importlib.util as _iu
+    _sp = _iu.spec_from_file_location("ig2", str(__import__("pathlib").Path(__file__).resolve().parent / "iface_gamma2_final.py"))
+    ig2 = _iu.module_from_spec(_sp); _sp.loader.exec_module(ig2)
+    sc = ig2.scene(0.0)
+    bad0 = ig2.check(sc, "真实LOCKED")
+    res.append(("真实入口无干涉", len(bad0) == 0, str(list(bad0)[:3])))
+    injected = dict(sc); injected["BALL"] = sc["BALL"].translate((60, 0, 0))   # 人为推进导轨区
+    bad1 = ig2.check(injected, "注入穿透")
+    res.append(("真实入口检出注入穿透", any("RAIL" in k for k in bad1), str(list(bad1)[:3])))
+    # 臂侧随动：导轨与球头同时位移
+    r0 = ig2.scene(0.0)["RAIL"].val().Center(); r1 = ig2.scene(0.0, ball_dx=40)["RAIL"].val().Center()
+    res.append(("导轨随撤离 ΔX=-40", abs((r1.x - r0.x) + 40) < 1e-6, f"ΔX={r1.x-r0.x:.2f}"))
+
+    # 4b 静态：腕柱在同坐标下求交（卡箍与腕柱同 Y）
     pairs = []
     for name_a, sa in (("BALL", b), ("CLAMP", cq.Workplane("XY").workplane(offset=90).circle(32)
                                      .extrude(20).cut(cq.Workplane("XY").workplane(offset=90)
-                                     .circle(15.5).extrude(20)).translate((4500, 0, 0)))):
-        for name_b, sb in (("COLUMN", c), ("RAIL", br)):
+                                     .circle(15.5).extrude(20)).translate((4500, 350, 0)))):
+        for name_b, sb in (("COLUMN", c), ("BAR", br)):
             pairs.append((name_a, name_b, safe_intersect(sa, sb)))
     has_col = any(p[1] == "COLUMN" for p in pairs)
     res.append(("比较循环含腕柱", has_col, f"{len(pairs)} 对，其中腕柱对 "
