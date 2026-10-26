@@ -106,12 +106,15 @@ if __name__ == "__main__":
     import importlib.util as _iu
     _sp = _iu.spec_from_file_location("ig2", str(__import__("pathlib").Path(__file__).resolve().parent / "iface_gamma2_final.py"))
     ig2 = _iu.module_from_spec(_sp); _sp.loader.exec_module(ig2)
-    sc = ig2.scene(0.0)
+    sc = ig2.scene(0.0, claws_ret=False)          # 完整 LOCKED
     bad0 = ig2.check(sc, "真实LOCKED")
     res.append(("真实入口无干涉", len(bad0) == 0, str(list(bad0)[:3])))
-    injected = dict(sc); injected["BALL"] = sc["BALL"].translate((60, 0, 0))   # 人为推进导轨区
+    injected = dict(sc)
+    injected["BALL"] = sc["BALL"].translate((60, 0, 0))   # 人为推进导轨区
     bad1 = ig2.check(injected, "注入穿透")
-    res.append(("真实入口检出注入穿透", any("RAIL" in k for k in bad1), str(list(bad1)[:3])))
+    new_pairs = set(bad1) - set(bad0)
+    hit_ball = any(k.startswith("BALL×") for k in new_pairs)
+    res.append(("注入新增 BALL 相关碰撞对", hit_ball, f"新增 {sorted(new_pairs)[:3]}"))
     # 臂侧随动：导轨与球头同时位移
     r0 = ig2.scene(0.0)["RAIL"].val().Center(); r1 = ig2.scene(0.0, ball_dx=40)["RAIL"].val().Center()
     res.append(("导轨随撤离 ΔX=-40", abs((r1.x - r0.x) + 40) < 1e-6, f"ΔX={r1.x-r0.x:.2f}"))

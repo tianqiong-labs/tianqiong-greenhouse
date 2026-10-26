@@ -64,20 +64,29 @@ def half(sign, s=0.0, dx=0.0, dz=0.0):
 
 
 def rail():
-    return (cq.Workplane("XY").box(RAIL_X1 - RAIL_X0, 140, RAIL_Z1 - RAIL_Z0)
+    """U 形导轨：外侧 14 宽，中央开 8 宽贯通槽（向上开口）。"""
+    body = (cq.Workplane("XY").box(RAIL_X1 - RAIL_X0, 140, RAIL_Z1 - RAIL_Z0)
             .translate(((RAIL_X0 + RAIL_X1) / 2, 0, (RAIL_Z0 + RAIL_Z1) / 2)))
+    slot = (cq.Workplane("XY").box(8.0, 140, RAIL_Z1 - CARR_Z0)
+            .translate((-23.0, 0, (CARR_Z0 + RAIL_Z1) / 2)))
+    return body.cut(slot)
 
 
 def carriage(sign, s=0.0, dz=0.0):
+    """滑块：7 宽（槽 8，单侧 0.5 间隙）× 18 长 × 2.5 高（槽高 4，上下各 0.75）。"""
     y = sign * (24 + s)
-    return (cq.Workplane("XY").box(RAIL_X1 - RAIL_X0, 18, CARR_Z1 - CARR_Z0)
-            .translate(((RAIL_X0 + RAIL_X1) / 2, y, (CARR_Z0 + CARR_Z1) / 2 + dz)))
+    return (cq.Workplane("XY").box(7.0, 18, 2.5)
+            .translate((-23.0, y, 85.5 + dz)))   # 84.25…86.75，槽内上下各 0.75
 
 
 def bracket(sign, s=0.0, dz=0.0):
+    """支架：颈 4×12 穿过 U 形槽开口，法兰板 16×14 位于导轨顶面之上。"""
     y = sign * (24 + s)
-    return (cq.Workplane("XY").box(16, 14, BRKT_Z1 - BRKT_Z0)
-            .translate((-22.0, y, (BRKT_Z0 + BRKT_Z1) / 2 + dz)))
+    plate = (cq.Workplane("XY").box(16, 14, BRKT_Z1 - BRKT_Z0)
+             .translate((-22.0, y, (BRKT_Z0 + BRKT_Z1) / 2 + dz)))
+    neck = (cq.Workplane("XY").box(4.0, 12.0, 1.75)
+            .translate((-23.0, y, 87.625 + dz)))   # 86.75…88.5，自滑块顶面起
+    return plate.union(neck)
 
 
 def vol(a, b):
@@ -133,6 +142,10 @@ if __name__ == '__main__':
     check(scene(0, ball_dx=0), 'CLOSING s=0')
     check(scene(0, ball_dx=0, claws_ret=False), 'LOCKED')
 
+    locked_bad = check(scene(0.0, claws_ret=False), 'LOCKED(最终)')
+    if locked_bad:
+        print('检测到干涉，跳过 STEP 导出（诊断模式）')
+        raise SystemExit(2)
     asm = cq.Assembly()
     for n, sh in scene(0.0, claws_ret=False).items():
         asm.add(sh, name=n)
