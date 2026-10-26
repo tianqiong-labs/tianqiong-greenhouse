@@ -80,7 +80,7 @@ def run_tests():
         except IntersectError:
             results.append(("异常注入", True, "抛 IntersectError 且 gate 拦截"))
 
-    b, c, br = ball(), column(), bar()
+    b, c, br = ball().translate((4500, 0, 0)), column().translate((4500, 0, 0)), bar()
     # 回归2a：已知穿透必须检出（球头 vs 前膜压条）
     v = safe_intersect(b, br)
     results.append(("球头×压条检出", v > 0, f"{v:.1f} mm3"))
