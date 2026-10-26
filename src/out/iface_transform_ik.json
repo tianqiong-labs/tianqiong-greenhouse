@@ -1,0 +1,74 @@
+{
+ "reproduce": {
+  "tip": [
+   4500.145955,
+   0.436184
+  ],
+  "expect": [
+   4500.0,
+   0.0
+  ],
+  "err": 0.459956,
+  "rot_identity": true
+ },
+ "perturbation": [
+  {
+   "a4": -70,
+   "beta": 57.2,
+   "tilt_deg": 12.8,
+   "aligned": false
+  },
+  {
+   "a4": -57.2,
+   "beta": 57.2,
+   "tilt_deg": 0.0,
+   "aligned": true
+  },
+  {
+   "a4": -45,
+   "beta": 57.2,
+   "tilt_deg": 12.2,
+   "aligned": false
+  },
+  {
+   "a4": -24,
+   "beta": 57.2,
+   "tilt_deg": 33.2,
+   "aligned": false
+  }
+ ],
+ "candidates": {
+  "4250": {
+   "best": null,
+   "n_hits": 0,
+   "n_rel_ok": 0
+  },
+  "4280": {
+   "best": null,
+   "n_hits": 0,
+   "n_rel_ok": 0
+  },
+  "4230": {
+   "best": {
+    "q": [
+     5.0,
+     -35.0,
+     -37.5,
+     -57.7
+    ],
+    "L4": 1400.0,
+    "res": 0.045,
+    "rel": [
+     5.0,
+     -40.0,
+     -2.5,
+     -20.2
+    ],
+    "rel_ok": true,
+    "tilt": 0.5
+   },
+   "n_hits": 1,
+   "n_rel_ok": 1
+  }
+ }
+}

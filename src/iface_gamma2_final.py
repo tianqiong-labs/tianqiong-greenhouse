@@ -142,9 +142,18 @@ if __name__ == '__main__':
     check(scene(0, ball_dx=0), 'CLOSING s=0')
     check(scene(0, ball_dx=0, claws_ret=False), 'LOCKED')
 
-    locked_bad = check(scene(0.0, claws_ret=False), 'LOCKED(最终)')
-    if locked_bad:
-        print('检测到干涉，跳过 STEP 导出（诊断模式）')
+    all_bad = {}
+    for s_ in (0, 2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20):
+        all_bad.update(check(scene(s_), f'GATE_OPEN s={s_}'))
+    for dx in (0, 30, 60, 90, 120):
+        all_bad.update(check(scene(20, ball_dx=dx), f'GATE_WITHDRAW dx={dx}'))
+        all_bad.update(check(scene(20, ball_dx=dx), f'GATE_APPROACH dx={dx}'))
+    all_bad.update(check(scene(0.0, claws_ret=False), 'GATE_LOCKED'))
+    stop_ok = vol(scene(0.0, claws_ret=False)['CLAMP_R'],
+                  scene(0.0, claws_ret=False)['COLUMN'].translate((20, 0, 0))) > 1.0
+    print(f'锁止挡止断言: {"成立" if stop_ok else "不成立"}')
+    if all_bad or not stop_ok:
+        print(f'存在失败（{len(all_bad)} 处非法或挡止缺失），跳过 STEP 导出（诊断模式）')
         raise SystemExit(2)
     asm = cq.Assembly()
     for n, sh in scene(0.0, claws_ret=False).items():
