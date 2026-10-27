@@ -17,7 +17,7 @@ from OCP.BRepAdaptor import BRepAdaptor_Curve
 from OCP.GCPnts import GCPnts_QuasiUniformDeflection
 
 HERE = Path(__file__).resolve().parent
-STEP = HERE / 'out' / 'module' / '单模块母墙_v1.step'
+STEP = HERE / 'out' / 'module' / '单模块母墙_v2.step'
 shape = cq.importers.importStep(str(STEP)).val()
 
 
@@ -58,8 +58,8 @@ for ax, (title, d, xd, (iu, iv), lu, lv) in zip(axes, views):
     ax.grid(True, lw=0.25, alpha=0.45)
     for s in ('top', 'right'):
         ax.spines[s].set_visible(False)
-fig.suptitle('单模块母墙 3500(Y) × 800(X) × 2800(Z)   ·   外壳+骨架   ·   三视图', fontsize=12.5, x=0.06, ha='left')
+fig.suptitle('单模块母墙 3500 × 800 × 3000（后）/2600（前） · 台阶式 · 三视图', fontsize=12.5, x=0.06, ha='left')
 fig.tight_layout(rect=[0, 0, 1, 0.97])
-out = HERE.parent / 'renders' / '单模块母墙_三视图.png'
+out = HERE.parent / 'renders' / '单模块母墙_v2_三视图.png'
 fig.savefig(out, bbox_inches='tight', facecolor='white')
 print('saved', out, 'edges', sum(len(p) for p in project(shape, (1, 0, 0), (0, 1, 0))))

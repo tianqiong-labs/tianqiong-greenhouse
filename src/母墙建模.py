@@ -1,79 +1,89 @@
-"""单模块母墙 v1.2（墙体外壳 + 内骨架）。
+"""单模块母墙 v2（台阶式，总高 3000）。
 
-相对 v1.1 的改动：
-  1. 地板加厚到 100 mm 夹芯板（原 4 mm 太薄）；
-  2. 删除 4 处角部斜撑（Knee）——功能不明确，不需要；
-  3. 补齐墙体外壳：前板、背板、顶板、两端板，形成封闭壳体；
-  4. 双导轨改为外挂在前板外侧（x 0…50），进棚内 50 mm。
-
-坐标：x ∈ [−800, 50]（含外挂导轨），y ∈ [0, 3500]，z ∈ [0, 2800]；+X 朝棚内。
+台阶：后段 x −800…−300 高 3000；前段 x −300…0 高 2600；立面高差 400。
+双导轨全部坐在台阶立面上（z 2670 / 2840），伸出 50。
+低平面 z=2600 上按每根立柱配一组滚轮托架，托住机械臂。
+零件统一中文命名。
 """
-import cadquery as cq, json, math
+import cadquery as cq, json
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parent / 'out' / 'module'
 OUT.mkdir(parents=True, exist_ok=True)
 
-WY, WX, WZ = 3500.0, 800.0, 2800.0
+WY, WX = 3500.0, 800.0
+WZ_B, WZ_F = 3000.0, 2600.0      # 后段 / 前段
+STEP_X = -300.0
 COL_Y, COL_X = 100.0, 100.0
 BEAM_H = 60.0
 GIRT = 60.0
-GIRT_Z = (900.0, 1600.0, 2300.0)
 SKIN = 30.0
 FLOOR_T = 100.0
 RAIL = 50.0
-RAIL_Z = (2370.0, 2670.0)
+RAIL_Z = (2670.0, 2840.0)
 N_BAY = 6
 YS = [COL_Y / 2 + (WY - COL_Y) * i / N_BAY for i in range(N_BAY + 1)]
-X_BACK = -WX + COL_X / 2        # −750
-Z_FLOOR = FLOOR_T               # 100
-Z_TOP = WZ - SKIN               # 2770
+X_BACK = -WX + COL_X / 2         # −750
+X_FRONT = STEP_X + COL_X / 2     # −250
 
 
 def box(lx, ly, lz, cx, cy, cz):
     return cq.Workplane("XY").box(lx, ly, lz).translate((cx, cy, cz))
 
 
-parts = []
-# 1 地板 100 厚
-parts.append(('FLOOR', box(WX, WY, FLOOR_T, -WX / 2, WY / 2, FLOOR_T / 2)))
-# 2 立柱（落在地板上）
-H = Z_TOP - Z_FLOOR
+P = []
+# ── 地板
+P.append(('底板', box(WX, WY, FLOOR_T, -WX / 2, WY / 2, FLOOR_T / 2)))
+# ── 后段立柱 / 前段立柱
 for y in YS:
-    parts.append((f'COL_{y:.0f}', box(COL_X, COL_Y, H, X_BACK, y, Z_FLOOR + H / 2)))
-# 3 上下横梁
-parts.append(('BEAM_B', box(COL_X, WY - 2 * SKIN, BEAM_H, X_BACK, WY / 2, Z_FLOOR + BEAM_H / 2)))
-parts.append(('BEAM_T', box(COL_X, WY - 2 * SKIN, BEAM_H, X_BACK, WY / 2, Z_TOP - BEAM_H / 2)))
-# 4 横撑 3 道（无斜撑）
-for gz in GIRT_Z:
-    parts.append((f'GIRT_{int(gz)}', box(COL_X, WY - 2 * SKIN, GIRT, X_BACK, WY / 2, gz)))
-# 5 外壳：前板 / 背板 / 顶板 / 两端板
-parts.append(('SKIN_FRONT', box(SKIN, WY, Z_TOP - Z_FLOOR, -SKIN / 2, WY / 2, Z_FLOOR + (Z_TOP - Z_FLOOR) / 2)))
-parts.append(('SKIN_BACK', box(SKIN, WY, Z_TOP - Z_FLOOR, -WX + SKIN / 2, WY / 2, Z_FLOOR + (Z_TOP - Z_FLOOR) / 2)))
-parts.append(('SKIN_TOP', box(WX, WY, SKIN, -WX / 2, WY / 2, WZ - SKIN / 2)))
+    h = WZ_B - FLOOR_T
+    P.append((f'后立柱_{y:.0f}', box(COL_X, COL_Y, h, X_BACK, y, FLOOR_T + h / 2)))
+for y in YS:
+    h = WZ_F - FLOOR_T
+    P.append((f'前立柱_{y:.0f}', box(COL_X, COL_Y, h, X_FRONT, y, FLOOR_T + h / 2)))
+# ── 横梁
+P.append(('后上横梁', box(COL_X, WY - 2 * SKIN, BEAM_H, X_BACK, WY / 2, WZ_B - SKIN - BEAM_H / 2)))
+P.append(('前上横梁', box(COL_X, WY - 2 * SKIN, BEAM_H, X_FRONT, WY / 2, WZ_F - SKIN - BEAM_H / 2)))
+P.append(('下横梁', box(COL_X, WY - 2 * SKIN, BEAM_H, X_BACK, WY / 2, FLOOR_T + BEAM_H / 2)))
+# ── 横撑
+P.append(('后横撑_900', box(COL_X, WY - 2 * SKIN, GIRT, X_BACK, WY / 2, 900)))
+P.append(('后横撑_1600', box(COL_X, WY - 2 * SKIN, GIRT, X_BACK, WY / 2, 1600)))
+P.append(('后横撑_2300', box(COL_X, WY - 2 * SKIN, GIRT, X_BACK, WY / 2, 2300)))
+P.append(('前横撑_900', box(COL_X, WY - 2 * SKIN, GIRT, X_FRONT, WY / 2, 900)))
+P.append(('前横撑_1700', box(COL_X, WY - 2 * SKIN, GIRT, X_FRONT, WY / 2, 1700)))
+# ── 外壳
+P.append(('后板', box(SKIN, WY, WZ_B - FLOOR_T, -WX + SKIN / 2, WY / 2, FLOOR_T + (WZ_B - FLOOR_T) / 2)))
+P.append(('前板', box(SKIN, WY, WZ_F - FLOOR_T, -SKIN / 2, WY / 2, FLOOR_T + (WZ_F - FLOOR_T) / 2)))
+P.append(('台阶立面', box(SKIN, WY, 400.0, STEP_X - SKIN / 2, WY / 2, (WZ_F + WZ_B) / 2)))
+P.append(('后顶板', box(WX + STEP_X, WY, SKIN, (STEP_X - WX) / 2, WY / 2, WZ_B - SKIN / 2)))
+P.append(('前顶板', box(-STEP_X, WY, SKIN, STEP_X / 2, WY / 2, WZ_F - SKIN / 2)))
 for i, y in enumerate((SKIN / 2, WY - SKIN / 2)):
-    parts.append((f'SKIN_END_{i}', box(WX, SKIN, Z_TOP - Z_FLOOR, -WX / 2, y, Z_FLOOR + (Z_TOP - Z_FLOOR) / 2)))
-# 6 双导轨（外挂在前板外侧）
+    P.append((f'后端板_{i}', box(-STEP_X, SKIN, WZ_B - FLOOR_T, (STEP_X - WX) / 2, y, FLOOR_T + (WZ_B - FLOOR_T) / 2)))
+    P.append((f'前端板_{i}', box(-STEP_X, SKIN, WZ_F - FLOOR_T, STEP_X / 2, y, FLOOR_T + (WZ_F - FLOOR_T) / 2)))
+# ── 双导轨（坐在台阶立面上）
 for rz in RAIL_Z:
-    parts.append((f'RAIL_{int(rz)}', box(RAIL, WY, RAIL, RAIL / 2, WY / 2, rz)))
-# 7 导轨端部限位
-for rz in RAIL_Z:
-    for y in (60.0, WY - 60.0):
-        parts.append((f'STOP_{int(rz)}_{int(y)}', box(RAIL, 60, 120, RAIL / 2, y, rz)))
+    P.append((f'导轨_{int(rz)}', box(RAIL, WY, RAIL, STEP_X + RAIL / 2, WY / 2, rz)))
+# ── 滚轮托架（低平面，每根立柱一组）
+for y in YS:
+    P.append((f'托架座_{y:.0f}', box(140, 30, 80, STEP_X + 70, y, WZ_F + 40)))
+    P.append((f'滚轮_{y:.0f}', cq.Workplane("XZ").circle(40).extrude(36).translate((STEP_X + 110, y + 18, WZ_F + 80))))
 
 asm = cq.Assembly()
-for n, s in parts:
+for n, s in P:
     asm.add(s, name=n)
-step = OUT / '单模块母墙_v1.step'
+step = OUT / '单模块母墙_v2.step'
 asm.save(str(step), 'STEP')
 bb = asm.toCompound().BoundingBox()
-info = dict(version='v1.2', parts=len(parts),
+info = dict(version='v2（台阶式）', parts=len(P),
             bbox=dict(x=[round(bb.xmin, 1), round(bb.xmax, 1)],
                       y=[round(bb.ymin, 1), round(bb.ymax, 1)],
                       z=[round(bb.zmin, 1), round(bb.zmax, 1)]),
-            sections=dict(col=[COL_Y, COL_X], beam_h=BEAM_H, girt=GIRT, girt_z=list(GIRT_Z),
-                          skin=SKIN, floor_t=FLOOR_T, rail=RAIL, rail_z=list(RAIL_Z),
-                          bays=N_BAY, knee='已删除'),
+            geometry=dict(后段=dict(x=[-800, STEP_X], h=WZ_B),
+                          前段=dict(x=[STEP_X, 0], h=WZ_F),
+                          高差=WZ_B - WZ_F, 导轨_z=list(RAIL_Z), 导轨座位='台阶立面',
+                          滚轮托架='每立柱一组，低平面 z=2600'),
+            参数=dict(柱=f'{COL_Y}×{COL_X}', 横梁高=BEAM_H, 横撑=GIRT, 板厚=SKIN,
+                      地板厚=FLOOR_T, 导轨=RAIL, 跨数=N_BAY),
             step_kb=round(step.stat().st_size / 1024, 1))
-(OUT / '单模块母墙_v1.json').write_text(json.dumps(info, ensure_ascii=False, indent=1), encoding='utf8')
+(OUT / '单模块母墙_v2.json').write_text(json.dumps(info, ensure_ascii=False, indent=1), encoding='utf8')
 print(json.dumps(info, ensure_ascii=False))
