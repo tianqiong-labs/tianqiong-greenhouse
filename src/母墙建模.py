@@ -1,9 +1,11 @@
-"""单模块母墙 v2（台阶式，总高 3000）。
+"""单模块母墙 v3（台阶式，单根圆导轨，封闭壳体）。
 
-台阶：后段 x −800…−300 高 3000；前段 x −300…0 高 2600；立面高差 400。
-双导轨全部坐在台阶立面上（z 2670 / 2840），伸出 50。
-低平面 z=2600 上按每根立柱配一组滚轮托架，托住机械臂。
-零件统一中文命名。
+改动：
+  1. 双导轨 → **单根圆导轨 Ø80**（可被滚轮/卡爪夹持），坐在台阶立面上；
+  2. 壳体改为**逐块平铺、无缝隙**：后板／后顶板／台阶立面／前顶板／前板／四块端板边界严格相接；
+  3. 滚轮托架移到**靠近内侧墙面**（x −160…−30），托住机械臂近根部。
+
+外形：x −800…0（导轨凸出至 +20），y 0…3500，z 0…3000（前段 2600）。
 """
 import cadquery as cq, json
 from pathlib import Path
@@ -12,78 +14,99 @@ OUT = Path(__file__).resolve().parent / 'out' / 'module'
 OUT.mkdir(parents=True, exist_ok=True)
 
 WY, WX = 3500.0, 800.0
-WZ_B, WZ_F = 3000.0, 2600.0      # 后段 / 前段
+WZ_B, WZ_F = 3000.0, 2600.0
 STEP_X = -300.0
 COL_Y, COL_X = 100.0, 100.0
 BEAM_H = 60.0
 GIRT = 60.0
 SKIN = 30.0
 FLOOR_T = 100.0
-RAIL = 50.0
-RAIL_Z = (2670.0, 2840.0)
+RAIL_R = 40.0
+RAIL_X, RAIL_Z = -260.0, 2820.0
 N_BAY = 6
 YS = [COL_Y / 2 + (WY - COL_Y) * i / N_BAY for i in range(N_BAY + 1)]
-X_BACK = -WX + COL_X / 2         # −750
-X_FRONT = STEP_X + COL_X / 2     # −250
+X_BACK = -WX + COL_X / 2      # −750
+X_FRONT = STEP_X + COL_X / 2  # −250
+
+# 壳体分块边界（严格平铺，不留缝）
+B_BACK0, B_BACK1 = -WX, -WX + SKIN          # −800…−770 后板
+R_BACK0, R_BACK1 = B_BACK1, STEP_X          # −770…−300 后段内部
+RISE0, RISE1 = STEP_X, STEP_X + SKIN        # −300…−270 台阶立面
+F_TOP0, F_TOP1 = RISE1, -SKIN               # −270…−30 前段顶/端
+F_SKIN0, F_SKIN1 = -SKIN, 0.0               # −30…0 前板
 
 
 def box(lx, ly, lz, cx, cy, cz):
     return cq.Workplane("XY").box(lx, ly, lz).translate((cx, cy, cz))
 
 
+def slab(x0, x1, y0, y1, z0, z1):
+    return box(x1 - x0, y1 - y0, z1 - z0, (x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2)
+
+
 P = []
-# ── 地板
-P.append(('底板', box(WX, WY, FLOOR_T, -WX / 2, WY / 2, FLOOR_T / 2)))
-# ── 后段立柱 / 前段立柱
+# 底板
+P.append(('底板', slab(-WX, 0, 0, WY, 0, FLOOR_T)))
+# 后板（通高）
+P.append(('后板', slab(B_BACK0, B_BACK1, 0, WY, FLOOR_T, WZ_B)))
+# 后顶板
+P.append(('后顶板', slab(R_BACK0, R_BACK1, 0, WY, WZ_B - SKIN, WZ_B)))
+# 后段两端板（顶板之下）
+for i, (y0, y1) in enumerate(((0, SKIN), (WY - SKIN, WY))):
+    P.append((f'后端板_{i}', slab(R_BACK0, R_BACK1, y0, y1, FLOOR_T, WZ_B - SKIN)))
+# 台阶立面（2600…3000）
+P.append(('台阶立面', slab(RISE0, RISE1, 0, WY, WZ_F, WZ_B)))
+# 前顶板
+P.append(('前顶板', slab(F_TOP0, F_TOP1, 0, WY, WZ_F - SKIN, WZ_F)))
+# 前段两端板
+for i, (y0, y1) in enumerate(((0, SKIN), (WY - SKIN, WY))):
+    P.append((f'前端板_{i}', slab(F_TOP0, F_TOP1, y0, y1, FLOOR_T, WZ_F - SKIN)))
+# 前板
+P.append(('前板', slab(F_SKIN0, F_SKIN1, 0, WY, FLOOR_T, WZ_F - SKIN)))
+# 骨架：后立柱 / 前立柱
 for y in YS:
     h = WZ_B - FLOOR_T
     P.append((f'后立柱_{y:.0f}', box(COL_X, COL_Y, h, X_BACK, y, FLOOR_T + h / 2)))
 for y in YS:
-    h = WZ_F - FLOOR_T
+    h = WZ_F - SKIN - FLOOR_T
     P.append((f'前立柱_{y:.0f}', box(COL_X, COL_Y, h, X_FRONT, y, FLOOR_T + h / 2)))
-# ── 横梁
+# 横梁 / 横撑
 P.append(('后上横梁', box(COL_X, WY - 2 * SKIN, BEAM_H, X_BACK, WY / 2, WZ_B - SKIN - BEAM_H / 2)))
 P.append(('前上横梁', box(COL_X, WY - 2 * SKIN, BEAM_H, X_FRONT, WY / 2, WZ_F - SKIN - BEAM_H / 2)))
 P.append(('下横梁', box(COL_X, WY - 2 * SKIN, BEAM_H, X_BACK, WY / 2, FLOOR_T + BEAM_H / 2)))
-# ── 横撑
-P.append(('后横撑_900', box(COL_X, WY - 2 * SKIN, GIRT, X_BACK, WY / 2, 900)))
-P.append(('后横撑_1600', box(COL_X, WY - 2 * SKIN, GIRT, X_BACK, WY / 2, 1600)))
-P.append(('后横撑_2300', box(COL_X, WY - 2 * SKIN, GIRT, X_BACK, WY / 2, 2300)))
-P.append(('前横撑_900', box(COL_X, WY - 2 * SKIN, GIRT, X_FRONT, WY / 2, 900)))
-P.append(('前横撑_1700', box(COL_X, WY - 2 * SKIN, GIRT, X_FRONT, WY / 2, 1700)))
-# ── 外壳
-P.append(('后板', box(SKIN, WY, WZ_B - FLOOR_T, -WX + SKIN / 2, WY / 2, FLOOR_T + (WZ_B - FLOOR_T) / 2)))
-P.append(('前板', box(SKIN, WY, WZ_F - FLOOR_T, -SKIN / 2, WY / 2, FLOOR_T + (WZ_F - FLOOR_T) / 2)))
-P.append(('台阶立面', box(SKIN, WY, 400.0, STEP_X - SKIN / 2, WY / 2, (WZ_F + WZ_B) / 2)))
-P.append(('后顶板', box(WX + STEP_X, WY, SKIN, (STEP_X - WX) / 2, WY / 2, WZ_B - SKIN / 2)))
-P.append(('前顶板', box(-STEP_X, WY, SKIN, STEP_X / 2, WY / 2, WZ_F - SKIN / 2)))
-for i, y in enumerate((SKIN / 2, WY - SKIN / 2)):
-    P.append((f'后端板_{i}', box(-STEP_X, SKIN, WZ_B - FLOOR_T, (STEP_X - WX) / 2, y, FLOOR_T + (WZ_B - FLOOR_T) / 2)))
-    P.append((f'前端板_{i}', box(-STEP_X, SKIN, WZ_F - FLOOR_T, STEP_X / 2, y, FLOOR_T + (WZ_F - FLOOR_T) / 2)))
-# ── 双导轨（坐在台阶立面上）
-for rz in RAIL_Z:
-    P.append((f'导轨_{int(rz)}', box(RAIL, WY, RAIL, STEP_X + RAIL / 2, WY / 2, rz)))
-# ── 滚轮托架（低平面，每根立柱一组）
+for gz in (900.0, 1600.0, 2300.0):
+    P.append((f'后横撑_{int(gz)}', box(COL_X, WY - 2 * SKIN, GIRT, X_BACK, WY / 2, gz)))
+for gz in (900.0, 1700.0):
+    P.append((f'前横撑_{int(gz)}', box(COL_X, WY - 2 * SKIN, GIRT, X_FRONT, WY / 2, gz)))
+# 单根圆导轨 + 鞍座
+P.append(('圆导轨', cq.Workplane("XZ").circle(RAIL_R).extrude(WY)
+          .translate((RAIL_X, WY, RAIL_Z))))
 for y in YS:
-    P.append((f'托架座_{y:.0f}', box(140, 30, 80, STEP_X + 70, y, WZ_F + 40)))
-    P.append((f'滚轮_{y:.0f}', cq.Workplane("XZ").circle(40).extrude(36).translate((STEP_X + 110, y + 18, WZ_F + 80))))
+    P.append((f'导轨鞍座_{y:.0f}', slab(STEP_X, RAIL_X, y - 30, y + 30, RAIL_Z - 30, RAIL_Z + 30)))
+# 滚轮托架（靠近内侧墙面）
+for y in YS:
+    P.append((f'托架座_{y:.0f}', slab(-160, -30, y - 15, y + 15, WZ_F, WZ_F + 70)))
+    P.append((f'滚轮_{y:.0f}', cq.Workplane("XZ").circle(40).extrude(30)
+              .translate((-95, y + 15, WZ_F + 70))))
 
 asm = cq.Assembly()
 for n, s in P:
     asm.add(s, name=n)
-step = OUT / '单模块母墙_v2.step'
+step = OUT / '单模块母墙_v3.step'
 asm.save(str(step), 'STEP')
 bb = asm.toCompound().BoundingBox()
-info = dict(version='v2（台阶式）', parts=len(P),
+info = dict(version='v3（台阶式·单圆导轨·封闭壳体）', parts=len(P),
             bbox=dict(x=[round(bb.xmin, 1), round(bb.xmax, 1)],
                       y=[round(bb.ymin, 1), round(bb.ymax, 1)],
                       z=[round(bb.zmin, 1), round(bb.zmax, 1)]),
             geometry=dict(后段=dict(x=[-800, STEP_X], h=WZ_B),
-                          前段=dict(x=[STEP_X, 0], h=WZ_F),
-                          高差=WZ_B - WZ_F, 导轨_z=list(RAIL_Z), 导轨座位='台阶立面',
-                          滚轮托架='每立柱一组，低平面 z=2600'),
+                          前段=dict(x=[STEP_X, 0], h=WZ_F), 高差=WZ_B - WZ_F,
+                          导轨=dict(形式='圆导轨', 直径=2 * RAIL_R, 轴线_z=RAIL_Z, 轴线_x=RAIL_X,
+                                    可夹持='圆柱面，滚轮/卡爪可抱夹'),
+                          滚轮托架=dict(位置='靠近内侧墙面 x −160…−30', 中心_x=-95, 顶面_z=WZ_F + 110),
+                          壳体='后板/后顶板/台阶立面/前顶板/前板/四端板 逐块平铺'),
             参数=dict(柱=f'{COL_Y}×{COL_X}', 横梁高=BEAM_H, 横撑=GIRT, 板厚=SKIN,
-                      地板厚=FLOOR_T, 导轨=RAIL, 跨数=N_BAY),
+                      地板厚=FLOOR_T, 跨数=N_BAY),
             step_kb=round(step.stat().st_size / 1024, 1))
-(OUT / '单模块母墙_v2.json').write_text(json.dumps(info, ensure_ascii=False, indent=1), encoding='utf8')
+(OUT / '单模块母墙_v3.json').write_text(json.dumps(info, ensure_ascii=False, indent=1), encoding='utf8')
 print(json.dumps(info, ensure_ascii=False))
