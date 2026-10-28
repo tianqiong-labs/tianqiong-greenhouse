@@ -1,0 +1,23 @@
+{
+  "basis": "V3 native deployed GLB, 3 modules, 18 arms; replaced historical F04 only",
+  "roof_path_length_m": 5.944523528387821,
+  "film_thickness_m": 0.00015,
+  "rib_offset_m": 0.11,
+  "sampled_clearance_to_source_hardware_m": 0.03700081631541252,
+  "worst_sample_m": [
+    1.1731984615325928,
+    0.3499999940395355,
+    2.8753132820129395
+  ],
+  "samples": 8811,
+  "leading_bar_radius_m": 0.014,
+  "leading_bar_normal_offset_m": 0.028,
+  "sampled_leading_bar_clearance_m": 0.04093741482496262,
+  "module_bridge_overlap_m": 0.12,
+  "end_walls_included": false,
+  "modules": 3,
+  "reels": 3,
+  "independent_films": 3,
+  "removed_legacy_F04_objects": 146,
+  "limits": "Static deployed skeleton; sampled source-hardware clearance, not continuous solid CCD. Seals modeled; airtightness needs physical test. Roof only; ends intentionally open. No arm folding/Mode A validation."
+}

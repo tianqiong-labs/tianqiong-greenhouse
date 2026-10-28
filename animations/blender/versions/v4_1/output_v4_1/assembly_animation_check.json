@@ -1,0 +1,20 @@
+{
+  "modules": 3,
+  "mother_wall_groups": 3,
+  "top_reels": 3,
+  "independent_roof_films": 3,
+  "frames_checked": 361,
+  "end_walls_included": false,
+  "frame181_spans_m": [
+    4.850000191479921,
+    2.7586784847080708,
+    0.0002582557499408722
+  ],
+  "isolated_M2_control_spans_m": [
+    4.850000191479921,
+    2.7586784847080708,
+    4.850000191479921
+  ],
+  "reel_centres_verified": true,
+  "result": "PASS"
+}
