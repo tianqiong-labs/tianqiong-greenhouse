@@ -1,0 +1,252 @@
+{
+  "scope": "Discrete B-rep checks of selected new F04 interactions; NOT continuous swept-volume, dynamics, soft-film or global safety certification",
+  "sample_count": 73,
+  "sample_interval_s": 0.25,
+  "checks": {
+    "source_volume_consistency": {
+      "W01": {
+        "recovered_source_mm3": 1019931054.323647,
+        "rebuilt_mm3": 1019931054.323647,
+        "relative_error": 0.0
+      },
+      "M02": {
+        "recovered_source_mm3": 299955572.0517927,
+        "rebuilt_mm3": 299955572.05179286,
+        "relative_error": 5.961347312304519e-16
+      },
+      "P03": {
+        "recovered_source_mm3": 41125297.598758996,
+        "rebuilt_mm3": 41125297.59875898,
+        "relative_error": 3.623356440902039e-16
+      }
+    },
+    "endpoint_error_mm": 4.738612914194719e-12,
+    "minimum_root_carriage_Y_gap_mm": 116.66659999999956,
+    "minimum_front_carriage_Y_gap_mm": 226.66659999999956,
+    "deployed_membrane_vs_original_components": [],
+    "deployed_membrane_vs_new_hardware": [],
+    "F04_head_motion": {
+      "arm_exactly_checked": "A02; A05 is identical geometry shifted in Y",
+      "min_membrane_distance_mm": 16.74050683322839,
+      "min_bead_distance_mm": 2.0,
+      "min_web_distance_mm": 1.25,
+      "positive_volume_collisions": []
+    },
+    "supported_root_front_Y_sync_error_mm": 0.0,
+    "negative_arm_axis_Z_samples": [],
+    "legacy_wrist_bracket_overlap_samples": [
+      {
+        "time_s": 0.0,
+        "volume_mm3": 52770.4253088133
+      },
+      {
+        "time_s": 0.25,
+        "volume_mm3": 52770.425308827085
+      },
+      {
+        "time_s": 0.5,
+        "volume_mm3": 52770.4253088133
+      },
+      {
+        "time_s": 0.75,
+        "volume_mm3": 52770.4253088327
+      },
+      {
+        "time_s": 1.0,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 1.25,
+        "volume_mm3": 52770.42530881148
+      },
+      {
+        "time_s": 1.5,
+        "volume_mm3": 52770.425308829625
+      },
+      {
+        "time_s": 1.75,
+        "volume_mm3": 52770.425308829625
+      },
+      {
+        "time_s": 2.0,
+        "volume_mm3": 52770.42530881215
+      },
+      {
+        "time_s": 2.25,
+        "volume_mm3": 52770.425308815
+      },
+      {
+        "time_s": 2.5,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 2.75,
+        "volume_mm3": 52770.425308811486
+      },
+      {
+        "time_s": 3.0,
+        "volume_mm3": 52770.42530881499
+      },
+      {
+        "time_s": 3.25,
+        "volume_mm3": 52770.42530881499
+      },
+      {
+        "time_s": 3.5,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 3.75,
+        "volume_mm3": 52770.42530882963
+      },
+      {
+        "time_s": 4.0,
+        "volume_mm3": 52770.42530883271
+      },
+      {
+        "time_s": 4.25,
+        "volume_mm3": 52770.4253088133
+      },
+      {
+        "time_s": 4.5,
+        "volume_mm3": 52770.42530882963
+      },
+      {
+        "time_s": 4.75,
+        "volume_mm3": 52770.42530881148
+      },
+      {
+        "time_s": 5.0,
+        "volume_mm3": 52770.425308856706
+      },
+      {
+        "time_s": 5.25,
+        "volume_mm3": 52770.42530881215
+      },
+      {
+        "time_s": 5.5,
+        "volume_mm3": 52770.42530881148
+      },
+      {
+        "time_s": 5.75,
+        "volume_mm3": 52770.4253088133
+      },
+      {
+        "time_s": 6.0,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 6.25,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 6.5,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 6.75,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 7.0,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 7.25,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 7.5,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 7.75,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 8.0,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 8.25,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 8.5,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 8.75,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 9.0,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 9.25,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 9.5,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 9.75,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 10.0,
+        "volume_mm3": 52770.42530882962
+      },
+      {
+        "time_s": 10.25,
+        "volume_mm3": 52767.231307591734
+      },
+      {
+        "time_s": 10.5,
+        "volume_mm3": 52602.893130708006
+      },
+      {
+        "time_s": 10.75,
+        "volume_mm3": 51202.12695986477
+      },
+      {
+        "time_s": 11.0,
+        "volume_mm3": 45247.17040494293
+      },
+      {
+        "time_s": 11.25,
+        "volume_mm3": 21461.398273156716
+      }
+    ],
+    "last_pose_arm2_tip_mm": [
+      3911.9760927574407,
+      816.6667,
+      80.4281058000904
+    ],
+    "two_module_max_rib_spacing_mm": 1450.0,
+    "released_four_rib_max_spacing_mm": 933.3334000000002
+  },
+  "interferences": [],
+  "known_unverified": [
+    "No flexible membrane stress, sag, wrinkling, finite fold radius or seam/weatherproof simulation.",
+    "Single sheet across two modules spans 1450 mm between nearest ribs over 750 mm small-wall bay; not load verified.",
+    "Bands/web/bead winding is NOT included in storage target: continuous bead is a rollability blocker.",
+    "W01/M02 original joint and frame geometry contains simplified overlapping proxies; not a production mechanism.",
+    "P03 wrist bracket is retained as an original solid proxy; opening latch and physically valid release path not engineered.",
+    "F04 vertical carrier slide and gate actuation/positive locks are geometric DOF proposals; no drives or controls.",
+    "No full deployment-from-storage trajectory; no rail transfer through/around mother wall; no folded arm packaging.",
+    "Core bearings/mount envelopes are new add-ons; 3.6 m / 7.85 m roll shaft stiffness, motors and bearings not calculated.",
+    "Original P03 membrane clamp is retained but NOT connected to F04 sheet. New front feed interface is provisional.",
+    "Storage rail still uses deployed-anchor source geometry: anchor retraction and transport restraints unresolved.",
+    "73 samples do not prove continuous swept-volume collision freedom; only listed pairs tested.",
+    "No wind/snow/soil anchorage, static strength, fatigue, electrical interlocks or field safety validation."
+  ],
+  "summary": {
+    "film_vs_original_no_positive_volume_overlap": true,
+    "film_vs_new_hardware_no_positive_volume_overlap": true,
+    "sampled_head_bead_web_film_collision_free": true,
+    "overall_safe_to_build_or_operate": false
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "project": "TIANQIONG",
+  "scope": "Blender concept animation",
+  "latest_version": "V3",
+  "user_confirmed_on": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "next_version": "V4",
+  "policy": "Continue from V3; preserve V3 and earlier versions as snapshots and backups.",
+  "version_directory": "versions/v3",
+  "blend": {
+    "path": "versions/v3/田穹_F04_R02_V3_坐标与关节校正.blend",
+    "bytes": 16373158,
+    "sha256": "4821918451629844EB46A24D76C631C64926FD35465FE99F582A8F065EB14C5A"
+  },
+  "video": {
+    "path": "versions/v3/田穹_F04_R02_V3_34秒_校正动画.mp4",
+    "bytes": 6144372,
+    "sha256": "985E5A70041EC5E062DC453F60C903A92A8B988A2309AE159E1772D919C479AD",
+    "duration_seconds": 34.0,
+    "fps": 24,
+    "frames": 816,
+    "resolution": [1280, 720]
+  },
+  "archive": {
+    "path": "versions/v3/田穹_Blender_CAD校正工程_V3.zip",
+    "bytes": 27263034,
+    "sha256": "7ECD0EFED52644D5ABB0D2CF653ADA0F9FDD194579CD8C6A0B3EA08AF0AFF5DA"
+  },
+  "source_basis": "Historical F04 R02 CAD; not an integration of later Mode A engineering revisions",
+  "animation_class": "Concept keyframes; affine film unfolding; collisions and winding not validated"
+}

@@ -2,6 +2,17 @@
 
 模块化可变构暖棚的 Mode A（棚膜保持展开条件下的作业臂切换）运动学验证与调试数据。
 
+## Blender 概念动画最新版本（2026-10-28）
+
+用户指定 **V3 坐标与关节校正版为当前 Blender 动画基准**，后续动画修改从 V3 继续，默认下一版为 V4。此前 V1/V2 和 Blender 自动备份均已保留。
+
+- [当前版本入口、视频和可编辑工程](animations/blender/README.md)
+- [V3 完整工程包](animations/blender/versions/v3/田穹_Blender_CAD校正工程_V3.zip)
+- [V3 CAD 校正总览](animations/blender/versions/v3/田穹_V3_正确CAD总览.png)
+- [历史动画备份](animations/blender/backups/README.md)
+
+该 V3 是基于历史 F04 R02 网格的三模块、18 臂、34 秒概念动画。其坐标与关节校验范围、膜仿射展开及折叠限制见动画说明；本节的“最新”指 Blender 动画基准，仓库现有 Mode A 工程和设计分支说明仍适用于其各自的 CAD/轨迹文件。
+
 ## 目录
 - `src/planner.py` 5 维 RRT-Connect + 自适应运动边检查
 - `src/geom.py` 统一点到线段距离 + 解析单元测试 + 几何不变量

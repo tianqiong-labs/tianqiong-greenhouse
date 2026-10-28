@@ -1,0 +1,54 @@
+{
+  "source_meshes": 398,
+  "bake_max_vertex_error_m": 4.805480091749757e-07,
+  "rail_bbox_m": [
+    [
+      4.560000419616699,
+      4.29948343594333e-09,
+      0.031999535858631134
+    ],
+    [
+      4.680000305175781,
+      3.500000476837158,
+      0.06600001454353333
+    ]
+  ],
+  "wall_post_bbox_m": [
+    [
+      -0.5990000367164612,
+      0.04500003159046173,
+      0.15700000524520874
+    ],
+    [
+      -0.531000018119812,
+      0.11500037461519241,
+      2.6600003242492676
+    ]
+  ],
+  "joint_rest_matrix_max_error": 3.5762786865234375e-07,
+  "chain_endpoint_max_error_m": 1.1740753414387827e-06,
+  "chain_checks": 486,
+  "checked_frames": [
+    1,
+    100,
+    200,
+    288,
+    430,
+    520,
+    576,
+    672,
+    816
+  ],
+  "independent_source_vertex_comparisons": 129720,
+  "independent_rest_max_vertex_error_m": 1.1449678368746367e-06,
+  "basis": "Blender GLB importer already restored metres/Z-up; no extra rotation",
+  "source": "C:\\Users\\12753\\Documents\\Codex\\2026-10-23\\referenced-chatgpt-conversation-this-is-an\\outputs\\TIANQIONG_F04_R02\\01_deployed.glb",
+  "arms": 18,
+  "modules": 3,
+  "pitch_m": 4.25,
+  "animation_class": "concept keyframes; film affine unfolding; no collision or winding simulation",
+  "full_timeline_frames_checked": 816,
+  "full_timeline_chain_checks": 44064,
+  "full_timeline_chain_max_error_m": 2.2649765014648438e-06,
+  "full_timeline_telescope_tip_max_error_m": 2.3960770657350755e-06
+}
